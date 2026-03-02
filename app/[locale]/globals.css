@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-light: #DFDFDF;
+  --color-bg-dark: #424F61;
+  --color-text-dark: #393939;
+  --color-text-accent: #424F64;
+  --color-text-light: #f0f0f0;
+  --color-highlight: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply text-sm text-[var(--color-text-dark)];
+  }
+
+  h1 {
+    @apply font-['Bebas_Neue'] text-[32px] leading-tight text-[var(--color-text-accent)];
+  }
+
+  h2 {
+    @apply text-base font-semibold text-[var(--color-text-accent)] uppercase tracking-widest mt-5 mb-2;
+  }
+
+  h3 {
+    @apply text-sm text-[var(--color-text-dark)];
+  }
+
+  p, li {
+    @apply text-[13px] leading-relaxed;
+  }
+
+  ul {
+    @apply ml-1.5 mt-1.5 mb-2 pl-2.5 list-disc;
+  }
+
+  li {
+    @apply mb-0.5;
+  }
+}
+
+@layer utilities {
+  .icon-ts {
+    @apply w-4 h-4 mr-2 inline-block align-middle;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    background: var(--color-bg-light) !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

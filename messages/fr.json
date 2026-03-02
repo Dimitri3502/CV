@@ -1,0 +1,95 @@
+{
+  "Contact": {
+    "title": "Contact",
+    "email": "dimitri.beubry@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "Atouts": {
+    "title": "Atouts",
+    "excellence": {
+      "title": "Excellence",
+      "desc": "Je ne me repose pas sur mes acquis et je progresse toujours"
+    },
+    "rigor": {
+      "title": "Rigoureux et passionné",
+      "desc": "J'ai à coeur de rendre un travail achevé et extensible"
+    },
+    "autonomy": {
+      "title": "Autonomie et initiative",
+      "desc": "Je prends les décisions pour avancer"
+    }
+  },
+  "Skills": {
+    "title": "Compétences",
+    "frontend": "Front/Back‑end",
+    "devops": "DevOps"
+  },
+  "Education": {
+    "title": "Formation",
+    "centrale": {
+      "school": "École Centrale de Nantes",
+      "degree": "Ingénieur Généraliste (2015‑2019)",
+      "subjects": "Informatique, Finance, Énergie"
+    },
+    "thiers": {
+      "school": "Lycée Thiers Marseille",
+      "degree": "Classe prépa PCSI‑PSI (2013‑2015)"
+    }
+  },
+  "Header": {
+    "name": "Dimitri Beubry–Niejinsky",
+    "subtitle": "Développeur React & Node.js | DevOps | No‑Code 🚀"
+  },
+  "About": {
+    "title": "À propos",
+    "content": "Ingénieur et entrepreneur, j’allie expertise full stack & DevOps à une forte expérience en automatisation et IA. Mon objectif : transformer la technologie en levier business et faire passer des projets ambitieux à une nouvelle échelle."
+  },
+  "Experience": {
+    "title": "Expériences",
+    "luphy": {
+      "title": "2023 – 2025 — CTO & Founder, LUPHY",
+      "summary": "Agence fondée et dirigée, spécialisée en automatisation et IA pour accélérer l’exécution et l’impact business.",
+      "bullets": [
+        "Développement d’un moteur de templates et d’emails automatisés pour un leveur de fonds, optimisant la gestion de roadshows entre startups et investisseurs.",
+        "Conception d’un système d’automatisation des réclamations par IA pour une compagnie d’assurance : capacité de +200 dossiers/jour, réduction significative des délais de traitement et des coûts opérationnels.",
+        "Réalisation d’une application de sourcing automatisé d’informations stratégiques (fondateurs, marché, concurrents…) avec génération d’une note d’investissement.",
+        "Mise en place d’un outil de veille et de scoring des sociétés d’investissement en France (collecte des bilans, analyse de données publiques, enrichissement LinkedIn), facilitant le ciblage et l’efficacité des campagnes marketing."
+      ]
+    },
+    "ksaar": {
+      "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+      "summary": "Responsable des chantiers techniques clés d’une plateforme SaaS no‑code à forte croissance.",
+      "bullets": [
+        "Développement d'une plateforme SaaS no‑code (adoptée par +10k utilisateurs)",
+        "Conception infra, architecture événementielle, migration monorepo/TypeScript",
+        "Mise en place CI/CD, tests unitaires, intégration & charge",
+        "Recrutement et mentoring de développeurs juniors",
+        "Création d’une plateforme d’automatisation, intégrations Stripe Connect & Yousign"
+      ]
+    },
+    "engie": {
+      "title": "2019 – 2021 — Développeur Full Stack, ENGIE‑SOLUTIONS",
+      "summary": "Développement d’applications B2B et de flux temps réel dans un environnement industriel exigeant.",
+      "bullets": [
+        "Développement en SCRUM d’une application B2B",
+        "Dashboard temps réel (Vue.js)",
+        "Architecture événementielle avec Kafka"
+      ]
+    },
+    "excilys": {
+      "title": "2019 (9 mois) — Junior Full Stack, EXCILYS",
+      "summary": "Première expérience professionnelle en équipe agile sur une application web interne.",
+      "bullets": [
+        "Application web agile pour répertorier et partager ses compétences"
+      ]
+    },
+    "eifer": {
+      "title": "2017 – 2018 — Data Analyst, EIFER‑EDF",
+      "summary": "Analyse de données de monitoring pour améliorer la performance opérationnelle de sites énergétiques.",
+      "bullets": [
+        "Analyse de 5 ans de données de monitoring",
+        "Amélioration opérationnelle d’une dizaine de micro‑cogénérations"
+      ]
+    }
+  }
+}

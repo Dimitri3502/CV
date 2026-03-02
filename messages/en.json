@@ -1,0 +1,95 @@
+{
+  "Contact": {
+    "title": "Contact",
+    "email": "dimitri.beubry@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "Atouts": {
+    "title": "Assets",
+    "excellence": {
+      "title": "Excellence",
+      "desc": "I don't rest on my laurels and I'm always progressing"
+    },
+    "rigor": {
+      "title": "Rigorous and passionate",
+      "desc": "I care about delivering complete and extensible work"
+    },
+    "autonomy": {
+      "title": "Autonomy and initiative",
+      "desc": "I take decisions to move forward"
+    }
+  },
+  "Skills": {
+    "title": "Skills",
+    "frontend": "Front/Back‑end",
+    "devops": "DevOps"
+  },
+  "Education": {
+    "title": "Education",
+    "centrale": {
+      "school": "École Centrale de Nantes",
+      "degree": "General Engineer (2015‑2019)",
+      "subjects": "Computer Science, Finance, Energy"
+    },
+    "thiers": {
+      "school": "Lycée Thiers Marseille",
+      "degree": "Prep school PCSI‑PSI (2013‑2015)"
+    }
+  },
+  "Header": {
+    "name": "Dimitri Beubry–Niejinsky",
+    "subtitle": "React & Node.js Developer | DevOps | No‑Code 🚀"
+  },
+  "About": {
+    "title": "About",
+    "content": "Engineer and entrepreneur, I combine full stack & DevOps expertise with strong experience in automation and AI. My goal: transform technology into a business lever and scale ambitious projects."
+  },
+  "Experience": {
+    "title": "Experience",
+    "luphy": {
+      "title": "2023 – 2025 — CTO & Founder, LUPHY",
+      "summary": "Founded and led agency, specializing in automation and AI to accelerate execution and business impact.",
+      "bullets": [
+        "Development of an automated template and email engine for a fundraiser, optimizing the management of roadshows between startups and investors.",
+        "Design of an AI-based claims automation system for an insurance company: capacity of +200 files/day, significant reduction in processing times and operational costs.",
+        "Realization of an automated sourcing application for strategic information (founders, market, competitors...) with generation of an investment note.",
+        "Implementation of a monitoring and scoring tool for investment companies in France (collection of balance sheets, analysis of public data, LinkedIn enrichment), facilitating targeting and effectiveness of marketing campaigns."
+      ]
+    },
+    "ksaar": {
+      "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+      "summary": "Responsible for key technical projects of a high-growth no‑code SaaS platform.",
+      "bullets": [
+        "Development of a no‑code SaaS platform (adopted by +10k users)",
+        "Infra design, event-driven architecture, monorepo/TypeScript migration",
+        "CI/CD setup, unit tests, integration & load tests",
+        "Recruitment and mentoring of junior developers",
+        "Creation of an automation platform, Stripe Connect & Yousign integrations"
+      ]
+    },
+    "engie": {
+      "title": "2019 – 2021 — Full Stack Developer, ENGIE‑SOLUTIONS",
+      "summary": "Development of B2B applications and real-time streams in a demanding industrial environment.",
+      "bullets": [
+        "SCRUM development of a B2B application",
+        "Real-time dashboard (Vue.js)",
+        "Event-driven architecture with Kafka"
+      ]
+    },
+    "excilys": {
+      "title": "2019 (9 months) — Junior Full Stack, EXCILYS",
+      "summary": "First professional experience in an agile team on an internal web application.",
+      "bullets": [
+        "Agile web application to list and share skills"
+      ]
+    },
+    "eifer": {
+      "title": "2017 – 2018 — Data Analyst, EIFER‑EDF",
+      "summary": "Analysis of monitoring data to improve operational performance of energy sites.",
+      "bullets": [
+        "Analysis of 5 years of monitoring data",
+        "Operational improvement of a dozen micro‑cogeneration units"
+      ]
+    }
+  }
+}
