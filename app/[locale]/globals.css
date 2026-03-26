@@ -45,6 +45,31 @@
   }
 }
 
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+.cv-root.is-print-mode {
+  padding: 0;
+}
+
+.cv-root.is-print-mode .cv-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  max-width: none;
+  box-shadow: none;
+}
+
+.cv-root.is-print-mode .no-print {
+  display: none !important;
+}
+
+.experience-block {
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
 @media print {
   * {
     -webkit-print-color-adjust: exact;
@@ -52,7 +77,21 @@
   }
 
   html, body {
+    margin: 0;
+    padding: 0;
     background: var(--color-bg-light) !important;
+  }
+
+  .cv-root {
+    min-height: auto;
+    padding: 0 !important;
+  }
+
+  .cv-sheet {
+    width: 210mm !important;
+    min-height: 297mm;
+    margin: 0 !important;
+    box-shadow: none !important;
   }
 
   .no-print {

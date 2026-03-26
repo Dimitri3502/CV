@@ -1,19 +1,6 @@
 import {notFound} from 'next/navigation';
 import './globals.css';
-import enMessages from '../../messages/en.json';
-import frMessages from '../../messages/fr.json';
-
-const locales = ['en', 'fr'] as const;
-type Locale = (typeof locales)[number];
-
-const messagesByLocale = {
-  en: enMessages,
-  fr: frMessages
-} as const;
-
-function isLocale(value: string): value is Locale {
-  return locales.includes(value as Locale);
-}
+import {getMessages, isLocale, locales} from './i18n';
 
 export async function generateMetadata(props: {params: Promise<{locale: string}>}) {
   const params = await props.params;
@@ -23,7 +10,7 @@ export async function generateMetadata(props: {params: Promise<{locale: string}>
     return {title: 'CV'};
   }
 
-  const messages = messagesByLocale[locale];
+  const messages = getMessages(locale);
   const name = messages.Header.name;
 
   return {
