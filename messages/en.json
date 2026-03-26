@@ -50,10 +50,10 @@
       "title": "2023 – 2025 — CTO & Founder, LUPHY",
       "summary": "Founded and led agency, specializing in automation and AI to accelerate execution and business impact.",
       "bullets": [
-        "Development of an automated template and email engine for a fundraiser, optimizing the management of roadshows between startups and investors.",
+        "Development of an automated template and email engine for a fundraiser, with AI-based response management and classification, optimizing the management of roadshows between startups and investors.",
         "Design and front-end/back-end development (React + Spring Boot) of an AI assistant for travel reimbursement request processing for an insurance company, with supporting-document data extraction, operator takeover when the AI makes a mistake, and capacity of +200 files/day, significantly reducing processing times and operational costs.",
         "Realization of an automated sourcing application for strategic information (founders, market, competitors...) with generation of an investment note.",
-        "Implementation of a monitoring and scoring tool for investment companies in France (collection of balance sheets, analysis of public data, LinkedIn enrichment), facilitating targeting and effectiveness of marketing campaigns."
+        "Implementation of a monitoring and scoring tool for investment companies in France, with AI web-search-based data collection automation across 400k companies (financial statements collection, public data analysis, LinkedIn enrichment), facilitating targeting and effectiveness of marketing campaigns."
       ]
     },
     "ksaar": {

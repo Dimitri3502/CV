@@ -1,12 +1,29 @@
 import Link from 'next/link';
 import { use } from 'react';
+import {notFound} from 'next/navigation';
+import enMessages from '../../messages/en.json';
+import frMessages from '../../messages/fr.json';
+
+const locales = ['en', 'fr'] as const;
+type Locale = (typeof locales)[number];
+
+const messagesByLocale = {
+  en: enMessages,
+  fr: frMessages
+} as const;
+
+function isLocale(value: string): value is Locale {
+  return locales.includes(value as Locale);
+}
 
 export default function CVPage(props: { params: Promise<{ locale: string }> }) {
   const params = use(props.params);
   const locale = params.locale;
+  if (!isLocale(locale)) {
+    notFound();
+  }
 
-  // Directly import messages to avoid dynamic usage of getTranslations during static export
-  const messages = require(`../../messages/${locale}.json`);
+  const messages = messagesByLocale[locale];
   
   const headerT = (key: string) => messages.Header[key];
   const aboutT = (key: string) => messages.About[key];
@@ -119,7 +136,7 @@ export default function CVPage(props: { params: Promise<{ locale: string }> }) {
               <li className="flex items-center gap-2"><i className="fab fa-gitlab w-4"></i> Gitlab‑CI</li>
               <li className="flex items-center gap-2"><i className="fas fa-cogs w-4"></i> Ansible, Pulumi</li>
               <li className="flex items-center gap-2"><i className="fas fa-chart-line w-4"></i> Grafana</li>
-              <li className="flex items-center gap-2"><i className="fas fa-cloud w-4"></i> Scaleway</li>
+              <li className="flex items-center gap-2"><i className="fas fa-cloud w-4"></i> Scaleway <span role="img" aria-label="France">🇫🇷</span></li>
               <li className="flex items-center gap-2"><i className="fab fa-docker w-4"></i> Docker</li>
               <li className="flex items-center gap-2"><i className="fas fa-project-diagram w-4"></i> Kubernetes</li>
             </ul>
