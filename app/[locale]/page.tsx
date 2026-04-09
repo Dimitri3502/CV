@@ -7,9 +7,9 @@ type PageProps = {
   searchParams: Promise<{print?: string | string[]}>;
 };
 
-function isPrintMode(printParam: string | string[] | undefined) {
-  const print = Array.isArray(printParam) ? printParam[0] : printParam;
-  return print === '1' || print === 'true';
+function isEnabled(flagParam: string | string[] | undefined) {
+  const flag = Array.isArray(flagParam) ? flagParam[0] : flagParam;
+  return flag === '1' || flag === 'true';
 }
 
 export default async function CVPage(props: PageProps) {
@@ -22,7 +22,13 @@ export default async function CVPage(props: PageProps) {
   }
 
   const messages = getMessages(locale);
-  const printMode = isPrintMode(searchParams.print);
+  const printMode = isEnabled(searchParams.print);
 
-  return <CVTemplate locale={locale} messages={messages} isPrintMode={printMode} />;
+  return (
+    <CVTemplate
+      locale={locale}
+      messages={messages}
+      isPrintMode={printMode}
+    />
+  );
 }

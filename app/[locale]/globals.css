@@ -7,6 +7,9 @@
   --color-text-accent: #424F64;
   --color-text-light: #f0f0f0;
   --color-highlight: #ffffff;
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+  --preview-page-gap: 14mm;
 }
 
 @layer base {
@@ -55,8 +58,8 @@
 }
 
 .cv-root.is-print-mode .cv-sheet {
-  width: 210mm;
-  min-height: 297mm;
+  width: var(--a4-width);
+  min-height: var(--a4-height);
   max-width: none;
   box-shadow: none;
 }
@@ -65,12 +68,76 @@
   display: none !important;
 }
 
-.experience-block {
+.cv-root.is-preview-mode {
+  background: #c5c9cf;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.cv-root.is-preview-mode .cv-sheet {
+  position: relative;
+  width: min(var(--a4-width), calc(100vw - 1.5rem));
+  max-width: var(--a4-width);
+  min-height: var(--a4-height);
+  margin: 0 auto;
+  background: #fff;
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(15, 23, 42, 0.12);
+}
+
+.cv-root.is-preview-mode .cv-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--a4-height) - 1px),
+    rgba(15, 23, 42, 0.3) calc(var(--a4-height) - 1px),
+    rgba(15, 23, 42, 0.3) var(--a4-height),
+    rgba(197, 201, 207, 0.98) var(--a4-height),
+    rgba(197, 201, 207, 0.98) calc(var(--a4-height) + var(--preview-page-gap))
+  );
+}
+
+.print-avoid-break {
   break-inside: avoid-page;
   page-break-inside: avoid;
 }
 
+.experience-block {
+  break-inside: auto;
+  page-break-inside: auto;
+}
+
+.experience-block h3 {
+  break-after: avoid-page;
+  page-break-after: avoid;
+}
+
+.experience-block li {
+  break-inside: auto;
+  page-break-inside: auto;
+}
+
 @media print {
+  .print-page-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .print-page-break-after {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .print-page-break-avoid {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -88,10 +155,14 @@
   }
 
   .cv-sheet {
-    width: 210mm !important;
-    min-height: 297mm;
+    width: var(--a4-width) !important;
+    min-height: var(--a4-height);
     margin: 0 !important;
     box-shadow: none !important;
+  }
+
+  .cv-sheet::before {
+    content: none !important;
   }
 
   .no-print {

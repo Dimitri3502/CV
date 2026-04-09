@@ -3,7 +3,7 @@ import frMessages from '../../messages/fr.json';
 
 export const locales = ['en', 'fr'] as const;
 export type Locale = (typeof locales)[number];
-export type CVMessages = typeof enMessages;
+export type CVMessages = typeof frMessages;
 
 const messagesByLocale: Record<Locale, CVMessages> = {
   en: enMessages,
