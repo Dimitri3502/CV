@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -15,7 +16,15 @@
 
 # next.js
 /.next/
+/apps/web/.next/
 /out/
+/apps/web/out/
+
+# turborepo
+.turbo
+
+# backend build
+/apps/api/dist/
 
 # production
 /build
