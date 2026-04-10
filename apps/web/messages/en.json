@@ -1,0 +1,136 @@
+{
+  "Contact": {
+    "title": "Contact",
+    "email": "dimitri.beubry@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "Header": {
+    "name": "Dimitri Beubry–Niejinsky",
+    "subtitle": "Senior Full Stack Engineer — React, Node.js, Conversational AI"
+  },
+  "About": {
+    "title": "About",
+    "content": "Senior full-stack engineer with 7 years of experience designing web applications and B2B products, with a strong focus on React, Node.js, and applied AI. I have designed and delivered rich interfaces, orchestration backends, and production AI workflows across document extraction, automation, and information retrieval use cases. I am now looking to contribute to AI-native products where user experience, backend architecture, and business value are designed together."
+  },
+  "Highlights": {
+    "title": "Highlights",
+    "items": [
+      "Design of AI products from scratch",
+      "React / Node.js on complex business applications",
+      "Backend orchestration, automation, and production rollout",
+      "Strong autonomy in ambiguous environments"
+    ]
+  },
+  "Skills": {
+    "title": "Skills",
+    "frontend": {
+      "title": "Frontend",
+      "items": [
+        "React",
+        "Vue.js",
+        "TypeScript",
+        "Complex business interfaces",
+        "Client-side state management"
+      ]
+    },
+    "backend": {
+      "title": "Backend",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "BullMQ",
+        "APIs and event-driven architectures"
+      ]
+    },
+    "ai": {
+      "title": "AI & Search",
+      "items": [
+        "Conversational AI",
+        "RAG",
+        "Document extraction",
+        "Classification",
+        "Prompting",
+        "Context enrichment",
+        "MCP"
+      ]
+    },
+    "devops": {
+      "title": "DevOps",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Pulumi/Terraform",
+        "Grafana",
+        "Scaleway/Azure/GCP/OVH",
+        "Unix shell"
+      ]
+    }
+  },
+  "Experience": {
+    "title": "Experience",
+    "luphy": {
+      "title": "2023 – 2025 — CTO & Founder, LUPHY",
+      "summary": "Founded and led an agency specializing in automation and applied AI product design to accelerate execution and business impact.",
+      "bullets": [
+        "AI document platform for construction stakeholders on large-scale projects in an AMO / OPC context, enabling ingestion and structuring of heterogeneous corpora (meeting minutes, contractual documents, tracking sheets, technical documentation) and natural-language querying, with a sovereign architecture (Mistral AI, OVH), without sending full documents to the model, thanks to a chunk-based RAG pipeline and embeddings stored in pgvector.",
+        "Conversational assistant connected to the backend via MCP, enabling natural-language querying of a French holdings database and structured business results based on user criteria.",
+        "Monitoring and scoring tool across 400k companies, based on multi-source collection, public-data analysis, and LinkedIn enrichment, to connect companies, investors, sectors, and interest signals in an AI-assisted business research workflow.",
+        "Application for strategic information search and synthesis (founders, market, competitors), combining automated collection, context enrichment, and generation of an actionable investment memo.",
+        "AI assistant for travel reimbursement processing, with a React operator interface, data extraction from supporting documents, human takeover, and backend orchestration of business steps; processing capacity of 200+ files/day.",
+        "Email generation and orchestration engine for startup / investor roadshows, with AI-driven response classification and structured user follow-up."
+      ]
+    },
+    "ksaar": {
+      "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+      "summary": "Led key technical initiatives for a fast-growing B2B SaaS platform, with a central role in architecture, software quality, and product automation capabilities.",
+      "bullets": [
+        "Developed a B2B SaaS platform adopted by 10k+ users.",
+        "Designed application and event-driven architecture to support product scalability.",
+        "Led monorepo / TypeScript migration to improve maintainability, technical consistency, and iteration speed.",
+        "Set up CI/CD, unit, integration, and load testing.",
+        "Built an automation platform and Stripe Connect / Yousign integrations.",
+        "Recruited and mentored junior developers."
+      ]
+    },
+    "engie": {
+      "title": "2019 – 2021 — Full Stack Developer, ENGIE-SOLUTIONS",
+      "summary": "Developed B2B applications and real-time data streams in a demanding industrial environment.",
+      "bullets": [
+        "SCRUM development of a B2B application.",
+        "Designed a real-time dashboard in Vue.js.",
+        "Asynchronous data-stream processing via Kafka to power real-time visualization without overloading the information system."
+      ]
+    },
+    "excilys": {
+      "title": "2019 (9 months) — Junior Full Stack, EXCILYS",
+      "summary": "First professional experience in an agile team on an internal web application.",
+      "bullets": [
+        "Developed a web application for sharing and indexing skills."
+      ]
+    },
+    "eifer": {
+      "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
+      "summary": "Analyzed monitoring data to improve operational performance on energy sites.",
+      "bullets": [
+        "Analyzed five years of monitoring data.",
+        "Contributed to operational improvements on around ten micro-cogeneration units."
+      ]
+    }
+  },
+  "Education": {
+    "title": "Education",
+    "centrale": {
+      "school": "École Centrale de Nantes",
+      "degree": "General Engineering Degree (2015-2019)",
+      "subjects": "Computer science, finance, energy"
+    },
+    "thiers": {
+      "school": "Lycée Thiers Marseille",
+      "degree": "Preparatory classes PCSI-PSI (2013-2015)"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "Contact": {
+    "title": "Contact",
+    "email": "dimitri.beubry@gmail.com",
+    "linkedin": "LinkedIn"
+  },
+  "Header": {
+    "name": "Dimitri Beubry–Niejinsky",
+    "subtitle": "Ingénieur Full Stack Senior — React, Node.js, IA conversationnelle"
+  },
+  "About": {
+    "title": "À propos",
+    "content": "Ingénieur full stack senior, j’ai 7 ans d’expérience dans la conception d’applications web et de produits B2B, avec une forte dominante React, Node.js et IA appliquée. J’ai conçu et livré des interfaces riches, des backends d’orchestration et des workflows IA en production, sur des sujets d’extraction documentaire, d’automatisation et de recherche d’information. Je cherche aujourd’hui à contribuer à des produits IA-native où l’expérience utilisateur, l’architecture backend et la valeur métier se conçoivent ensemble."
+  },
+  "Highlights": {
+    "title": "Points forts",
+    "items": [
+      "Conception de produits IA from scratch",
+      "React / Node.js sur des applications métier complexes",
+      "Orchestration backend, automatisation et mise en production",
+      "Forte autonomie en environnement flou"
+    ]
+  },
+  "Skills": {
+    "title": "Compétences",
+    "frontend": {
+      "title": "Frontend",
+      "items": [
+        "React",
+        "Vue.js",
+        "TypeScript",
+        "Interfaces métier complexes",
+        "Gestion d’état côté client"
+      ]
+    },
+    "backend": {
+      "title": "Backend",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "BullMQ",
+        "APIs et architectures événementielles"
+      ]
+    },
+    "ai": {
+      "title": "IA & recherche",
+      "items": [
+        "IA conversationnelle",
+        "RAG",
+        "Extraction documentaire",
+        "Classification",
+        "Prompting",
+        "Enrichissement contextuel",
+        "MCP"
+      ]
+    },
+    "devops": {
+      "title": "DevOps",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Pulumi/Terraform",
+        "Grafana",
+        "Scaleway/Azure/GCP/OVH",
+        "Shell Unix"
+      ]
+    }
+  },
+  "Experience": {
+    "title": "Expériences",
+    "luphy": {
+      "title": "2023 – 2025 — CTO & Founder, LUPHY",
+      "summary": "Agence fondée et dirigée, spécialisée dans la conception de produits d’automatisation et d’IA appliquée pour accélérer l’exécution et l’impact business.",
+      "bullets": [
+        "Plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
+        "Assistant conversationnel connecté au backend via MCP, permettant d’interroger en langage naturel une base de holdings françaises et de restituer des résultats métier structurés selon les critères utilisateur.",
+        "Outil de veille et de scoring sur 400k entreprises, fondé sur la collecte multi-sources, l’analyse de données publiques et l’enrichissement LinkedIn, pour relier sociétés, investisseurs, secteurs et signaux d’intérêt dans une logique de recherche métier assistée par IA.",
+        "Application de recherche et de synthèse d’informations stratégiques (fondateurs, marché, concurrents), combinant collecte automatisée, enrichissement contextuel et génération d’une note d’investissement exploitable.",
+        "Assistant IA de traitement de dossiers de remboursement voyage, avec interface opérateur React, extraction de données depuis les pièces justificatives, reprise en main humaine et orchestration backend des étapes métier ; capacité de traitement de +200 dossiers/jour.",
+        "Moteur de génération et d’orchestration d’emails pour des roadshows startup / investisseurs, avec classification automatique des réponses par IA et structuration du suivi utilisateur."
+      ]
+    },
+    "ksaar": {
+      "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+      "summary": "Responsable des chantiers techniques clés d’une plateforme SaaS B2B à forte croissance, avec un rôle central sur l’architecture, la qualité logicielle et les capacités d’automatisation du produit.",
+      "bullets": [
+        "Développement d’une plateforme SaaS B2B adoptée par +10k utilisateurs.",
+        "Conception de l’architecture applicative et événementielle pour soutenir la montée en charge du produit.",
+        "Migration monorepo / TypeScript pour améliorer la maintenabilité, la cohérence technique et la vitesse d’itération.",
+        "Mise en place de CI/CD, de tests unitaires, d’intégration et de charge.",
+        "Développement d’une plateforme d’automatisation et intégrations Stripe Connect / Yousign.",
+        "Recrutement et mentoring de développeurs juniors."
+      ]
+    },
+    "engie": {
+      "title": "2019 – 2021 — Développeur Full Stack, ENGIE-SOLUTIONS",
+      "summary": "Développement d’applications B2B et de flux temps réel dans un environnement industriel exigeant.",
+      "bullets": [
+        "Développement en SCRUM d’une application B2B.",
+        "Conception d’un dashboard temps réel en Vue.js.",
+        "Traitement asynchrone des flux de données via Kafka pour alimenter la visualisation temps réel sans surcharger le SI."
+      ]
+    },
+    "excilys": {
+      "title": "2019 (9 mois) — Junior Full Stack, EXCILYS",
+      "summary": "Première expérience professionnelle en équipe agile sur une application web interne.",
+      "bullets": [
+        "Développement d’une application web de partage et de référencement des compétences."
+      ]
+    },
+    "eifer": {
+      "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
+      "summary": "Analyse de données de monitoring pour améliorer la performance opérationnelle de sites énergétiques.",
+      "bullets": [
+        "Analyse de 5 années de données de monitoring.",
+        "Contribution à l’amélioration opérationnelle d’une dizaine de micro-cogénérations."
+      ]
+    }
+  },
+  "Education": {
+    "title": "Formation",
+    "centrale": {
+      "school": "École Centrale de Nantes",
+      "degree": "Ingénieur Généraliste (2015-2019)",
+      "subjects": "Informatique, finance, énergie"
+    },
+    "thiers": {
+      "school": "Lycée Thiers Marseille",
+      "degree": "Classe préparatoire PCSI-PSI (2013-2015)"
+    }
+  }
+}

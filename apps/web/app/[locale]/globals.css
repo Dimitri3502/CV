@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-light: #DFDFDF;
+  --color-bg-dark: #424F61;
+  --color-text-dark: #393939;
+  --color-text-accent: #424F64;
+  --color-text-light: #f0f0f0;
+  --color-highlight: #ffffff;
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+  --preview-page-gap: 14mm;
+}
+
+@layer base {
+  body {
+    @apply text-sm text-[var(--color-text-dark)];
+  }
+
+  h1 {
+    @apply font-['Bebas_Neue'] text-[32px] leading-tight text-[var(--color-text-accent)];
+  }
+
+  h2 {
+    @apply text-base font-semibold text-[var(--color-text-accent)] uppercase tracking-widest mt-5 mb-2;
+  }
+
+  h3 {
+    @apply text-sm text-[var(--color-text-dark)];
+  }
+
+  p, li {
+    @apply text-[13px] leading-relaxed;
+  }
+
+  ul {
+    @apply ml-1.5 mt-1.5 mb-2 pl-2.5 list-disc;
+  }
+
+  li {
+    @apply mb-0.5;
+  }
+}
+
+@layer utilities {
+  .icon-ts {
+    @apply w-4 h-4 mr-2 inline-block align-middle;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+.cv-root.is-print-mode {
+  padding: 0;
+}
+
+.cv-root.is-print-mode .cv-sheet {
+  width: var(--a4-width);
+  min-height: var(--a4-height);
+  max-width: none;
+  box-shadow: none;
+}
+
+.cv-root.is-print-mode .no-print {
+  display: none !important;
+}
+
+.cv-root.is-preview-mode {
+  background: #c5c9cf;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.cv-root.is-preview-mode .cv-sheet {
+  position: relative;
+  width: min(var(--a4-width), calc(100vw - 1.5rem));
+  max-width: var(--a4-width);
+  min-height: var(--a4-height);
+  margin: 0 auto;
+  background: #fff;
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(15, 23, 42, 0.12);
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-bg-light) !important;
+  }
+
+  .cv-root {
+    min-height: auto;
+    padding: 0 !important;
+  }
+
+  .cv-sheet {
+    width: var(--a4-width) !important;
+    min-height: var(--a4-height);
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .cv-sheet::before {
+    content: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

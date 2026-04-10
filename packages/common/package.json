@@ -1,0 +1,18 @@
+{
+  "name": "@cv/common",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "scripts": {
+    "lint": "echo \"No lint configured for @cv/common\"",
+    "typecheck": "echo \"No typecheck configured for @cv/common\""
+  }
+}
