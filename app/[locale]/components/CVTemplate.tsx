@@ -59,7 +59,7 @@ export function CVTemplate({
               className="mb-5 aspect-square w-full max-w-[180px] rounded-full object-cover shadow-lg"
             />
 
-            <div className="w-full print-avoid-break">
+            <div className="w-full">
               <h2 className="!mt-0 mb-3 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 {messages.Contact.title}
               </h2>
@@ -78,7 +78,7 @@ export function CVTemplate({
               </p>
             </div>
 
-            <div className="w-full print-avoid-break">
+            <div className="w-full">
               <h2 className="!mt-0 mb-3 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 {messages.Highlights.title}
               </h2>
@@ -89,7 +89,7 @@ export function CVTemplate({
               </ul>
             </div>
 
-            <div className="w-full print-avoid-break">
+            <div className="w-full">
               <h2 className="!mt-0 mb-3 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 {messages.Skills.title}
               </h2>
@@ -113,7 +113,7 @@ export function CVTemplate({
               })}
             </div>
 
-            <div className="w-full print-avoid-break">
+            <div className="w-full">
               <h2 className="!mt-0 mb-3 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 {messages.Education.title}
               </h2>
@@ -137,12 +137,12 @@ export function CVTemplate({
         </aside>
 
         <main className="overflow-wrap-anywhere p-8 max-[600px]:p-4 max-[600px]:pr-3 sm:pr-6">
-          <header className="print-avoid-break">
+          <header>
             <h1>{messages.Header.name}</h1>
             <div className="mt-1 text-sm text-[var(--color-text-dark)]">{messages.Header.subtitle}</div>
           </header>
 
-          <section className="print-avoid-break">
+          <section>
             <h2>{messages.About.title}</h2>
             <p>{messages.About.content}</p>
           </section>
@@ -153,7 +153,7 @@ export function CVTemplate({
               {experienceOrder.map((key) => {
                 const experience = messages.Experience[key];
                 return (
-                  <article key={key} className="experience-block">
+                  <article key={key}>
                     <h3 className="flex items-center gap-2 font-semibold">
                       <i className="fas fa-briefcase text-[var(--color-text-accent)]"></i>
                       {experience.title}

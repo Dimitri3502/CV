@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="add CV template component with localization and PDF export feature">
+    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="Update CV content, redesign localization strings, and refine PDF styles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/[locale]/components/CVTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/components/CVTemplate.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/[locale]/i18n.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/i18n.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/[locale]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/fr.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +155,7 @@
       <workItem from="1772705034737" duration="602000" />
       <workItem from="1774521738467" duration="9284000" />
       <workItem from="1774951650602" duration="1922000" />
-      <workItem from="1775738937558" duration="3312000" />
+      <workItem from="1775738937558" duration="8016000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -193,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774523345625</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update CV content, redesign localization strings, and refine PDF styles">
+      <option name="closed" value="true" />
+      <created>1775742841829</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775742841830</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +207,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="update dependencies and improve locale management" />
     <MESSAGE value="add CV template component with localization and PDF export feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="add CV template component with localization and PDF export feature" />
+    <MESSAGE value="Update CV content, redesign localization strings, and refine PDF styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update CV content, redesign localization strings, and refine PDF styles" />
   </component>
 </project>

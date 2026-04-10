@@ -85,59 +85,7 @@
     0 0 0 1px rgba(15, 23, 42, 0.12);
 }
 
-.cv-root.is-preview-mode .cv-sheet::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 20;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent calc(var(--a4-height) - 1px),
-    rgba(15, 23, 42, 0.3) calc(var(--a4-height) - 1px),
-    rgba(15, 23, 42, 0.3) var(--a4-height),
-    rgba(197, 201, 207, 0.98) var(--a4-height),
-    rgba(197, 201, 207, 0.98) calc(var(--a4-height) + var(--preview-page-gap))
-  );
-}
-
-.print-avoid-break {
-  break-inside: avoid-page;
-  page-break-inside: avoid;
-}
-
-.experience-block {
-  break-inside: auto;
-  page-break-inside: auto;
-}
-
-.experience-block h3 {
-  break-after: avoid-page;
-  page-break-after: avoid;
-}
-
-.experience-block li {
-  break-inside: auto;
-  page-break-inside: auto;
-}
-
 @media print {
-  .print-page-break-before {
-    break-before: page;
-    page-break-before: always;
-  }
-
-  .print-page-break-after {
-    break-after: page;
-    page-break-after: always;
-  }
-
-  .print-page-break-avoid {
-    break-inside: avoid-page;
-    page-break-inside: avoid;
-  }
-
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
