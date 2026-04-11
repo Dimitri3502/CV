@@ -1,4 +1,18 @@
 import Link from 'next/link';
+import {
+  faAddressBook,
+  faBriefcase,
+  faCertificate,
+  faCircle,
+  faCode,
+  faGraduationCap,
+  faRobot,
+  faScrewdriverWrench,
+  faServer,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
+import {type IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import type { CVMessages, Locale } from '../i18n';
 import {ExportPdfButton} from './ExportPdfButton';
 
@@ -8,12 +22,7 @@ type CVTemplateProps = {
   isPrintMode?: boolean;
 };
 
-const skillIcons = [
-  'fas fa-code',
-  'fas fa-server',
-  'fas fa-robot',
-  'fas fa-tools',
-];
+const skillIcons: IconDefinition[] = [faCode, faServer, faRobot, faScrewdriverWrench];
 
 export function CVTemplate({
   locale,
@@ -27,7 +36,7 @@ export function CVTemplate({
       {!isPrintMode && (
         <div className="no-print fixed right-4 top-4 z-50 rounded-xl bg-[var(--color-bg-dark)]/95 p-2 shadow-lg backdrop-blur-sm">
           <div className="flex flex-wrap gap-2">
-            <ExportPdfButton locale={locale} />
+            <ExportPdfButton locale={locale} data={messages} />
             <Link
               href="/en"
               className="rounded bg-white/10 px-2 py-1 text-xs uppercase hover:bg-white/20"
@@ -56,7 +65,7 @@ export function CVTemplate({
             <div className="w-full">
               <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 <span className="inline-flex h-4 w-4 items-center justify-center">
-                  <i className="fas fa-address-book text-[12px] leading-none"></i>
+                  <FontAwesomeIcon icon={faAddressBook} className="h-[12px] w-[12px]" fixedWidth />
                 </span>
                 {messages.Contact.title}
               </h2>
@@ -83,7 +92,7 @@ export function CVTemplate({
             <div className="w-full">
               <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 <span className="inline-flex h-4 w-4 items-center justify-center">
-                  <i className="fas fa-star text-[12px] leading-none"></i>
+                  <FontAwesomeIcon icon={faStar} className="h-[12px] w-[12px]" fixedWidth />
                 </span>
                 {messages.Highlights.title}
               </h2>
@@ -97,7 +106,7 @@ export function CVTemplate({
             <div className="w-full">
               <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 <span className="inline-flex h-4 w-4 items-center justify-center">
-                  <i className="fas fa-graduation-cap text-[12px] leading-none"></i>
+                  <FontAwesomeIcon icon={faGraduationCap} className="h-[12px] w-[12px]" fixedWidth />
                 </span>
               {messages.Education.title}
               </h2>
@@ -130,18 +139,22 @@ export function CVTemplate({
           <section>
             <h2 className="flex items-center gap-2">
               <span className="inline-flex h-4 w-4 items-center justify-center">
-                <i className="fas fa-tools text-[12px] leading-none"></i>
+                <FontAwesomeIcon icon={faScrewdriverWrench} className="h-[12px] w-[12px]" fixedWidth />
               </span>
               {messages.Skills.title}
             </h2>
             <div className="mt-1 flex flex-col gap-4">
               {messages.Skills.items.map((section, sectionIndex) => {
-                const icon = skillIcons[sectionIndex] ?? 'fas fa-circle';
+                const iconDefinition = skillIcons[sectionIndex] ?? faCircle;
                 return (
                   <div key={sectionIndex}>
                     <h3 className="mb-1.5 flex items-center gap-2 font-semibold">
                       <span className="inline-flex h-4 w-4 items-center justify-center">
-                        <i className={`${icon} text-[12px] leading-none text-[var(--color-text-accent)]`}></i>
+                        <FontAwesomeIcon
+                          icon={iconDefinition}
+                          className="h-[12px] w-[12px] text-[var(--color-text-accent)]"
+                          fixedWidth
+                        />
                       </span>
                       {section.title}
                     </h3>
@@ -164,7 +177,11 @@ export function CVTemplate({
           <section className="mt-4 break-inside-avoid">
             <h2 className="!mb-1 flex items-center gap-2">
               <span className="inline-flex h-4 w-4 items-center justify-center">
-                <i className="fas fa-certificate text-[11px] leading-none text-[var(--color-text-accent)]"></i>
+                <FontAwesomeIcon
+                  icon={faCertificate}
+                  className="h-[11px] w-[11px] text-[var(--color-text-accent)]"
+                  fixedWidth
+                />
               </span>
               {messages.Certifications.title}
             </h2>
@@ -188,7 +205,13 @@ export function CVTemplate({
               {messages.Experience.items.map((experience, index) => (
                 <article key={index}>
                   <h3 className="flex items-center gap-2 font-semibold">
-                    <i className="fas fa-briefcase text-[var(--color-text-accent)]"></i>
+                    <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+                      <FontAwesomeIcon
+                        icon={faBriefcase}
+                        className="h-[12px] w-[12px] text-[var(--color-text-accent)]"
+                        fixedWidth
+                      />
+                    </span>
                     {experience.title}
                   </h3>
                   <p className="mt-0.5 mb-1 italic text-[#575757]">{experience.summary}</p>

@@ -49,3 +49,25 @@ pnpm typecheck
 
 - Frontend CV : `http://localhost:3000`
 - API health : `http://localhost:4000/api/v1/health`
+- API export PDF : `POST http://localhost:4000/api/v1/export-pdf`
+
+## Export PDF
+
+L'endpoint backend attend un JSON :
+
+```json
+{
+  "locale": "fr",
+  "data": {
+    "...": "..."
+  }
+}
+```
+
+La réponse est un buffer PDF (`Content-Type: application/pdf`).
+
+Pour le frontend, vous pouvez configurer la base API avec :
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
+```

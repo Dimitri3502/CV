@@ -49,6 +49,11 @@
   }
 }
 
+.cv-root .svg-inline--fa {
+  display: block;
+  vertical-align: 0;
+}
+
 @page {
   size: A4 portrait;
   margin: 0;
@@ -116,6 +121,32 @@
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+
+  .cv-root h1 {
+    font-size: 38px !important;
+    line-height: 1.08 !important;
+  }
+
+  .cv-root h2 {
+    font-size: 18px !important;
+  }
+
+  .cv-root h3 {
+    font-size: 15px !important;
+  }
+
+  .cv-root p,
+  .cv-root li {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .cv-root .cv-sheet [class*='text-[12px]'],
+  .cv-root .cv-sheet [class~='text-sm'],
+  .cv-root .cv-sheet [class~='text-xs'] {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
   }
 
   html, body {

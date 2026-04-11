@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="cv avec chip et couleur">
+    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="add certifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/ExportPdfButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/ExportPdfButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/messages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/messages/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/messages/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/api/export-pdf/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +25,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="80" />
+    <option name="cachedIndexableFilesCount" value="90" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -163,7 +171,8 @@
       <workItem from="1774521738467" duration="9284000" />
       <workItem from="1774951650602" duration="1922000" />
       <workItem from="1775738937558" duration="11473000" />
-      <workItem from="1775829116551" duration="8426000" />
+      <workItem from="1775829116551" duration="9271000" />
+      <workItem from="1775904940248" duration="6289000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -229,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775844703236</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add certifications">
+      <option name="closed" value="true" />
+      <created>1775903078281</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775903078281</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +258,7 @@
     <MESSAGE value="add CV template component with localization and PDF export feature" />
     <MESSAGE value="Update CV content, redesign localization strings, and refine PDF styles" />
     <MESSAGE value="cv avec chip et couleur" />
-    <option name="LAST_COMMIT_MESSAGE" value="cv avec chip et couleur" />
+    <MESSAGE value="add certifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="add certifications" />
   </component>
 </project>

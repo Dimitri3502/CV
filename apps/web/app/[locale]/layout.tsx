@@ -33,7 +33,6 @@ export default async function LocaleLayout(props: {
     <html lang={locale}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
       </head>
       <body className="antialiased font-['Noto_Sans',_sans-serif] bg-[#DFDFDF] print:bg-[#DFDFDF]">
         {props.children}

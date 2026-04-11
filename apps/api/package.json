@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@cv/common": "workspace:*",
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@nestjs/common": "^11.1.0",
     "@nestjs/core": "^11.1.0",
     "@nestjs/platform-express": "^11.1.0",
+    "puppeteer": "^24.40.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
