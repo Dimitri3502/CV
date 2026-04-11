@@ -8,23 +8,12 @@ type CVTemplateProps = {
   isPrintMode?: boolean;
 };
 
-type ExperienceKey = Exclude<keyof CVMessages['Experience'], 'title'>;
-type SkillKey = Exclude<keyof CVMessages['Skills'], 'title'>;
-
-const experienceOrder: ExperienceKey[] = ['luphy', 'ksaar', 'engie', 'excilys', 'eifer'];
-const skillOrder: SkillKey[] = ['frontend', 'backend', 'ai', 'devops'];
-const skillIcons: Record<SkillKey, string> = {
-  frontend: 'fas fa-code',
-  backend: 'fas fa-server',
-  ai: 'fas fa-robot',
-  devops: 'fas fa-tools',
-};
-const skillChipStyles: Record<SkillKey, string> = {
-  frontend: 'border-cyan-300/45 bg-cyan-500/18 text-cyan-100',
-  backend: 'border-emerald-300/45 bg-emerald-500/18 text-emerald-100',
-  ai: 'border-rose-300/45 bg-rose-500/18 text-rose-100',
-  devops: 'border-amber-300/45 bg-amber-500/18 text-amber-100',
-};
+const skillIcons = [
+  'fas fa-code',
+  'fas fa-server',
+  'fas fa-robot',
+  'fas fa-tools',
+];
 
 export function CVTemplate({
   locale,
@@ -56,7 +45,7 @@ export function CVTemplate({
       )}
 
       <div className="cv-sheet mx-auto grid max-w-[900px] grid-flow-dense grid-cols-[280px_1fr] bg-white shadow-xl max-[600px]:grid-cols-[40%_1fr] sm:grid-cols-[280px_1fr]">
-        <aside className="bg-[var(--color-bg-dark)] p-4 text-[var(--color-text-light)] print:bg-[var(--color-bg-dark)] print:text-[var(--color-text-light)] sm:p-[30px]">
+        <aside className="cv-sidebar bg-[var(--color-bg-dark)] p-4 text-[var(--color-text-light)] print:bg-[var(--color-bg-dark)] print:text-[var(--color-text-light)] sm:p-[30px]">
           <div className="flex flex-col items-center gap-6">
             <img
               src="https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg"
@@ -65,16 +54,28 @@ export function CVTemplate({
             />
 
             <div className="w-full">
-              <h2 className="!mt-0 mb-3 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
+              <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
+                <span className="inline-flex h-4 w-4 items-center justify-center">
+                  <i className="fas fa-address-book text-[12px] leading-none"></i>
+                </span>
                 {messages.Contact.title}
               </h2>
               <p className="mb-1.5 overflow-wrap-anywhere">{messages.Contact.email}</p>
-              <p className="overflow-wrap-anywhere">
+              <p className="mb-1.5 overflow-wrap-anywhere">{messages.Contact.location}</p>
+              <p className="mb-1.5 overflow-wrap-anywhere">
                 <a
-                  href="https://www.linkedin.com/in/dimitri-beubry-99343210b"
+                  href={messages.Contact.linkedinUrl}
                   className="hover:underline"
                 >
                   {messages.Contact.linkedin}
+                </a>
+              </p>
+              <p className="overflow-wrap-anywhere">
+                <a
+                  href={messages.Contact.calendlyUrl}
+                  className="hover:underline"
+                >
+                  {messages.Contact.calendly}
                 </a>
               </p>
             </div>
@@ -96,58 +97,26 @@ export function CVTemplate({
             <div className="w-full">
               <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
                 <span className="inline-flex h-4 w-4 items-center justify-center">
-                  <i className="fas fa-tools text-[12px] leading-none"></i>
-                </span>
-                {messages.Skills.title}
-              </h2>
-              {skillOrder.map((key, sectionIndex) => {
-                const section = messages.Skills[key];
-                return (
-                  <div key={key}>
-                    <h3 className={`${sectionIndex === 0 ? 'mt-3' : 'mt-4'} mb-1.5 flex items-center gap-2 font-semibold !text-[var(--color-highlight)]`}>
-                      <span className="inline-flex h-4 w-4 items-center justify-center">
-                        <i className={`${skillIcons[key]} text-[12px] leading-none`}></i>
-                      </span>
-                      {section.title}
-                    </h3>
-                    <div className="mt-1.5 flex flex-wrap gap-1.5">
-                      {section.items.map((item, itemIndex) => (
-                        <span
-                          key={itemIndex}
-                          className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[12px] leading-5 ${skillChipStyles[key]}`}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="w-full">
-              <h2 className="!mt-0 mb-3 flex items-center gap-2 !font-['Bebas_Neue'] text-lg tracking-wider text-[var(--color-highlight)]">
-                <span className="inline-flex h-4 w-4 items-center justify-center">
                   <i className="fas fa-graduation-cap text-[12px] leading-none"></i>
                 </span>
-                {messages.Education.title}
+              {messages.Education.title}
               </h2>
               <div className="flex flex-col gap-4">
-                <div>
-                  <p className="font-bold !text-[var(--color-highlight)]">{messages.Education.centrale.school}</p>
-                  <p className="pl-6 !text-[12px] opacity-90">{messages.Education.centrale.degree}</p>
-                  <p className="pl-6 !text-[12px] opacity-90">{messages.Education.centrale.subjects}</p>
-                </div>
-                <div>
-                  <p className="font-bold !text-[var(--color-highlight)]">{messages.Education.thiers.school}</p>
-                  <p className="pl-6 !text-[12px] opacity-90">{messages.Education.thiers.degree}</p>
-                </div>
+                {messages.Education.items.map((education, index) => (
+                  <div key={index}>
+                    <p className="font-bold !text-[var(--color-highlight)]">{education.school}</p>
+                    <p className="pl-6 !text-[12px] opacity-90">{education.degree}</p>
+                    {'subjects' in education && education.subjects ? (
+                      <p className="pl-6 !text-[12px] opacity-90">{education.subjects}</p>
+                    ) : null}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </aside>
 
-        <main className="overflow-wrap-anywhere p-8 max-[600px]:p-4 max-[600px]:pr-3 sm:pr-6">
+        <main className="cv-main cv-main-primary col-start-2 overflow-wrap-anywhere p-8 max-[600px]:p-4 max-[600px]:pr-3 sm:pr-6">
           <header>
             <h1>{messages.Header.name}</h1>
             <div className="mt-1 text-sm text-[var(--color-text-dark)]">{messages.Header.subtitle}</div>
@@ -159,28 +128,80 @@ export function CVTemplate({
           </section>
 
           <section>
-            <h2>{messages.Experience.title}</h2>
-            <div className="flex flex-col gap-5">
-              {experienceOrder.map((key) => {
-                const experience = messages.Experience[key];
+            <h2 className="flex items-center gap-2">
+              <span className="inline-flex h-4 w-4 items-center justify-center">
+                <i className="fas fa-tools text-[12px] leading-none"></i>
+              </span>
+              {messages.Skills.title}
+            </h2>
+            <div className="mt-1 flex flex-col gap-4">
+              {messages.Skills.items.map((section, sectionIndex) => {
+                const icon = skillIcons[sectionIndex] ?? 'fas fa-circle';
                 return (
-                  <article key={key}>
-                    <h3 className="flex items-center gap-2 font-semibold">
-                      <i className="fas fa-briefcase text-[var(--color-text-accent)]"></i>
-                      {experience.title}
+                  <div key={sectionIndex}>
+                    <h3 className="mb-1.5 flex items-center gap-2 font-semibold">
+                      <span className="inline-flex h-4 w-4 items-center justify-center">
+                        <i className={`${icon} text-[12px] leading-none text-[var(--color-text-accent)]`}></i>
+                      </span>
+                      {section.title}
                     </h3>
-                    <p className="mt-0.5 mb-1 italic text-[#575757]">{experience.summary}</p>
-                    <ul className="!mt-1 !mb-2 !pl-4">
-                      {experience.bullets.map((bullet, index) => (
-                        <li key={index}>{bullet}</li>
+                    <div className="flex flex-wrap gap-1.5">
+                      {section.items.map((item, itemIndex) => (
+                        <span
+                          key={itemIndex}
+                          className="inline-flex items-center rounded-full border border-[var(--color-text-accent)]/35 bg-white px-2 py-0.5 text-[12px] leading-5 text-[var(--color-text-dark)]"
+                        >
+                          {item}
+                        </span>
                       ))}
-                    </ul>
-                  </article>
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </section>
+
+          <section className="mt-4 break-inside-avoid">
+            <h2 className="!mb-1 flex items-center gap-2">
+              <span className="inline-flex h-4 w-4 items-center justify-center">
+                <i className="fas fa-certificate text-[11px] leading-none text-[var(--color-text-accent)]"></i>
+              </span>
+              {messages.Certifications.title}
+            </h2>
+            <div className="flex flex-col gap-1.5">
+              {messages.Certifications.items.map((certification, index) => (
+                <article key={index} className="text-[12px] leading-snug">
+                  <p className="!m-0 font-semibold text-[var(--color-text-dark)]">{certification.name}</p>
+                  <p className="!m-0 text-[#575757]">
+                    {certification.issued} · {certification.issuer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
         </main>
+
+        <section className="cv-main-secondary col-span-2 overflow-wrap-anywhere px-8 pb-8 max-[600px]:px-4 max-[600px]:pr-3 sm:pr-6">
+          <section>
+            <h2>{messages.Experience.title}</h2>
+            <div className="flex flex-col gap-5">
+              {messages.Experience.items.map((experience, index) => (
+                <article key={index}>
+                  <h3 className="flex items-center gap-2 font-semibold">
+                    <i className="fas fa-briefcase text-[var(--color-text-accent)]"></i>
+                    {experience.title}
+                  </h3>
+                  <p className="mt-0.5 mb-1 italic text-[#575757]">{experience.summary}</p>
+                  <ul className="!mt-1 !mb-2 !pl-4">
+                    {experience.bullets.map((bullet, bulletIndex) => (
+                      <li key={bulletIndex}>{bullet}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+        </section>
       </div>
     </div>
   );

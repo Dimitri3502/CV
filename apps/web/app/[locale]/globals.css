@@ -9,6 +9,7 @@
   --color-highlight: #ffffff;
   --a4-width: 210mm;
   --a4-height: 297mm;
+  --print-sidebar-gap: 6mm;
   --preview-page-gap: 14mm;
 }
 
@@ -58,10 +59,36 @@
 }
 
 .cv-root.is-print-mode .cv-sheet {
+  display: block;
   width: var(--a4-width);
   min-height: var(--a4-height);
   max-width: none;
+  margin: 0;
   box-shadow: none;
+}
+
+.cv-root.is-print-mode .cv-sheet::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cv-root.is-print-mode .cv-sidebar {
+  float: left;
+  width: 280px;
+  margin-right: var(--print-sidebar-gap);
+  height: var(--a4-height);
+  min-height: var(--a4-height);
+}
+
+.cv-root.is-print-mode .cv-main,
+.cv-root.is-print-mode .cv-main-primary {
+  min-height: var(--a4-height);
+  overflow: visible;
+}
+
+.cv-root.is-print-mode .cv-main-secondary {
+  clear: left;
 }
 
 .cv-root.is-print-mode .no-print {
@@ -103,10 +130,35 @@
   }
 
   .cv-sheet {
+    display: block !important;
     width: var(--a4-width) !important;
     min-height: var(--a4-height);
     margin: 0 !important;
     box-shadow: none !important;
+  }
+
+  .cv-sheet::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .cv-sidebar {
+    float: left;
+    width: 280px;
+    margin-right: var(--print-sidebar-gap);
+    height: var(--a4-height);
+    min-height: var(--a4-height);
+  }
+
+  .cv-main,
+  .cv-main-primary {
+    min-height: var(--a4-height);
+    overflow: visible;
+  }
+
+  .cv-main-secondary {
+    clear: left;
   }
 
   .cv-sheet::before {

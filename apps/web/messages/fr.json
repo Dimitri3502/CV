@@ -2,7 +2,11 @@
   "Contact": {
     "title": "Contact",
     "email": "dimitri.beubry@gmail.com",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "location": "Paris",
+    "calendly": "Calendly",
+    "linkedinUrl": "https://www.linkedin.com/in/dimitri-beubry-99343210b",
+    "calendlyUrl": "https://calendly.com/dimitri-beubry"
   },
   "Header": {
     "name": "Dimitri Beubry–Niejinsky",
@@ -23,114 +27,143 @@
   },
   "Skills": {
     "title": "Compétences",
-    "frontend": {
-      "title": "Frontend",
-      "items": [
-        "React",
-        "Vue.js",
-        "TypeScript",
-        "Interfaces métier complexes",
-        "Gestion d’état côté client"
-      ]
-    },
-    "backend": {
-      "title": "Backend",
-      "items": [
-        "Node.js",
-        "NestJS",
-        "PostgreSQL",
-        "Redis",
-        "Kafka",
-        "BullMQ",
-        "APIs et architectures événementielles"
-      ]
-    },
-    "ai": {
-      "title": "IA & recherche",
-      "items": [
-        "IA conversationnelle",
-        "RAG",
-        "Extraction documentaire",
-        "Classification",
-        "Prompting",
-        "Enrichissement contextuel",
-        "MCP"
-      ]
-    },
-    "devops": {
-      "title": "DevOps",
-      "items": [
-        "Docker",
-        "Kubernetes",
-        "CI/CD",
-        "Pulumi/Terraform",
-        "Grafana",
-        "Scaleway/Azure/GCP/OVH",
-        "Shell Unix"
-      ]
-    }
+    "items": [
+      {
+        "title": "Frontend",
+        "items": [
+          "React",
+          "Vue.js",
+          "TypeScript",
+          "Interfaces métier complexes",
+          "Gestion d’état côté client"
+        ]
+      },
+      {
+        "title": "Backend",
+        "items": [
+          "Node.js",
+          "NestJS",
+          "PostgreSQL",
+          "Redis",
+          "Kafka",
+          "BullMQ",
+          "APIs et architectures événementielles"
+        ]
+      },
+      {
+        "title": "IA & recherche",
+        "items": [
+          "IA conversationnelle",
+          "RAG",
+          "Extraction documentaire",
+          "Classification",
+          "Prompting",
+          "Enrichissement contextuel",
+          "MCP"
+        ]
+      },
+      {
+        "title": "DevOps",
+        "items": [
+          "Docker",
+          "Kubernetes",
+          "CI/CD",
+          "Pulumi/Terraform",
+          "Grafana",
+          "Scaleway/Azure/GCP/OVH",
+          "Shell Unix"
+        ]
+      }
+    ]
   },
   "Experience": {
     "title": "Expériences",
-    "luphy": {
-      "title": "2023 – 2025 — CTO & Founder, LUPHY",
-      "summary": "Agence fondée et dirigée, spécialisée dans la conception de produits d’automatisation et d’IA appliquée pour accélérer l’exécution et l’impact business.",
-      "bullets": [
-        "Plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
-        "Assistant conversationnel connecté au backend via MCP, permettant d’interroger en langage naturel une base de holdings françaises et de restituer des résultats métier structurés selon les critères utilisateur.",
-        "Outil de veille et de scoring sur 400k entreprises, fondé sur la collecte multi-sources, l’analyse de données publiques et l’enrichissement LinkedIn, pour relier sociétés, investisseurs, secteurs et signaux d’intérêt dans une logique de recherche métier assistée par IA.",
-        "Application de recherche et de synthèse d’informations stratégiques (fondateurs, marché, concurrents), combinant collecte automatisée, enrichissement contextuel et génération d’une note d’investissement exploitable.",
-        "Assistant IA de traitement de dossiers de remboursement voyage, avec interface opérateur React, extraction de données depuis les pièces justificatives, reprise en main humaine et orchestration backend des étapes métier ; capacité de traitement de +200 dossiers/jour.",
-        "Moteur de génération et d’orchestration d’emails pour des roadshows startup / investisseurs, avec classification automatique des réponses par IA et structuration du suivi utilisateur."
-      ]
-    },
-    "ksaar": {
-      "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
-      "summary": "Responsable des chantiers techniques clés d’une plateforme SaaS B2B à forte croissance, avec un rôle central sur l’architecture, la qualité logicielle et les capacités d’automatisation du produit.",
-      "bullets": [
-        "Développement d’une plateforme SaaS B2B adoptée par +10k utilisateurs.",
-        "Conception de l’architecture applicative et événementielle pour soutenir la montée en charge du produit.",
-        "Migration monorepo / TypeScript pour améliorer la maintenabilité, la cohérence technique et la vitesse d’itération.",
-        "Mise en place de CI/CD, de tests unitaires, d’intégration et de charge.",
-        "Développement d’une plateforme d’automatisation et intégrations Stripe Connect / Yousign.",
-        "Recrutement et mentoring de développeurs juniors."
-      ]
-    },
-    "engie": {
-      "title": "2019 – 2021 — Développeur Full Stack, ENGIE-SOLUTIONS",
-      "summary": "Développement d’applications B2B et de flux temps réel dans un environnement industriel exigeant.",
-      "bullets": [
-        "Développement en SCRUM d’une application B2B.",
-        "Conception d’un dashboard temps réel en Vue.js.",
-        "Traitement asynchrone des flux de données via Kafka pour alimenter la visualisation temps réel sans surcharger le SI."
-      ]
-    },
-    "excilys": {
-      "title": "2019 (9 mois) — Junior Full Stack, EXCILYS",
-      "summary": "Première expérience professionnelle en équipe agile sur une application web interne.",
-      "bullets": [
-        "Développement d’une application web de partage et de référencement des compétences."
-      ]
-    },
-    "eifer": {
-      "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
-      "summary": "Analyse de données de monitoring pour améliorer la performance opérationnelle de sites énergétiques.",
-      "bullets": [
-        "Analyse de 5 années de données de monitoring.",
-        "Contribution à l’amélioration opérationnelle d’une dizaine de micro-cogénérations."
-      ]
-    }
+    "items": [
+      {
+        "title": "2023 – 2025 — CTO & Founder, LUPHY",
+        "summary": "Agence fondée et dirigée, spécialisée dans la conception de produits d’automatisation et d’IA appliquée pour accélérer l’exécution et l’impact business.",
+        "bullets": [
+          "Plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
+          "Assistant conversationnel connecté au backend via MCP, permettant d’interroger en langage naturel une base de holdings françaises et de restituer des résultats métier structurés selon les critères utilisateur.",
+          "Outil de veille et de scoring sur 400k entreprises, fondé sur la collecte multi-sources, l’analyse de données publiques et l’enrichissement LinkedIn, pour relier sociétés, investisseurs, secteurs et signaux d’intérêt dans une logique de recherche métier assistée par IA.",
+          "Application de recherche et de synthèse d’informations stratégiques (fondateurs, marché, concurrents), combinant collecte automatisée, enrichissement contextuel et génération d’une note d’investissement exploitable.",
+          "Assistant IA de traitement de dossiers de remboursement voyage, avec interface opérateur React, extraction de données depuis les pièces justificatives, reprise en main humaine et orchestration backend des étapes métier ; capacité de traitement de +200 dossiers/jour.",
+          "Moteur de génération et d’orchestration d’emails pour des roadshows startup / investisseurs, avec classification automatique des réponses par IA et structuration du suivi utilisateur."
+        ]
+      },
+      {
+        "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+        "summary": "Responsable des chantiers techniques clés d’une plateforme SaaS B2B à forte croissance, avec un rôle central sur l’architecture, la qualité logicielle et les capacités d’automatisation du produit.",
+        "bullets": [
+          "Développement d’une plateforme SaaS B2B adoptée par +10k utilisateurs.",
+          "Conception de l’architecture applicative et événementielle pour soutenir la montée en charge du produit.",
+          "Migration monorepo / TypeScript pour améliorer la maintenabilité, la cohérence technique et la vitesse d’itération.",
+          "Mise en place de CI/CD, de tests unitaires, d’intégration et de charge.",
+          "Développement d’une plateforme d’automatisation et intégrations Stripe Connect / Yousign.",
+          "Recrutement et mentoring de développeurs juniors."
+        ]
+      },
+      {
+        "title": "2019 – 2021 — Développeur Full Stack, ENGIE-SOLUTIONS",
+        "summary": "Développement d’applications B2B et de flux temps réel dans un environnement industriel exigeant.",
+        "bullets": [
+          "Développement en SCRUM d’une application B2B.",
+          "Conception d’un dashboard temps réel en Vue.js.",
+          "Traitement asynchrone des flux de données via Kafka pour alimenter la visualisation temps réel sans surcharger le SI."
+        ]
+      },
+      {
+        "title": "2019 (9 mois) — Junior Full Stack, EXCILYS",
+        "summary": "Première expérience professionnelle en équipe agile sur une application web interne.",
+        "bullets": [
+          "Développement d’une application web de partage et de référencement des compétences."
+        ]
+      },
+      {
+        "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
+        "summary": "Analyse de données de monitoring pour améliorer la performance opérationnelle de sites énergétiques.",
+        "bullets": [
+          "Analyse de 5 années de données de monitoring.",
+          "Contribution à l’amélioration opérationnelle d’une dizaine de micro-cogénérations."
+        ]
+      }
+    ]
   },
   "Education": {
     "title": "Formation",
-    "centrale": {
-      "school": "École Centrale de Nantes",
-      "degree": "Ingénieur Généraliste (2015-2019)",
-      "subjects": "Informatique, finance, énergie"
-    },
-    "thiers": {
-      "school": "Lycée Thiers Marseille",
-      "degree": "Classe préparatoire PCSI-PSI (2013-2015)"
-    }
+    "items": [
+      {
+        "school": "École Centrale de Nantes",
+        "degree": "Ingénieur Généraliste (2015-2019)",
+        "subjects": "Informatique, finance, énergie"
+      },
+      {
+        "school": "Lycée Thiers Marseille",
+        "degree": "Classe préparatoire PCSI-PSI (2013-2015)"
+      }
+    ]
+  },
+  "Certifications": {
+    "title": "Licences et certifications",
+    "items": [
+      {
+        "badge": "P",
+        "name": "PROFESSIONAL SCRUM MASTER™ I",
+        "issued": "Délivré le : juin 2020",
+        "issuer": "Certifié par Scrum.org"
+      },
+      {
+        "badge": "O",
+        "name": "Oracle Certified Professional, Java SE 8 Programmer",
+        "issued": "Délivré le : sept. 2019",
+        "issuer": "Certifié par Oracle"
+      },
+      {
+        "badge": "O",
+        "name": "Oracle Certified Associate, Java SE 8 Programmer",
+        "issued": "Délivré le : mai 2019",
+        "issuer": "Certifié par Oracle"
+      }
+    ]
   }
 }
