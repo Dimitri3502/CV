@@ -83,12 +83,20 @@
         "title": "2023 – 2025 — CTO & Founder, LUPHY",
         "summary": "Founded and led an agency specializing in automation and applied AI product design to accelerate execution and business impact.",
         "bullets": [
-          "AI document platform for construction stakeholders on large-scale projects in an AMO / OPC context, enabling ingestion and structuring of heterogeneous corpora (meeting minutes, contractual documents, tracking sheets, technical documentation) and natural-language querying, with a sovereign architecture (Mistral AI, OVH), without sending full documents to the model, thanks to a chunk-based RAG pipeline and embeddings stored in pgvector.",
+          "Cubo-solutions: AI document platform for construction stakeholders on large-scale projects in an AMO / OPC context, enabling ingestion and structuring of heterogeneous corpora (meeting minutes, contractual documents, tracking sheets, technical documentation) and natural-language querying, with a sovereign architecture (Mistral AI, OVH), without sending full documents to the model, thanks to a chunk-based RAG pipeline and embeddings stored in pgvector.",
           "Conversational assistant connected to the backend via MCP, enabling natural-language querying of a French holdings database and structured business results based on user criteria.",
           "Monitoring and scoring tool across 400k companies, based on multi-source collection, public-data analysis, and LinkedIn enrichment, to connect companies, investors, sectors, and interest signals in an AI-assisted business research workflow.",
           "Application for strategic information search and synthesis (founders, market, competitors), combining automated collection, context enrichment, and generation of an actionable investment memo.",
           "AI assistant for travel reimbursement processing, with a React operator interface, data extraction from supporting documents, human takeover, and backend orchestration of business steps; processing capacity of 200+ files/day.",
           "Email generation and orchestration engine for startup / investor roadshows, with AI-driven response classification and structured user follow-up."
+        ]
+      },
+      {
+        "title": "Volunteer — CIAMS NGO & Serpi Circus",
+        "summary": "Volunteer contributions to social-impact and cultural association projects.",
+        "bullets": [
+          "Built and hosted, for CIAMS NGO, the page for the Global Observatory on Women’s Sexual and Reproductive Rights: https://observatory-ciams.rentagest.fr/?lang=fr",
+          "Built and hosted the Serpi Circus website, a music production association: https://www.serpi-circus.fr/"
         ]
       },
       {

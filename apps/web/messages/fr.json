@@ -83,12 +83,20 @@
         "title": "2023 – 2025 — CTO & Founder, LUPHY",
         "summary": "Agence fondée et dirigée, spécialisée dans la conception de produits d’automatisation et d’IA appliquée pour accélérer l’exécution et l’impact business.",
         "bullets": [
-          "Plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
+          "Cubo-solutions : plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
           "Assistant conversationnel connecté au backend via MCP, permettant d’interroger en langage naturel une base de holdings françaises et de restituer des résultats métier structurés selon les critères utilisateur.",
           "Outil de veille et de scoring sur 400k entreprises, fondé sur la collecte multi-sources, l’analyse de données publiques et l’enrichissement LinkedIn, pour relier sociétés, investisseurs, secteurs et signaux d’intérêt dans une logique de recherche métier assistée par IA.",
           "Application de recherche et de synthèse d’informations stratégiques (fondateurs, marché, concurrents), combinant collecte automatisée, enrichissement contextuel et génération d’une note d’investissement exploitable.",
           "Assistant IA de traitement de dossiers de remboursement voyage, avec interface opérateur React, extraction de données depuis les pièces justificatives, reprise en main humaine et orchestration backend des étapes métier ; capacité de traitement de +200 dossiers/jour.",
           "Moteur de génération et d’orchestration d’emails pour des roadshows startup / investisseurs, avec classification automatique des réponses par IA et structuration du suivi utilisateur."
+        ]
+      },
+      {
+        "title": "Bénévole — ONG CIAMS & Serpi Circus",
+        "summary": "Contributions bénévoles sur des projets associatifs à impact sociétal et culturel.",
+        "bullets": [
+          "Création et hébergement, pour l’ONG CIAMS, de la page de l’Observatoire mondial des droits sexuels et reproductifs des femmes : https://observatory-ciams.rentagest.fr/?lang=fr",
+          "Création et hébergement du site de Serpi Circus, association de production musicale : https://www.serpi-circus.fr/"
         ]
       },
       {

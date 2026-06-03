@@ -23,6 +23,27 @@ type CVTemplateProps = {
 };
 
 const skillIcons: IconDefinition[] = [faCode, faServer, faRobot, faScrewdriverWrench];
+const urlExtractPattern = /(https?:\/\/[^\s]+)/g;
+const urlValidatePattern = /^https?:\/\/[^\s]+$/;
+
+function linkifyText(text: string) {
+  return text.split(urlExtractPattern).map((part, index) => {
+    if (urlValidatePattern.test(part)) {
+      return (
+        <a
+          key={`url-${index}`}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-[var(--color-text-accent)]/60 underline-offset-2 hover:decoration-[var(--color-text-accent)]"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={`txt-${index}`}>{part}</span>;
+  });
+}
 
 export function CVTemplate({
   locale,
@@ -217,7 +238,7 @@ export function CVTemplate({
                   <p className="mt-0.5 mb-1 italic text-[#575757]">{experience.summary}</p>
                   <ul className="!mt-1 !mb-2 !pl-4">
                     {experience.bullets.map((bullet, bulletIndex) => (
-                      <li key={bulletIndex}>{bullet}</li>
+                      <li key={bulletIndex}>{linkifyText(bullet)}</li>
                     ))}
                   </ul>
                 </article>
