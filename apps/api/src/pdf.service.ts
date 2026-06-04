@@ -4,7 +4,9 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import puppeteer, {type Browser, type Page} from 'puppeteer';
+import {existsSync, mkdirSync} from 'node:fs';
+import {spawn} from 'node:child_process';
+import path from 'node:path';
 import {
   CV_PDF_FILENAME_PREFIX,
   DEFAULT_LOCALE,
@@ -14,22 +16,33 @@ import {
 
 const PDF_TIMEOUT_MS = 60_000;
 const DEFAULT_WEB_BASE_URL = 'http://localhost:3000';
+const DEFAULT_WEASYPRINT_PYTHON_BIN = 'python3';
+const WEASYPRINT_PYTHON_SNIPPET = `
+import sys
+from weasyprint import HTML
+
+if len(sys.argv) < 2:
+    raise SystemExit("Missing print URL")
+
+HTML(url=sys.argv[1]).write_pdf(target=sys.stdout.buffer)
+`.trim();
 
 type JsonRecord = Record<string, unknown>;
-type BrowserImage = {
-  complete?: boolean;
-  addEventListener?: (
-    event: string,
-    listener: () => void,
-    options?: {once?: boolean},
-  ) => void;
-};
-
 type PdfRequestPayload = {
   locale: Locale;
   filenameBase: string;
   printPath: string;
 };
+
+class WeasyPrintProcessError extends Error {
+  constructor(
+    message: string,
+    readonly stderr: string,
+  ) {
+    super(message);
+    this.name = 'WeasyPrintProcessError';
+  }
+}
 
 function asRecord(value: unknown): JsonRecord | null {
   if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
@@ -64,6 +77,26 @@ function resolvePrintUrl(printPath: string) {
   return `${resolveWebBaseUrl()}${normalizedPath}`;
 }
 
+function resolveWeasyPrintPythonBin() {
+  const configuredBinary = process.env.WEASYPRINT_PYTHON_BIN?.trim();
+  if (configuredBinary) {
+    return configuredBinary;
+  }
+
+  const bundledBinary = path.resolve(__dirname, '..', '.venv-weasyprint', 'bin', 'python');
+  if (existsSync(bundledBinary)) {
+    return bundledBinary;
+  }
+
+  return DEFAULT_WEASYPRINT_PYTHON_BIN;
+}
+
+function resolveWeasyPrintCacheDir() {
+  const cacheDir = path.resolve(__dirname, '..', '.cache', 'weasyprint');
+  mkdirSync(cacheDir, {recursive: true});
+  return cacheDir;
+}
+
 function validatePayload(payload: unknown): PdfRequestPayload {
   const body = asRecord(payload);
   if (!body) {
@@ -85,36 +118,6 @@ function validatePayload(payload: unknown): PdfRequestPayload {
     filenameBase: resolveFilenameBase(body),
     printPath,
   };
-}
-
-async function waitForPageAssets(page: Page) {
-  await page.evaluate(async () => {
-    const scopedGlobal = globalThis as {
-      document?: {
-        fonts?: {ready?: Promise<void>};
-        images?: unknown[];
-      };
-    };
-
-    const fontsReady = scopedGlobal.document?.fonts?.ready ?? Promise.resolve();
-    const images = Array.from(scopedGlobal.document?.images ?? []).map(
-      (image) => image as BrowserImage,
-    );
-
-    await Promise.all([
-      fontsReady,
-      ...images.map((image) => {
-        const addEventListener = image.addEventListener;
-        if (image.complete || !addEventListener) {
-          return Promise.resolve();
-        }
-        return new Promise<void>((resolve) => {
-          addEventListener.call(image, 'load', () => resolve(), {once: true});
-          addEventListener.call(image, 'error', () => resolve(), {once: true});
-        });
-      }),
-    ]);
-  });
 }
 
 @Injectable()
@@ -139,39 +142,70 @@ export class PdfService {
   }
 
   private async generatePdf(printPath: string): Promise<Buffer> {
-    let browser: Browser | null = null;
+    const printUrl = resolvePrintUrl(printPath);
+    return this.generatePdfWithWeasyPrint(printUrl);
+  }
 
-    try {
-      browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  private async generatePdfWithWeasyPrint(printUrl: string): Promise<Buffer> {
+    return new Promise<Buffer>((resolve, reject) => {
+      const child = spawn(
+        resolveWeasyPrintPythonBin(),
+        ['-c', WEASYPRINT_PYTHON_SNIPPET, printUrl],
+        {
+          stdio: ['ignore', 'pipe', 'pipe'],
+          env: {
+            ...process.env,
+            XDG_CACHE_HOME: resolveWeasyPrintCacheDir(),
+          },
+        },
+      );
+      const stdoutChunks: Buffer[] = [];
+      const stderrChunks: Buffer[] = [];
+      let didTimeOut = false;
+
+      const timeout = setTimeout(() => {
+        didTimeOut = true;
+        child.kill('SIGKILL');
+      }, PDF_TIMEOUT_MS);
+
+      child.stdout.on('data', (chunk: Buffer | string) => {
+        stdoutChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
       });
 
-      const page = await browser.newPage();
-      await page.setViewport({width: 1240, height: 1754, deviceScaleFactor: 2});
-      const response = await page.goto(resolvePrintUrl(printPath), {
-        waitUntil: 'networkidle0',
-        timeout: PDF_TIMEOUT_MS,
+      child.stderr.on('data', (chunk: Buffer | string) => {
+        stderrChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
       });
 
-      if (!response || !response.ok()) {
-        throw new InternalServerErrorException(`Unable to render print page: ${printPath}`);
-      }
-
-      await page.emulateMediaType('print');
-      await waitForPageAssets(page);
-
-      const pdf = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        preferCSSPageSize: true,
+      child.on('error', (error) => {
+        clearTimeout(timeout);
+        reject(new WeasyPrintProcessError(
+          `Unable to start WeasyPrint with "${resolveWeasyPrintPythonBin()}": ${error.message}`,
+          '',
+        ));
       });
 
-      return Buffer.from(pdf);
-    } finally {
-      if (browser) {
-        await browser.close();
-      }
-    }
+      child.on('close', (code, signal) => {
+        clearTimeout(timeout);
+        const stderr = Buffer.concat(stderrChunks).toString('utf8').trim();
+
+        if (code === 0) {
+          resolve(Buffer.concat(stdoutChunks));
+          return;
+        }
+
+        if (didTimeOut) {
+          reject(new WeasyPrintProcessError(
+            `WeasyPrint timed out after ${PDF_TIMEOUT_MS}ms`,
+            stderr,
+          ));
+          return;
+        }
+
+        reject(new WeasyPrintProcessError(
+          `WeasyPrint failed with code ${code ?? 'unknown'}${signal ? ` (${signal})` : ''}`,
+          stderr,
+        ));
+      });
+    });
   }
 }

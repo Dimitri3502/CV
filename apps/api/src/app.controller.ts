@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Inject,
   Post,
+  Query,
   Res,
 } from '@nestjs/common';
 import type {Response} from 'express';
@@ -22,6 +23,22 @@ export class AppController {
   @Get('health')
   getHealth() {
     return this.appService.getHealth();
+  }
+
+  @Get('preview-pdf')
+  async previewPdf(
+    @Query() query: unknown,
+    @Res() response: Response,
+  ) {
+    const {locale, filenameBase, pdf} = await this.pdfService.exportFromPayload(query);
+
+    response.setHeader('Content-Type', 'application/pdf');
+    response.setHeader(
+      'Content-Disposition',
+      `inline; filename="${filenameBase}-${locale}.pdf"`,
+    );
+    response.setHeader('Cache-Control', 'no-store');
+    response.send(pdf);
   }
 
   @Post('export-pdf')

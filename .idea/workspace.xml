@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="Add volunteer experience, update localization strings, and linkify URLs in CV template">
+    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="wip">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/pdf-template.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/pdf.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/pdf.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/ExportPdfButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/ExportPdfButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/messages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/messages/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/messages/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/PolicyCvTemplate.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="test-docx" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,23 +66,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.804150699413103" />
-      <entry key="MS500" value="5.257607197099164" />
-      <entry key="S2" value="12.387225613624969" />
-      <entry key="S5" value="17.272219655722317" />
-      <entry key="S10" value="19.780474654700132" />
-      <entry key="S30" value="21.83320854319489" />
-      <entry key="S60" value="22.437440107011142" />
-      <entry key="M2" value="24.336006939589364" />
-      <entry key="M5" value="39.75782903910229" />
-      <entry key="M10" value="59.683786584167684" />
-      <entry key="M15" value="70.58274282538189" />
-      <entry key="M30" value="84.70337417808732" />
-      <entry key="H1" value="93.27751052840016" />
-      <entry key="H2" value="103.0654563557998" />
-      <entry key="H4" value="188.23177980000773" />
-      <entry key="D1" value="1050.6147405543375" />
-      <entry key="W1" value="1529.3980589080884" />
+      <entry key="MS100" value="1.360662742821112" />
+      <entry key="MS500" value="3.727853411477592" />
+      <entry key="S2" value="10.55329582849091" />
+      <entry key="S5" value="20.91510700085375" />
+      <entry key="S10" value="32.801502809581734" />
+      <entry key="S30" value="49.830286963624175" />
+      <entry key="S60" value="56.27457841060991" />
+      <entry key="M2" value="59.96046995739654" />
+      <entry key="M5" value="62.34019496516647" />
+      <entry key="M10" value="63.46089940728759" />
+      <entry key="M15" value="65.61980894335565" />
+      <entry key="M30" value="80.81480035746166" />
+      <entry key="H1" value="119.22326282155694" />
+      <entry key="H2" value="175.31100111445798" />
+      <entry key="H4" value="273.96427107366935" />
+      <entry key="D1" value="1150.6053089659424" />
+      <entry key="W1" value="1708.203305296051" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -109,23 +104,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.7790372693568606" />
-      <entry key="MS500" value="5.240239545889121" />
-      <entry key="S2" value="12.37548272753839" />
-      <entry key="S5" value="17.26542082533103" />
-      <entry key="S10" value="19.77653146409971" />
-      <entry key="S30" value="21.83174529758502" />
-      <entry key="S60" value="22.436686336446535" />
-      <entry key="M2" value="24.33559057794723" />
-      <entry key="M5" value="39.75753109258535" />
-      <entry key="M10" value="59.683552490572296" />
-      <entry key="M15" value="70.58255570058171" />
-      <entry key="M30" value="84.7032604858933" />
-      <entry key="H1" value="93.2774475677512" />
-      <entry key="H2" value="103.06542115887842" />
-      <entry key="H4" value="188.23174507739807" />
-      <entry key="D1" value="1050.6147056463456" />
-      <entry key="W1" value="1529.398051606976" />
+      <entry key="MS100" value="1.2953977671217747" />
+      <entry key="MS500" value="3.7014686740820477" />
+      <entry key="S2" value="10.536984294329422" />
+      <entry key="S5" value="20.90222930744993" />
+      <entry key="S10" value="32.791255230287724" />
+      <entry key="S30" value="49.82501230191068" />
+      <entry key="S60" value="56.271586066111155" />
+      <entry key="M2" value="59.95887197530374" />
+      <entry key="M5" value="62.33952944410867" />
+      <entry key="M10" value="63.460560921898036" />
+      <entry key="M15" value="65.61957731426016" />
+      <entry key="M30" value="80.81466420180173" />
+      <entry key="H1" value="119.22316876792533" />
+      <entry key="H2" value="175.31093482410665" />
+      <entry key="H4" value="273.96421953352774" />
+      <entry key="D1" value="1150.6052710907913" />
+      <entry key="W1" value="1708.2032972004997" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -135,34 +130,34 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;test-docx&quot;,
-    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ssh.settings&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/dimitri/Development/CV/apps/web/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "f/add-tati",
+    "js.debugger.nextJs.config.created.client": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "ssh.settings",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Users/dimitri/Development/CV/apps/web/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
@@ -240,7 +235,7 @@
       <workItem from="1775920033017" duration="2359000" />
       <workItem from="1776341038212" duration="2545000" />
       <workItem from="1779359154252" duration="5183000" />
-      <workItem from="1780498059068" duration="13430000" />
+      <workItem from="1780498059068" duration="17130000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -330,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780498092288</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="wip">
+      <option name="closed" value="true" />
+      <created>1780563670152</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1780563670152</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +348,8 @@
     <MESSAGE value="add certifications" />
     <MESSAGE value="cv api parfait" />
     <MESSAGE value="Add volunteer experience, update localization strings, and linkify URLs in CV template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add volunteer experience, update localization strings, and linkify URLs in CV template" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
