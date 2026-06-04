@@ -1,10 +1,17 @@
 {
+  "Meta": {
+    "template": "classic",
+    "filenameBase": "dimitri-beubry-cv",
+    "slug": "dimitri-beubry",
+    "availableLocales": ["fr", "en"]
+  },
   "Contact": {
     "title": "Contact",
     "email": "dimitri.beubry@gmail.com",
     "linkedin": "LinkedIn",
     "location": "Paris",
     "calendly": "Calendly",
+    "photoUrl": "https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg",
     "linkedinUrl": "https://www.linkedin.com/in/dimitri-beubry-99343210b",
     "calendlyUrl": "https://calendly.com/dimitri-beubry"
   },

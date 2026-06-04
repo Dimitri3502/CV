@@ -9,6 +9,10 @@
   --color-highlight: #ffffff;
   --a4-width: 210mm;
   --a4-height: 297mm;
+  --policy-print-page-top-padding: 26mm;
+  --policy-print-page-bottom-padding: 24mm;
+  --policy-print-page-side-padding: 14mm;
+  --policy-print-sidebar-side-padding: 10mm;
   --print-sidebar-gap: 6mm;
   --preview-page-gap: 14mm;
 }
@@ -61,6 +65,7 @@
 
 .cv-root.is-print-mode {
   padding: 0;
+  background: #fff;
 }
 
 .cv-root.is-print-mode .cv-sheet {
@@ -98,6 +103,53 @@
 
 .cv-root.is-print-mode .no-print {
   display: none !important;
+}
+
+.cv-root.is-print-mode .policy-cv-sidebar {
+  padding:
+    var(--policy-print-page-top-padding)
+    var(--policy-print-sidebar-side-padding)
+    var(--policy-print-page-bottom-padding)
+    var(--policy-print-sidebar-side-padding) !important;
+  box-sizing: border-box;
+}
+
+.cv-root.is-print-mode .policy-cv-main {
+  padding:
+    var(--policy-print-page-top-padding)
+    var(--policy-print-page-side-padding)
+    var(--policy-print-page-bottom-padding)
+    var(--policy-print-page-side-padding) !important;
+  box-sizing: border-box;
+}
+
+.cv-root.is-print-mode .policy-cv-print-flow {
+  min-height: var(--a4-height);
+  background: #fff;
+  overflow: visible;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.cv-root.is-print-mode .policy-cv-print-follow-up {
+  clear: left;
+  break-before: page;
+  page-break-before: always;
+  min-height: var(--a4-height);
+  padding:
+    var(--policy-print-page-top-padding)
+    var(--policy-print-page-side-padding)
+    var(--policy-print-page-bottom-padding)
+    var(--policy-print-page-side-padding) !important;
+  box-sizing: border-box;
+  background: #fff;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.cv-root.is-print-mode .policy-first-page-section {
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .cv-root.is-preview-mode {
@@ -152,7 +204,7 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: var(--color-bg-light) !important;
+    background: #fff !important;
   }
 
   .cv-root {
@@ -199,4 +251,52 @@
   .no-print {
     display: none !important;
   }
+
+  .policy-cv-sidebar {
+    padding:
+      var(--policy-print-page-top-padding)
+      var(--policy-print-sidebar-side-padding)
+      var(--policy-print-page-bottom-padding)
+      var(--policy-print-sidebar-side-padding) !important;
+    box-sizing: border-box;
+  }
+
+  .policy-cv-main {
+    padding:
+      var(--policy-print-page-top-padding)
+      var(--policy-print-page-side-padding)
+      var(--policy-print-page-bottom-padding)
+      var(--policy-print-page-side-padding) !important;
+    box-sizing: border-box;
+  }
+
+  .policy-first-page-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .policy-cv-print-flow {
+    min-height: var(--a4-height);
+    background: #fff;
+    overflow: visible;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .policy-cv-print-follow-up {
+    clear: left;
+    break-before: page;
+    page-break-before: always;
+    min-height: var(--a4-height);
+    padding:
+      var(--policy-print-page-top-padding)
+      var(--policy-print-page-side-padding)
+      var(--policy-print-page-bottom-padding)
+      var(--policy-print-page-side-padding) !important;
+    box-sizing: border-box;
+    background: #fff;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
 }

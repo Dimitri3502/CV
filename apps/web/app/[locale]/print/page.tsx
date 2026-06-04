@@ -1,11 +1,6 @@
 import {notFound} from 'next/navigation';
-import {CVDocument} from './components/CVDocument';
-import {
-  getAvailableLocaleLinks,
-  getDefaultProfile,
-  getProfileTitle,
-  isLocale,
-} from './cv-data';
+import {getDefaultProfile, getProfileTitle, isLocale} from '../cv-data';
+import {CVPrintDocument} from '../components/CVPrintDocument';
 
 type PageProps = {
   params: Promise<{locale: string}>;
@@ -16,16 +11,16 @@ export async function generateMetadata(props: {params: Promise<{locale: string}>
   const locale = params.locale;
 
   if (!isLocale(locale)) {
-    return {title: 'CV'};
+    return {title: 'CV Print'};
   }
 
   const profile = getDefaultProfile(locale);
   return {
-    title: `${getProfileTitle(profile.data)} — CV`,
+    title: `${getProfileTitle(profile.data)} — Print`,
   };
 }
 
-export default async function CVPage(props: PageProps) {
+export default async function PrintCVPage(props: PageProps) {
   const params = await props.params;
   const locale = params.locale;
 
@@ -34,14 +29,5 @@ export default async function CVPage(props: PageProps) {
   }
 
   const profile = getDefaultProfile(locale);
-  const languageLinks = getAvailableLocaleLinks(profile.slug);
-
-  return (
-    <CVDocument
-      locale={locale}
-      data={profile.data}
-      languageLinks={languageLinks}
-      profileSlug={profile.slug}
-    />
-  );
+  return <CVPrintDocument data={profile.data} />;
 }

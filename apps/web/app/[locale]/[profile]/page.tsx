@@ -1,17 +1,18 @@
 import {notFound} from 'next/navigation';
-import {CVDocument} from './components/CVDocument';
+import {CVDocument} from '../components/CVDocument';
 import {
   getAvailableLocaleLinks,
-  getDefaultProfile,
+  getProfile,
   getProfileTitle,
+  getStaticProfileParams,
   isLocale,
-} from './cv-data';
+} from '../cv-data';
 
 type PageProps = {
-  params: Promise<{locale: string}>;
+  params: Promise<{locale: string; profile: string}>;
 };
 
-export async function generateMetadata(props: {params: Promise<{locale: string}>}) {
+export async function generateMetadata(props: {params: Promise<{locale: string; profile: string}>}) {
   const params = await props.params;
   const locale = params.locale;
 
@@ -19,13 +20,17 @@ export async function generateMetadata(props: {params: Promise<{locale: string}>
     return {title: 'CV'};
   }
 
-  const profile = getDefaultProfile(locale);
+  const profile = getProfile(locale, params.profile);
+  if (!profile) {
+    return {title: 'CV'};
+  }
+
   return {
     title: `${getProfileTitle(profile.data)} — CV`,
   };
 }
 
-export default async function CVPage(props: PageProps) {
+export default async function ProfileCVPage(props: PageProps) {
   const params = await props.params;
   const locale = params.locale;
 
@@ -33,7 +38,11 @@ export default async function CVPage(props: PageProps) {
     notFound();
   }
 
-  const profile = getDefaultProfile(locale);
+  const profile = getProfile(locale, params.profile);
+  if (!profile) {
+    notFound();
+  }
+
   const languageLinks = getAvailableLocaleLinks(profile.slug);
 
   return (
@@ -44,4 +53,8 @@ export default async function CVPage(props: PageProps) {
       profileSlug={profile.slug}
     />
   );
+}
+
+export function generateStaticParams() {
+  return getStaticProfileParams();
 }

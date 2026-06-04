@@ -1,22 +1,6 @@
 import {notFound} from 'next/navigation';
 import './globals.css';
-import {getMessages, isLocale, locales} from './i18n';
-
-export async function generateMetadata(props: {params: Promise<{locale: string}>}) {
-  const params = await props.params;
-  const locale = params.locale;
-
-  if (!isLocale(locale)) {
-    return {title: 'CV'};
-  }
-
-  const messages = getMessages(locale);
-  const name = messages.Header.name;
-
-  return {
-    title: `${name} — CV`,
-  };
-}
+import {isLocale, locales} from './cv-data';
 
 export default async function LocaleLayout(props: {
   children: React.ReactNode;

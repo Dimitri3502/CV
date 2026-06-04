@@ -12,15 +12,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {type IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {buildPrintHref, type ClassicCvData, type Locale} from '../cv-data';
-import type {LocaleLink} from '../cv-types';
-import {CVToolbar} from './CVToolbar';
+import type {ClassicCvData} from '../cv-data';
 
-type CVTemplateProps = {
-  locale: Locale;
+type CVPrintTemplateProps = {
   messages: ClassicCvData;
-  languageLinks: LocaleLink[];
-  profileSlug: string;
 };
 
 const skillIcons: IconDefinition[] = [faCode, faServer, faRobot, faScrewdriverWrench];
@@ -47,25 +42,12 @@ function linkifyText(text: string) {
   });
 }
 
-export function CVTemplate({
-  locale,
-  messages,
-  languageLinks,
-  profileSlug,
-}: CVTemplateProps) {
+export function CVPrintTemplate({messages}: CVPrintTemplateProps) {
   const photoUrl = messages.Contact.photoUrl || fallbackPhotoUrl;
-  const printPath = buildPrintHref(locale, profileSlug);
 
   return (
-    <div className="cv-root is-preview-mode min-h-screen py-0 sm:py-8 print:py-0">
-      <CVToolbar
-        locale={locale}
-        languageLinks={languageLinks}
-        filenameBase={messages.Meta.filenameBase}
-        printPath={printPath}
-      />
-
-      <div className="cv-sheet mx-auto grid max-w-[900px] grid-flow-dense grid-cols-[280px_1fr] bg-white shadow-xl max-[600px]:grid-cols-[40%_1fr] sm:grid-cols-[280px_1fr]">
+    <div className="cv-root is-print-mode min-h-screen py-0">
+      <div className="cv-sheet grid grid-flow-dense grid-cols-[280px_1fr] bg-white">
         <aside className="cv-sidebar bg-[var(--color-bg-dark)] p-4 text-[var(--color-text-light)] print:bg-[var(--color-bg-dark)] print:text-[var(--color-text-light)] sm:p-[30px]">
           <div className="flex flex-col items-center gap-6">
             <img

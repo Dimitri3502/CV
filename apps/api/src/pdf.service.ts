@@ -5,10 +5,15 @@ import {
   Logger,
 } from '@nestjs/common';
 import puppeteer, {type Browser, type Page} from 'puppeteer';
-import {DEFAULT_LOCALE, isSupportedLocale, type Locale} from '@cv/common';
-import {buildCvHtml} from './pdf-template';
+import {
+  CV_PDF_FILENAME_PREFIX,
+  DEFAULT_LOCALE,
+  isSupportedLocale,
+  type Locale,
+} from '@cv/common';
 
 const PDF_TIMEOUT_MS = 60_000;
+const DEFAULT_WEB_BASE_URL = 'http://localhost:3000';
 
 type JsonRecord = Record<string, unknown>;
 type BrowserImage = {
@@ -22,7 +27,8 @@ type BrowserImage = {
 
 type PdfRequestPayload = {
   locale: Locale;
-  data: JsonRecord;
+  filenameBase: string;
+  printPath: string;
 };
 
 function asRecord(value: unknown): JsonRecord | null {
@@ -32,11 +38,30 @@ function asRecord(value: unknown): JsonRecord | null {
   return null;
 }
 
+function asString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
 function resolveLocale(rawLocale: string | undefined): Locale {
   if (rawLocale && isSupportedLocale(rawLocale)) {
     return rawLocale;
   }
   return DEFAULT_LOCALE;
+}
+
+function resolveFilenameBase(data: JsonRecord): string {
+  const filenameBase = asString(data.filenameBase);
+  return filenameBase || CV_PDF_FILENAME_PREFIX;
+}
+
+function resolveWebBaseUrl() {
+  const baseUrl = process.env.WEB_BASE_URL ?? DEFAULT_WEB_BASE_URL;
+  return baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+}
+
+function resolvePrintUrl(printPath: string) {
+  const normalizedPath = printPath.startsWith('/') ? printPath : `/${printPath}`;
+  return `${resolveWebBaseUrl()}${normalizedPath}`;
 }
 
 function validatePayload(payload: unknown): PdfRequestPayload {
@@ -50,14 +75,15 @@ function validatePayload(payload: unknown): PdfRequestPayload {
     throw new BadRequestException('Unsupported locale');
   }
 
-  const data = asRecord(body.data);
-  if (!data) {
-    throw new BadRequestException('Body must include a "data" JSON object');
+  const printPath = asString(body.printPath);
+  if (!printPath) {
+    throw new BadRequestException('Body must include a "printPath" string');
   }
 
   return {
     locale: resolveLocale(rawLocale),
-    data,
+    filenameBase: resolveFilenameBase(body),
+    printPath,
   };
 }
 
@@ -99,9 +125,10 @@ export class PdfService {
     const requestPayload = validatePayload(payload);
 
     try {
-      const pdf = await this.generatePdf(requestPayload.data);
+      const pdf = await this.generatePdf(requestPayload.printPath);
       return {
         locale: requestPayload.locale,
+        filenameBase: requestPayload.filenameBase,
         pdf,
       };
     } catch (error) {
@@ -111,7 +138,7 @@ export class PdfService {
     }
   }
 
-  private async generatePdf(data: JsonRecord): Promise<Buffer> {
+  private async generatePdf(printPath: string): Promise<Buffer> {
     let browser: Browser | null = null;
 
     try {
@@ -122,12 +149,15 @@ export class PdfService {
 
       const page = await browser.newPage();
       await page.setViewport({width: 1240, height: 1754, deviceScaleFactor: 2});
-
-      const html = buildCvHtml(data);
-      await page.setContent(html, {
+      const response = await page.goto(resolvePrintUrl(printPath), {
         waitUntil: 'networkidle0',
         timeout: PDF_TIMEOUT_MS,
       });
+
+      if (!response || !response.ok()) {
+        throw new InternalServerErrorException(`Unable to render print page: ${printPath}`);
+      }
+
       await page.emulateMediaType('print');
       await waitForPageAssets(page);
 

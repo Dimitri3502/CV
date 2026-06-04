@@ -1,0 +1,215 @@
+import type {PolicyCvData} from '../cv-types';
+
+export const tatianaFrCv = {
+  Meta: {
+    template: 'policy',
+    filenameBase: 'karen-tatiana-gomez-castillo-cv',
+    slug: 'tatiana-gomez-castillo',
+    themeColor: '#EBE8E1',
+    availableLocales: ['fr'],
+  },
+  Header: {
+    name: 'Karen Tatiana Gómez Castillo',
+    subtitle:
+      'Chargée de projets - Politiques publiques, gouvernance du développement et coopération internationale',
+  },
+  Contact: {
+    title: 'Contact',
+    email: 'tatianagomezcas@gmail.com',
+    phone: '+33 07 65 24 79 56',
+    linkedinLabel: 'linkedin.com/in/tatiana-gómez-castillo',
+    linkedinUrl: 'https://linkedin.com/in/tatiana-gómez-castillo',
+  },
+  Profile: {
+    title: 'Profil',
+    content:
+      'Chargée de projets spécialisée dans les politiques publiques, la gouvernance du développement et la coopération internationale en Amérique latine. Double formation en science politique et droit, complétée par un master en gouvernance du développement. Expérience en coordination, suivi et évaluation de projets, recherche appliquée et analyse de cadres normatifs internationaux auprès d’institutions publiques, d’organisations internationales et d’acteurs de la société civile. Maîtrise des outils d’analyse stratégique et de gestion de projet (MAE, cadres logiques, SPSS, ArcGIS). Intérêt particulier pour les politiques de développement inclusif, la réduction des inégalités et les transformations socio-économiques en Amérique latine et dans les Caraïbes.',
+  },
+  Expertise: {
+    title: 'Compétences & outils',
+    groups: [
+      {
+        title: 'Analyse & méthodes',
+        items: ['Analyse MAE', 'Cadres logiques', 'SPSS', 'ArcGIS', 'Outils IA', 'Analyse qualitative'],
+      },
+      {
+        title: 'Thématiques',
+        items: ['Développement durable', 'Égalité de genre', 'Droits humains', 'Politiques publiques (ALC)'],
+      },
+      {
+        title: 'Gestion de projets',
+        items: ['Coordination multi-acteurs', 'Partenariats institutionnels', 'Reporting', 'Veille stratégique'],
+      },
+      {
+        title: 'Outils bureautiques',
+        items: ['Pack Office', 'Gestion de contenus numériques'],
+      },
+    ],
+  },
+  Languages: {
+    title: 'Langues',
+    items: ['Espagnol (langue maternelle)', 'Français (C1)', 'Anglais (B2)'],
+  },
+  Education: {
+    title: 'Parcours académique',
+    items: [
+      {
+        degree: 'Master 2 Sciences politiques - Gouvernance de projets de développement durable au Sud',
+        institution: 'Université Paris-Saclay, France',
+        period: '2024 - 2025',
+        details: [
+          'Identification, conception et faisabilité de projet · Politiques, programmes et projets · Insertion des projets dans les politiques de développement · Enjeux de coopération Sud/Sud · Aspects économiques et financiers de l’évaluation de projets · Gestion informatisée de projets',
+        ],
+      },
+      {
+        degree: 'Master 1 Sciences politiques - Politique comparée et coopération internationale : Amériques',
+        institution: 'Université de Bordeaux, France',
+        details: [
+          'Politique comparée - Amérique latine et Caraïbe · Analyse des politiques étrangères · Acteurs et enjeux des relations internationales',
+        ],
+      },
+      {
+        degree: 'Double licence Sciences politiques et droit',
+        institution: 'Unicauca, Colombie',
+        period: '2015 - 2022',
+        details: [
+          'Mémoire de fin d’études présenté au Congrès international de science politique (ISCTE Lisbonne, 2024) : « Institutionnalisation partisane et performance électorale : le FMLN (El Salvador) et le M-19 (Colombie) en perspective comparée »',
+        ],
+      },
+    ],
+  },
+  Certifications: {
+    title: 'Formations certifiantes',
+    items: [
+      {
+        name: 'Outils et stratégies pour l’élaboration des plans d’égalité municipaux',
+        issuerLine: 'ONU Femmes Espagne | janv. 2025 (boursière)',
+      },
+      {
+        name: 'Perspectives de genre et administration publique',
+        issuerLine: 'ESAP, Colombie | janv. 2023',
+      },
+      {
+        name: 'Gestion de contenus numériques et marketing territorial',
+        issuerLine: 'Univ. Javeriana | août 2020',
+      },
+      {
+        name: 'Outils d’analyse spatiale appliqués à la science politique',
+        issuerLine: 'Univ. del Cauca | oct. 2019',
+      },
+    ],
+  },
+  Experience: {
+    title: 'Expériences professionnelles',
+    items: [
+      {
+        role: 'Stagiaire - Chargée de plaidoyer et réseaux',
+        organization: 'CIAMS - Centre Hubertine-Auclert',
+        location: 'Paris',
+        period: 'Fév. - Mai 2026',
+        bullets: [
+          'Réalisation d’analyses comparatives de cadres normatifs internationaux (ONU, UE, HCCH) et production de rapports stratégiques destinés aux institutions multilatérales.',
+          'Contribution à l’avancement des politiques internationales pour l’égalité des femmes : apport à la Recommandation générale n° 41 de la CEDAW, rédaction d’un rapport parallèle pour la transposition de la Directive (UE) 2024/1712 sur la prévention et la lutte contre la traite des êtres humains, et rédaction d’amicus curiae pour des juridictions d’Amérique latine.',
+          'Recherche et données : collecte et traitement de données qualitatives et quantitatives sur les dynamiques de marché reproductif en ALC pour l’Observatoire régional ; gestion de la création d’une carte interactive pour le Global Observatory of Women\'s Sexual and Reproductive Rights.',
+          'Construction de réseaux : élaboration d’une stratégie de coalition latino-américaine sur la régulation de la GPA, en coordination entre la Colombie, l’Argentine, l’Espagne et la France.',
+        ],
+      },
+      {
+        role: 'Chargée de projets - Éducation sexuelle et construction de la citoyenneté',
+        organization: 'Bureau d’éducation, Mairie de Popayán',
+        location: 'Colombie',
+        period: 'Oct. 2022 - Déc. 2023',
+        bullets: [
+          'Coordination du programme d’éducation à la sexualité dans le cadre du Plan de développement municipal : état des lieux, mise en œuvre, suivi et évaluation annuelle dans plus de 41 établissements scolaires publics de Popayán.',
+          'Adaptation de projets aux principes de non-discrimination (HCR) ; création d’un mécanisme interinstitutionnel pour la prise en charge des victimes de violences basées sur le genre et des situations liées à la migration.',
+          'Fonction de référente genre au sein du bureau d’éducation ; contribution aux stratégies régionales et nationales pour la réponse institutionnelle contre les VBG et les politiques d’égalité.',
+          'Organisation de la Semana Andina de prévention des grossesses adolescentes, en coordination avec l’OMS et des agences gouvernementales locales et internationales (plus de 1 000 élèves mobilisés) ; animation de formations sur les droits sexuels et reproductifs à destination de plus de 300 enseignant·e·s.',
+          'Gestion de deux diplômes certifiants annuels gratuits en éducation sexuelle et reproductive pour les enseignant·e·s des établissements publics du département du Cauca.',
+        ],
+      },
+      {
+        role: 'Assistante de projet - Programmes d’inclusion sociale et de développement communautaire',
+        organization: 'Fundación Emotiva',
+        location: 'Cauca, Colombie',
+        period: 'Avr. 2022 - présent',
+        bullets: [
+          'Appui à la mise en œuvre de projets sportifs et recherche de partenariats institutionnels et privés ; organisation d’événements régionaux (Supercampeones, congrès sportifs dans le Valle, Cauca et Nariño, carrière athlétique « Colores por la Vida », « Corre por el Bosque del Patía », « Caminando por los niños y niñas del sur occidente ») ayant un impact direct sur les enfants et les adolescents de la région.',
+          'Développement de partenariats avec Gatorade, CRC, Universidad del Cauca, Electrocréditos del Cauca et Calzatodo.',
+        ],
+      },
+      {
+        role: 'Assistante en communication politique - Campagne électorale',
+        organization: 'Candidature à la Chambre des représentants',
+        location: 'Cauca, Colombie',
+        period: 'Nov. 2021 - Fév. 2022',
+        bullets: [
+          'Création de contenu politique pour les médias et les réseaux sociaux ; élaboration de discours pour les communautés paysannes du sud du pays ; analyse du contexte politique régional.',
+        ],
+      },
+      {
+        role: 'Stagiaire - Assistante juridique',
+        organization: 'Personería Municipal & Conseil norvégien pour les réfugiés',
+        location: 'Popayán, Colombie',
+        period: 'Juin 2021 - Mars 2022',
+        bullets: [
+          'Accompagnement juridique des citoyennes, migrants, déplacés internes et victimes du conflit armé colombien ; rédaction de recours et notes juridiques en contexte humanitaire.',
+          'Contentieux pour la mise en œuvre des politiques publiques et des plans de développement municipal.',
+        ],
+      },
+      {
+        role: 'Assistante administrative - Bureau des droits de l’homme',
+        organization: 'Personería Municipal',
+        location: 'Popayán, Colombie',
+        period: 'Déc. 2015',
+        bullets: [
+          'Recueil de déclarations pour l’enregistrement des victimes du conflit armé (Loi 1448/2011) ; gestion documentaire et accueil du public.',
+        ],
+      },
+    ],
+  },
+  Interventions: {
+    title: 'Interventions en congrès scientifiques',
+    items: [
+      {
+        title: 'Congrès international de science politique - « L’Amérique latine, acteur géopolitique mondial »',
+        meta: 'ISCTE Lisbonne | 2024',
+      },
+      {
+        title: 'IIIe Rencontre internationale de science politique - « Construire une discipline depuis la région »',
+        meta: 'Univ. del Cauca | 2019',
+      },
+      {
+        title: 'Ve Congrès national de science politique - « Politique et société en mutation »',
+        meta: 'Univ. EAFIT | 2018',
+      },
+    ],
+  },
+  Publications: {
+    title: 'Publications scientifiques',
+    subtitle: 'En cours d’évaluation par les pairs',
+    items: [
+      'Gómez Castillo, K. T., Caffiaux, C. et Devillers, M.-J. (soumis 2026). The Plastification of the Transnational Reproductive Market: Colombia as an Emerging Infrastructure for Global Surrogacy. Frontiers in Global Women\'s Health.',
+      'Gómez Castillo, K. T. (soumis 2026). Contradictions normatives, relocation adaptative et gouvernance juridique globale de la gestation pour autrui : le cas de la Colombie. Revue Mélété - Cahiers d’histoire et d’anthropologie du droit.',
+    ],
+  },
+  Engagements: {
+    title: 'Engagements & initiatives',
+    items: [
+      {
+        title: 'Volontaire',
+        organization: 'Misión de Observación Electoral (MOE), Colombie',
+        period: '2018 - 2019',
+      },
+      {
+        title: 'Membre',
+        organization: 'Semillero de investigación Cautio Feminista, Univ. del Cauca',
+        period: '2022',
+      },
+      {
+        title: 'Participation à la conception de projet',
+        organization: 'PROCAAL - Promotora de Café de Altura, Nariño, Colombie',
+        period: '2020',
+      },
+    ],
+  },
+} as const satisfies PolicyCvData;

@@ -9,7 +9,6 @@ import {
   Res,
 } from '@nestjs/common';
 import type {Response} from 'express';
-import {CV_PDF_FILENAME_PREFIX} from '@cv/common';
 import {AppService} from './app.service';
 import {PdfService} from './pdf.service';
 
@@ -31,12 +30,12 @@ export class AppController {
     @Body() body: unknown,
     @Res() response: Response,
   ) {
-    const {locale, pdf} = await this.pdfService.exportFromPayload(body);
+    const {locale, filenameBase, pdf} = await this.pdfService.exportFromPayload(body);
 
     response.setHeader('Content-Type', 'application/pdf');
     response.setHeader(
       'Content-Disposition',
-      `attachment; filename="${CV_PDF_FILENAME_PREFIX}-${locale}.pdf"`,
+      `attachment; filename="${filenameBase}-${locale}.pdf"`,
     );
     response.setHeader('Cache-Control', 'no-store');
     response.send(pdf);

@@ -1,11 +1,11 @@
 'use client';
 import {useState} from 'react';
 import {CV_PDF_FILENAME_PREFIX, type Locale} from '@cv/common';
-import type {CVMessages} from '../i18n';
 
 type ExportPdfButtonProps = {
   locale: Locale;
-  data: CVMessages;
+  filenameBase: string;
+  printPath: string;
 };
 
 const DEFAULT_API_BASE_URL = 'http://localhost:4000';
@@ -15,10 +15,10 @@ function resolveApiBaseUrl() {
   return baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 }
 
-export function ExportPdfButton({locale, data}: ExportPdfButtonProps) {
+export function ExportPdfButton({locale, filenameBase, printPath}: ExportPdfButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const label = locale === 'fr' ? 'Exporter en PDF' : 'Export PDF';
-  const loadingLabel = locale === 'fr' ? 'Generation...' : 'Generating...';
+  const loadingLabel = locale === 'fr' ? 'Génération...' : 'Generating...';
 
   async function handleClick() {
     if (isLoading) {
@@ -34,7 +34,8 @@ export function ExportPdfButton({locale, data}: ExportPdfButtonProps) {
         },
         body: JSON.stringify({
           locale,
-          data,
+          filenameBase,
+          printPath,
         }),
       });
 
@@ -46,7 +47,8 @@ export function ExportPdfButton({locale, data}: ExportPdfButtonProps) {
       const downloadUrl = window.URL.createObjectURL(pdfBlob);
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.download = `${CV_PDF_FILENAME_PREFIX}-${locale}.pdf`;
+      const resolvedFilenameBase = filenameBase || CV_PDF_FILENAME_PREFIX;
+      link.download = `${resolvedFilenameBase}-${locale}.pdf`;
       document.body.append(link);
       link.click();
       link.remove();
@@ -55,7 +57,7 @@ export function ExportPdfButton({locale, data}: ExportPdfButtonProps) {
       console.error('PDF export failed', error);
       const message =
         locale === 'fr'
-          ? 'Impossible de generer le PDF.'
+          ? 'Impossible de générer le PDF.'
           : 'Unable to generate the PDF.';
       window.alert(message);
     } finally {
