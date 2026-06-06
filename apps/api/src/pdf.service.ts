@@ -4,9 +4,6 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import {existsSync, mkdirSync} from 'node:fs';
-import {spawn} from 'node:child_process';
-import path from 'node:path';
 import {
   CV_PDF_FILENAME_PREFIX,
   DEFAULT_LOCALE,
@@ -16,16 +13,7 @@ import {
 
 const PDF_TIMEOUT_MS = 60_000;
 const DEFAULT_WEB_BASE_URL = 'http://localhost:3000';
-const DEFAULT_WEASYPRINT_PYTHON_BIN = 'python3';
-const WEASYPRINT_PYTHON_SNIPPET = `
-import sys
-from weasyprint import HTML
-
-if len(sys.argv) < 2:
-    raise SystemExit("Missing print URL")
-
-HTML(url=sys.argv[1]).write_pdf(target=sys.stdout.buffer)
-`.trim();
+const DEFAULT_PDF_RENDERER_BASE_URL = 'http://localhost:8001';
 
 type JsonRecord = Record<string, unknown>;
 type PdfRequestPayload = {
@@ -34,13 +22,13 @@ type PdfRequestPayload = {
   printPath: string;
 };
 
-class WeasyPrintProcessError extends Error {
+class PdfRendererError extends Error {
   constructor(
     message: string,
-    readonly stderr: string,
+    readonly details: string,
   ) {
     super(message);
-    this.name = 'WeasyPrintProcessError';
+    this.name = 'PdfRendererError';
   }
 }
 
@@ -77,24 +65,9 @@ function resolvePrintUrl(printPath: string) {
   return `${resolveWebBaseUrl()}${normalizedPath}`;
 }
 
-function resolveWeasyPrintPythonBin() {
-  const configuredBinary = process.env.WEASYPRINT_PYTHON_BIN?.trim();
-  if (configuredBinary) {
-    return configuredBinary;
-  }
-
-  const bundledBinary = path.resolve(__dirname, '..', '.venv-weasyprint', 'bin', 'python');
-  if (existsSync(bundledBinary)) {
-    return bundledBinary;
-  }
-
-  return DEFAULT_WEASYPRINT_PYTHON_BIN;
-}
-
-function resolveWeasyPrintCacheDir() {
-  const cacheDir = path.resolve(__dirname, '..', '.cache', 'weasyprint');
-  mkdirSync(cacheDir, {recursive: true});
-  return cacheDir;
+function resolvePdfRendererBaseUrl() {
+  const baseUrl = process.env.PDF_RENDERER_BASE_URL ?? DEFAULT_PDF_RENDERER_BASE_URL;
+  return baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 }
 
 function validatePayload(payload: unknown): PdfRequestPayload {
@@ -135,6 +108,9 @@ export class PdfService {
         pdf,
       };
     } catch (error) {
+      if (error instanceof PdfRendererError) {
+        this.logger.error(error.message, error.details);
+      }
       const stack = error instanceof Error ? error.stack : String(error);
       this.logger.error('PDF export failed', stack);
       throw new InternalServerErrorException('Unable to generate PDF');
@@ -143,69 +119,44 @@ export class PdfService {
 
   private async generatePdf(printPath: string): Promise<Buffer> {
     const printUrl = resolvePrintUrl(printPath);
-    return this.generatePdfWithWeasyPrint(printUrl);
+    return this.generatePdfWithRenderer(printUrl);
   }
 
-  private async generatePdfWithWeasyPrint(printUrl: string): Promise<Buffer> {
-    return new Promise<Buffer>((resolve, reject) => {
-      const child = spawn(
-        resolveWeasyPrintPythonBin(),
-        ['-c', WEASYPRINT_PYTHON_SNIPPET, printUrl],
-        {
-          stdio: ['ignore', 'pipe', 'pipe'],
-          env: {
-            ...process.env,
-            XDG_CACHE_HOME: resolveWeasyPrintCacheDir(),
-          },
-        },
+  private async generatePdfWithRenderer(printUrl: string): Promise<Buffer> {
+    const response = await fetch(`${resolvePdfRendererBaseUrl()}/render-pdf`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/pdf',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({url: printUrl}),
+      signal: AbortSignal.timeout(PDF_TIMEOUT_MS),
+    }).catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new PdfRendererError(
+        `Unable to reach PDF renderer at ${resolvePdfRendererBaseUrl()}`,
+        message,
       );
-      const stdoutChunks: Buffer[] = [];
-      const stderrChunks: Buffer[] = [];
-      let didTimeOut = false;
-
-      const timeout = setTimeout(() => {
-        didTimeOut = true;
-        child.kill('SIGKILL');
-      }, PDF_TIMEOUT_MS);
-
-      child.stdout.on('data', (chunk: Buffer | string) => {
-        stdoutChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-      });
-
-      child.stderr.on('data', (chunk: Buffer | string) => {
-        stderrChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-      });
-
-      child.on('error', (error) => {
-        clearTimeout(timeout);
-        reject(new WeasyPrintProcessError(
-          `Unable to start WeasyPrint with "${resolveWeasyPrintPythonBin()}": ${error.message}`,
-          '',
-        ));
-      });
-
-      child.on('close', (code, signal) => {
-        clearTimeout(timeout);
-        const stderr = Buffer.concat(stderrChunks).toString('utf8').trim();
-
-        if (code === 0) {
-          resolve(Buffer.concat(stdoutChunks));
-          return;
-        }
-
-        if (didTimeOut) {
-          reject(new WeasyPrintProcessError(
-            `WeasyPrint timed out after ${PDF_TIMEOUT_MS}ms`,
-            stderr,
-          ));
-          return;
-        }
-
-        reject(new WeasyPrintProcessError(
-          `WeasyPrint failed with code ${code ?? 'unknown'}${signal ? ` (${signal})` : ''}`,
-          stderr,
-        ));
-      });
     });
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new PdfRendererError(
+        `PDF renderer failed with status ${response.status}`,
+        details,
+      );
+    }
+
+    const contentType = response.headers.get('content-type') ?? '';
+    if (!contentType.includes('application/pdf')) {
+      const details = await response.text();
+      throw new PdfRendererError(
+        'PDF renderer returned an unexpected content type',
+        details,
+      );
+    }
+
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   }
 }

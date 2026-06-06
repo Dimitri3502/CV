@@ -1,3 +1,0 @@
-# Python dependency for PDF rendering via WeasyPrint.
-# Runtime also requires native libraries used by WeasyPrint/Cairo/Pango.
-weasyprint>=67,<70

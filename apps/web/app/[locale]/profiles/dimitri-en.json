@@ -1,93 +1,110 @@
 {
-  "Meta": {
-    "template": "classic",
-    "filenameBase": "dimitri-beubry-cv",
+  "meta": {
     "slug": "dimitri-beubry",
-    "availableLocales": ["fr", "en"]
+    "filenameBase": "dimitri-beubry-cv",
+    "locale": "en",
+    "availableLocales": ["fr", "en"],
+    "themeColor": "#424F64"
   },
-  "Contact": {
-    "title": "Contact",
-    "email": "dimitri.beubry@gmail.com",
-    "linkedin": "LinkedIn",
-    "location": "Paris",
-    "calendly": "Calendly",
-    "photoUrl": "https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg",
-    "linkedinUrl": "https://www.linkedin.com/in/dimitri-beubry-99343210b",
-    "calendlyUrl": "https://calendly.com/dimitri-beubry"
-  },
-  "Header": {
+  "header": {
     "name": "Dimitri Beubry–Niejinsky",
     "subtitle": "Senior Full Stack Engineer — React, Node.js, Conversational AI"
   },
-  "About": {
-    "title": "About",
-    "content": "Senior full-stack engineer with 7 years of experience designing web applications and B2B products, with a strong focus on React, Node.js, and applied AI. I have designed and delivered rich interfaces, orchestration backends, and production AI workflows across document extraction, automation, and information retrieval use cases. I am now looking to contribute to AI-native products where user experience, backend architecture, and business value are designed together."
-  },
-  "Highlights": {
-    "title": "Highlights",
+  "contact": {
+    "title": "Contact",
+    "photoUrl": "https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg",
     "items": [
+      {
+        "kind": "email",
+        "value": "dimitri.beubry@gmail.com"
+      },
+      {
+        "kind": "location",
+        "value": "Paris"
+      },
+      {
+        "kind": "linkedin",
+        "value": "LinkedIn",
+        "url": "https://www.linkedin.com/in/dimitri-beubry-99343210b"
+      },
+      {
+        "kind": "calendly",
+        "value": "Calendly",
+        "url": "https://calendly.com/dimitri-beubry"
+      }
+    ]
+  },
+  "profile": {
+    "title": "Profile",
+    "content": "Senior full-stack engineer with 7 years of experience designing web applications and B2B products, with a strong focus on React, Node.js, and applied AI. I have designed and delivered rich interfaces, orchestration backends, and production AI workflows across document extraction, automation, and information retrieval use cases. I am now looking to contribute to AI-native products where user experience, backend architecture, and business value are designed together.",
+    "highlights": [
       "Design of AI products from scratch",
       "React / Node.js on complex business applications",
       "Backend orchestration, automation, and production rollout",
       "Strong autonomy in ambiguous environments"
     ]
   },
-  "Skills": {
+  "expertise": {
     "title": "Skills",
-    "items": [
+    "groups": [
       {
         "title": "Frontend",
-        "items": [
-          "React",
-          "Vue.js",
-          "TypeScript",
-          "Complex business interfaces",
-          "Client-side state management"
-        ]
+        "items": ["React", "Vue.js", "TypeScript", "Complex business interfaces", "Client-side state management"]
       },
       {
         "title": "Backend",
-        "items": [
-          "Node.js",
-          "NestJS",
-          "PostgreSQL",
-          "Redis",
-          "Kafka",
-          "BullMQ",
-          "APIs and event-driven architectures"
-        ]
+        "items": ["Node.js", "NestJS", "PostgreSQL", "Redis", "Kafka", "BullMQ", "APIs and event-driven architectures"]
       },
       {
         "title": "AI & Search",
-        "items": [
-          "Conversational AI",
-          "RAG",
-          "Document extraction",
-          "Classification",
-          "Prompting",
-          "Context enrichment",
-          "MCP"
-        ]
+        "items": ["Conversational AI", "RAG", "Document extraction", "Classification", "Prompting", "Context enrichment", "MCP"]
       },
       {
         "title": "DevOps",
-        "items": [
-          "Docker",
-          "Kubernetes",
-          "CI/CD",
-          "Pulumi/Terraform",
-          "Grafana",
-          "Scaleway/Azure/GCP/OVH",
-          "Unix shell"
-        ]
+        "items": ["Docker", "Kubernetes", "CI/CD", "Pulumi/Terraform", "Grafana", "Scaleway/Azure/GCP/OVH", "Unix shell"]
       }
     ]
   },
-  "Experience": {
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "degree": "General Engineering Degree",
+        "institution": "École Centrale de Nantes",
+        "period": "2015 - 2019",
+        "details": ["Computer science, finance, energy"]
+      },
+      {
+        "degree": "Preparatory classes PCSI-PSI",
+        "institution": "Lycée Thiers Marseille",
+        "period": "2013 - 2015"
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Licenses and certifications",
+    "items": [
+      {
+        "name": "PROFESSIONAL SCRUM MASTER™ I",
+        "issuerLine": "Issued: June 2020 · Certified by Scrum.org"
+      },
+      {
+        "name": "Oracle Certified Professional, Java SE 8 Programmer",
+        "issuerLine": "Issued: Sept. 2019 · Certified by Oracle"
+      },
+      {
+        "name": "Oracle Certified Associate, Java SE 8 Programmer",
+        "issuerLine": "Issued: May 2019 · Certified by Oracle"
+      }
+    ]
+  },
+  "experience": {
     "title": "Experience",
     "items": [
       {
-        "title": "2023 – 2025 — CTO & Founder, LUPHY",
+        "role": "CTO & Founder",
+        "organization": "LUPHY",
+        "period": "2023 - 2025",
         "summary": "Founded and led an agency specializing in automation and applied AI product design to accelerate execution and business impact.",
         "bullets": [
           "Cubo-solutions: AI document platform for construction stakeholders on large-scale projects in an AMO / OPC context, enabling ingestion and structuring of heterogeneous corpora (meeting minutes, contractual documents, tracking sheets, technical documentation) and natural-language querying, with a sovereign architecture (Mistral AI, OVH), without sending full documents to the model, thanks to a chunk-based RAG pipeline and embeddings stored in pgvector.",
@@ -99,7 +116,8 @@
         ]
       },
       {
-        "title": "Volunteer — CIAMS NGO & Serpi Circus",
+        "role": "Volunteer",
+        "organization": "CIAMS NGO & Serpi Circus",
         "summary": "Volunteer contributions to social-impact and cultural association projects.",
         "bullets": [
           "Built and hosted, for CIAMS NGO, the page for the Global Observatory on Women’s Sexual and Reproductive Rights: https://observatory-ciams.rentagest.fr/?lang=fr",
@@ -107,7 +125,9 @@
         ]
       },
       {
-        "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+        "role": "Senior Full Stack",
+        "organization": "KSAAR SOLUTIONS",
+        "period": "2021 - 2023",
         "summary": "Led key technical initiatives for a fast-growing B2B SaaS platform, with a central role in architecture, software quality, and product automation capabilities.",
         "bullets": [
           "Developed a B2B SaaS platform adopted by 10k+ users.",
@@ -119,7 +139,9 @@
         ]
       },
       {
-        "title": "2019 – 2021 — Full Stack Developer, ENGIE-SOLUTIONS",
+        "role": "Full Stack Developer",
+        "organization": "ENGIE-SOLUTIONS",
+        "period": "2019 - 2021",
         "summary": "Developed B2B applications and real-time data streams in a demanding industrial environment.",
         "bullets": [
           "SCRUM development of a B2B application.",
@@ -128,56 +150,23 @@
         ]
       },
       {
-        "title": "2019 (9 months) — Junior Full Stack, EXCILYS",
+        "role": "Junior Full Stack",
+        "organization": "EXCILYS",
+        "period": "2019 (9 months)",
         "summary": "First professional experience in an agile team on an internal web application.",
         "bullets": [
           "Developed a web application for sharing and indexing skills."
         ]
       },
       {
-        "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
+        "role": "Data Analyst",
+        "organization": "EIFER-EDF",
+        "period": "2017 - 2018",
         "summary": "Analyzed monitoring data to improve operational performance on energy sites.",
         "bullets": [
           "Analyzed five years of monitoring data.",
           "Contributed to operational improvements on around ten micro-cogeneration units."
         ]
-      }
-    ]
-  },
-  "Education": {
-    "title": "Education",
-    "items": [
-      {
-        "school": "École Centrale de Nantes",
-        "degree": "General Engineering Degree (2015-2019)",
-        "subjects": "Computer science, finance, energy"
-      },
-      {
-        "school": "Lycée Thiers Marseille",
-        "degree": "Preparatory classes PCSI-PSI (2013-2015)"
-      }
-    ]
-  },
-  "Certifications": {
-    "title": "Licenses and certifications",
-    "items": [
-      {
-        "badge": "P",
-        "name": "PROFESSIONAL SCRUM MASTER™ I",
-        "issued": "Issued: June 2020",
-        "issuer": "Certified by Scrum.org"
-      },
-      {
-        "badge": "O",
-        "name": "Oracle Certified Professional, Java SE 8 Programmer",
-        "issued": "Issued: Sept. 2019",
-        "issuer": "Certified by Oracle"
-      },
-      {
-        "badge": "O",
-        "name": "Oracle Certified Associate, Java SE 8 Programmer",
-        "issued": "Issued: May 2019",
-        "issuer": "Certified by Oracle"
       }
     ]
   }

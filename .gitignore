@@ -41,9 +41,6 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-.venv-weasyprint/
-apps/api/.venv-weasyprint/
-apps/api/.cache/
 
 # vercel
 .vercel
@@ -51,3 +48,10 @@ apps/api/.cache/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+apps/pdf-renderer/.cache/

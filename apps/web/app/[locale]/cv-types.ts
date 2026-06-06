@@ -5,44 +5,48 @@ export type LocaleLink = {
   href: string;
 };
 
-export type CvMeta = {
-  template: 'classic' | 'policy';
-  filenameBase: string;
-  slug: string;
-  themeColor?: CvThemeColor;
-  availableLocales: readonly Locale[];
-};
+export type NormalizedContactItem =
+  | {kind: 'email'; value: string}
+  | {kind: 'phone'; value: string}
+  | {kind: 'location'; value: string}
+  | {kind: 'linkedin'; value: string; url: string}
+  | {kind: 'calendly'; value: string; url: string}
+  | {kind: 'link'; value: string; url: string};
 
-export type PolicyCvSectionTitle = {
+export type NormalizedCvSectionTitle = {
   title: string;
 };
 
-export type PolicyCvData = {
-  Meta: CvMeta & {template: 'policy'};
-  Header: {
+export type NormalizedCvDocument = {
+  meta: {
+    slug: string;
+    filenameBase: string;
+    locale: Locale;
+    availableLocales: readonly Locale[];
+    themeColor: CvThemeColor;
+  };
+  header: {
     name: string;
     subtitle: string;
   };
-  Contact: PolicyCvSectionTitle & {
-    email: string;
-    phone: string;
-    linkedinLabel: string;
-    linkedinUrl: string;
+  contact?: NormalizedCvSectionTitle & {
     photoUrl?: string;
+    items: readonly NormalizedContactItem[];
   };
-  Profile: PolicyCvSectionTitle & {
-    content: string;
+  profile?: NormalizedCvSectionTitle & {
+    content?: string;
+    highlights?: readonly string[];
   };
-  Expertise: PolicyCvSectionTitle & {
+  expertise?: NormalizedCvSectionTitle & {
     groups: ReadonlyArray<{
       title: string;
       items: readonly string[];
     }>;
   };
-  Languages: PolicyCvSectionTitle & {
+  languages?: NormalizedCvSectionTitle & {
     items: readonly string[];
   };
-  Education: PolicyCvSectionTitle & {
+  education?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       degree: string;
       institution: string;
@@ -50,36 +54,39 @@ export type PolicyCvData = {
       details?: readonly string[];
     }>;
   };
-  Certifications: PolicyCvSectionTitle & {
+  certifications?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       name: string;
-      issuerLine: string;
+      issuerLine?: string;
     }>;
   };
-  Experience: PolicyCvSectionTitle & {
+  experience?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       role: string;
       organization: string;
-      period: string;
       location?: string;
-      bullets: readonly string[];
+      period?: string;
+      summary?: string;
+      bullets?: readonly string[];
     }>;
   };
-  Interventions: PolicyCvSectionTitle & {
+  publications?: NormalizedCvSectionTitle & {
+    subtitle?: string;
+    items: ReadonlyArray<{
+      text: string;
+    }>;
+  };
+  interventions?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       title: string;
-      meta: string;
+      meta?: string;
     }>;
   };
-  Publications: PolicyCvSectionTitle & {
-    subtitle?: string;
-    items: readonly string[];
-  };
-  Engagements: PolicyCvSectionTitle & {
+  engagements?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       title: string;
       organization: string;
-      period: string;
+      period?: string;
     }>;
   };
 };

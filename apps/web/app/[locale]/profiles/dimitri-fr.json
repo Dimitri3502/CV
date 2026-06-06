@@ -1,93 +1,110 @@
 {
-  "Meta": {
-    "template": "classic",
-    "filenameBase": "dimitri-beubry-cv",
+  "meta": {
     "slug": "dimitri-beubry",
-    "availableLocales": ["fr", "en"]
+    "filenameBase": "dimitri-beubry-cv",
+    "locale": "fr",
+    "availableLocales": ["fr", "en"],
+    "themeColor": "#424F64"
   },
-  "Contact": {
-    "title": "Contact",
-    "email": "dimitri.beubry@gmail.com",
-    "linkedin": "LinkedIn",
-    "location": "Paris",
-    "calendly": "Calendly",
-    "photoUrl": "https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg",
-    "linkedinUrl": "https://www.linkedin.com/in/dimitri-beubry-99343210b",
-    "calendlyUrl": "https://calendly.com/dimitri-beubry"
-  },
-  "Header": {
+  "header": {
     "name": "Dimitri Beubry–Niejinsky",
     "subtitle": "Ingénieur Full Stack Senior — React, Node.js, IA conversationnelle"
   },
-  "About": {
-    "title": "À propos",
-    "content": "Ingénieur full stack senior, j’ai 7 ans d’expérience dans la conception d’applications web et de produits B2B, avec une forte dominante React, Node.js et IA appliquée. J’ai conçu et livré des interfaces riches, des backends d’orchestration et des workflows IA en production, sur des sujets d’extraction documentaire, d’automatisation et de recherche d’information. Je cherche aujourd’hui à contribuer à des produits IA-native où l’expérience utilisateur, l’architecture backend et la valeur métier se conçoivent ensemble."
-  },
-  "Highlights": {
-    "title": "Points forts",
+  "contact": {
+    "title": "Contact",
+    "photoUrl": "https://photos-dimitri.s3.fr-par.scw.cloud/photo-profile-luphy.jpg",
     "items": [
+      {
+        "kind": "email",
+        "value": "dimitri.beubry@gmail.com"
+      },
+      {
+        "kind": "location",
+        "value": "Paris"
+      },
+      {
+        "kind": "linkedin",
+        "value": "LinkedIn",
+        "url": "https://www.linkedin.com/in/dimitri-beubry-99343210b"
+      },
+      {
+        "kind": "calendly",
+        "value": "Calendly",
+        "url": "https://calendly.com/dimitri-beubry"
+      }
+    ]
+  },
+  "profile": {
+    "title": "Profil",
+    "content": "Ingénieur full stack senior, j’ai 7 ans d’expérience dans la conception d’applications web et de produits B2B, avec une forte dominante React, Node.js et IA appliquée. J’ai conçu et livré des interfaces riches, des backends d’orchestration et des workflows IA en production, sur des sujets d’extraction documentaire, d’automatisation et de recherche d’information. Je cherche aujourd’hui à contribuer à des produits IA-native où l’expérience utilisateur, l’architecture backend et la valeur métier se conçoivent ensemble.",
+    "highlights": [
       "Conception de produits IA from scratch",
       "React / Node.js sur des applications métier complexes",
       "Orchestration backend, automatisation et mise en production",
       "Forte autonomie en environnement flou"
     ]
   },
-  "Skills": {
+  "expertise": {
     "title": "Compétences",
-    "items": [
+    "groups": [
       {
         "title": "Frontend",
-        "items": [
-          "React",
-          "Vue.js",
-          "TypeScript",
-          "Interfaces métier complexes",
-          "Gestion d’état côté client"
-        ]
+        "items": ["React", "Vue.js", "TypeScript", "Interfaces métier complexes", "Gestion d’état côté client"]
       },
       {
         "title": "Backend",
-        "items": [
-          "Node.js",
-          "NestJS",
-          "PostgreSQL",
-          "Redis",
-          "Kafka",
-          "BullMQ",
-          "APIs et architectures événementielles"
-        ]
+        "items": ["Node.js", "NestJS", "PostgreSQL", "Redis", "Kafka", "BullMQ", "APIs et architectures événementielles"]
       },
       {
         "title": "IA & recherche",
-        "items": [
-          "IA conversationnelle",
-          "RAG",
-          "Extraction documentaire",
-          "Classification",
-          "Prompting",
-          "Enrichissement contextuel",
-          "MCP"
-        ]
+        "items": ["IA conversationnelle", "RAG", "Extraction documentaire", "Classification", "Prompting", "Enrichissement contextuel", "MCP"]
       },
       {
         "title": "DevOps",
-        "items": [
-          "Docker",
-          "Kubernetes",
-          "CI/CD",
-          "Pulumi/Terraform",
-          "Grafana",
-          "Scaleway/Azure/GCP/OVH",
-          "Shell Unix"
-        ]
+        "items": ["Docker", "Kubernetes", "CI/CD", "Pulumi/Terraform", "Grafana", "Scaleway/Azure/GCP/OVH", "Shell Unix"]
       }
     ]
   },
-  "Experience": {
+  "education": {
+    "title": "Formation",
+    "items": [
+      {
+        "degree": "Ingénieur Généraliste",
+        "institution": "École Centrale de Nantes",
+        "period": "2015 - 2019",
+        "details": ["Informatique, finance, énergie"]
+      },
+      {
+        "degree": "Classe préparatoire PCSI-PSI",
+        "institution": "Lycée Thiers Marseille",
+        "period": "2013 - 2015"
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Licences et certifications",
+    "items": [
+      {
+        "name": "PROFESSIONAL SCRUM MASTER™ I",
+        "issuerLine": "Délivré le : juin 2020 · Certifié par Scrum.org"
+      },
+      {
+        "name": "Oracle Certified Professional, Java SE 8 Programmer",
+        "issuerLine": "Délivré le : sept. 2019 · Certifié par Oracle"
+      },
+      {
+        "name": "Oracle Certified Associate, Java SE 8 Programmer",
+        "issuerLine": "Délivré le : mai 2019 · Certifié par Oracle"
+      }
+    ]
+  },
+  "experience": {
     "title": "Expériences",
     "items": [
       {
-        "title": "2023 – 2025 — CTO & Founder, LUPHY",
+        "role": "CTO & Founder",
+        "organization": "LUPHY",
+        "period": "2023 - 2025",
         "summary": "Agence fondée et dirigée, spécialisée dans la conception de produits d’automatisation et d’IA appliquée pour accélérer l’exécution et l’impact business.",
         "bullets": [
           "Cubo-solutions : plateforme documentaire IA pour des acteurs du BTP sur des grands projets en contexte AMO / OPC, permettant d’ingérer et structurer des corpus hétérogènes (comptes-rendus, pièces contractuelles, tableaux de suivi, documents techniques) pour les rendre interrogeables en langage naturel, avec une architecture souveraine (Mistral AI, OVH), sans envoi de documents complets au modèle, grâce à un pipeline RAG par chunks et embeddings stockés dans pgvector.",
@@ -99,7 +116,8 @@
         ]
       },
       {
-        "title": "Bénévole — ONG CIAMS & Serpi Circus",
+        "role": "Bénévole",
+        "organization": "ONG CIAMS & Serpi Circus",
         "summary": "Contributions bénévoles sur des projets associatifs à impact sociétal et culturel.",
         "bullets": [
           "Création et hébergement, pour l’ONG CIAMS, de la page de l’Observatoire mondial des droits sexuels et reproductifs des femmes : https://observatory-ciams.rentagest.fr/?lang=fr",
@@ -107,7 +125,9 @@
         ]
       },
       {
-        "title": "2021 – 2023 — Senior Full Stack, KSAAR SOLUTIONS",
+        "role": "Senior Full Stack",
+        "organization": "KSAAR SOLUTIONS",
+        "period": "2021 - 2023",
         "summary": "Responsable des chantiers techniques clés d’une plateforme SaaS B2B à forte croissance, avec un rôle central sur l’architecture, la qualité logicielle et les capacités d’automatisation du produit.",
         "bullets": [
           "Développement d’une plateforme SaaS B2B adoptée par +10k utilisateurs.",
@@ -119,7 +139,9 @@
         ]
       },
       {
-        "title": "2019 – 2021 — Développeur Full Stack, ENGIE-SOLUTIONS",
+        "role": "Développeur Full Stack",
+        "organization": "ENGIE-SOLUTIONS",
+        "period": "2019 - 2021",
         "summary": "Développement d’applications B2B et de flux temps réel dans un environnement industriel exigeant.",
         "bullets": [
           "Développement en SCRUM d’une application B2B.",
@@ -128,56 +150,23 @@
         ]
       },
       {
-        "title": "2019 (9 mois) — Junior Full Stack, EXCILYS",
+        "role": "Junior Full Stack",
+        "organization": "EXCILYS",
+        "period": "2019 (9 mois)",
         "summary": "Première expérience professionnelle en équipe agile sur une application web interne.",
         "bullets": [
           "Développement d’une application web de partage et de référencement des compétences."
         ]
       },
       {
-        "title": "2017 – 2018 — Data Analyst, EIFER-EDF",
+        "role": "Data Analyst",
+        "organization": "EIFER-EDF",
+        "period": "2017 - 2018",
         "summary": "Analyse de données de monitoring pour améliorer la performance opérationnelle de sites énergétiques.",
         "bullets": [
           "Analyse de 5 années de données de monitoring.",
           "Contribution à l’amélioration opérationnelle d’une dizaine de micro-cogénérations."
         ]
-      }
-    ]
-  },
-  "Education": {
-    "title": "Formation",
-    "items": [
-      {
-        "school": "École Centrale de Nantes",
-        "degree": "Ingénieur Généraliste (2015-2019)",
-        "subjects": "Informatique, finance, énergie"
-      },
-      {
-        "school": "Lycée Thiers Marseille",
-        "degree": "Classe préparatoire PCSI-PSI (2013-2015)"
-      }
-    ]
-  },
-  "Certifications": {
-    "title": "Licences et certifications",
-    "items": [
-      {
-        "badge": "P",
-        "name": "PROFESSIONAL SCRUM MASTER™ I",
-        "issued": "Délivré le : juin 2020",
-        "issuer": "Certifié par Scrum.org"
-      },
-      {
-        "badge": "O",
-        "name": "Oracle Certified Professional, Java SE 8 Programmer",
-        "issued": "Délivré le : sept. 2019",
-        "issuer": "Certifié par Oracle"
-      },
-      {
-        "badge": "O",
-        "name": "Oracle Certified Associate, Java SE 8 Programmer",
-        "issued": "Délivré le : mai 2019",
-        "issuer": "Certifié par Oracle"
       }
     ]
   }

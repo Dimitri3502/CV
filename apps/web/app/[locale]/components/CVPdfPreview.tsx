@@ -19,7 +19,7 @@ function resolveApiBaseUrl() {
 
 export function CVPdfPreview({locale, data, languageLinks, profileSlug}: CVPdfPreviewProps) {
   const printPath = buildPrintHref(locale, profileSlug);
-  const filenameBase = data.Meta.filenameBase || CV_PDF_FILENAME_PREFIX;
+  const filenameBase = data.meta.filenameBase || CV_PDF_FILENAME_PREFIX;
   const previewUrl = `${resolveApiBaseUrl()}/api/v1/preview-pdf?${new URLSearchParams({
     locale,
     filenameBase,
@@ -37,7 +37,7 @@ export function CVPdfPreview({locale, data, languageLinks, profileSlug}: CVPdfPr
 
       <div className="mx-auto w-[min(var(--a4-width),calc(100vw-1.5rem))] max-w-[var(--a4-width)]">
         <iframe
-          title={`${data.Header.name} PDF preview`}
+          title={`${data.header.name} PDF preview`}
           src={previewUrl}
           className="block h-[calc(100vh-2rem)] min-h-[900px] w-full rounded bg-white shadow-xl"
         />

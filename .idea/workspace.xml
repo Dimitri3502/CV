@@ -4,15 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="wip">
+    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="weasyprint ok">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CV.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CV.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/requirements/weasyprint.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/pdf.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/pdf.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplate.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/PolicyCvTemplate.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPrintDocument.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPrintDocument.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPrintTemplate.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/PolicyCvPrintTemplate.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/cv-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/cv-data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/i18n.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/tatiana-fr.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/messages/en.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/messages/fr.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +48,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test-docx" />
+        <entry key="$PROJECT_DIR$" value="f/add-tati" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,23 +76,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.360662742821112" />
-      <entry key="MS500" value="3.727853411477592" />
-      <entry key="S2" value="10.55329582849091" />
-      <entry key="S5" value="20.91510700085375" />
-      <entry key="S10" value="32.801502809581734" />
-      <entry key="S30" value="49.830286963624175" />
-      <entry key="S60" value="56.27457841060991" />
-      <entry key="M2" value="59.96046995739654" />
-      <entry key="M5" value="62.34019496516647" />
-      <entry key="M10" value="63.46089940728759" />
-      <entry key="M15" value="65.61980894335565" />
-      <entry key="M30" value="80.81480035746166" />
-      <entry key="H1" value="119.22326282155694" />
-      <entry key="H2" value="175.31100111445798" />
-      <entry key="H4" value="273.96427107366935" />
-      <entry key="D1" value="1150.6053089659424" />
-      <entry key="W1" value="1708.203305296051" />
+      <entry key="MS100" value="1.3506681773292764" />
+      <entry key="MS500" value="4.058412316818927" />
+      <entry key="S2" value="13.011314512425963" />
+      <entry key="S5" value="28.89358552212475" />
+      <entry key="S10" value="51.296983419505175" />
+      <entry key="S30" value="97.83428011123486" />
+      <entry key="S60" value="122.73516127115376" />
+      <entry key="M2" value="145.35450432076553" />
+      <entry key="M5" value="182.14610244784575" />
+      <entry key="M10" value="219.6207695752018" />
+      <entry key="M15" value="246.17212654549937" />
+      <entry key="M30" value="296.4780187821715" />
+      <entry key="H1" value="343.0792402782833" />
+      <entry key="H2" value="377.18525976522926" />
+      <entry key="H4" value="413.2347282001049" />
+      <entry key="D1" value="1452.4508042372718" />
+      <entry key="W1" value="2900.0135080717228" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -104,23 +114,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2953977671217747" />
-      <entry key="MS500" value="3.7014686740820477" />
-      <entry key="S2" value="10.536984294329422" />
-      <entry key="S5" value="20.90222930744993" />
-      <entry key="S10" value="32.791255230287724" />
-      <entry key="S30" value="49.82501230191068" />
-      <entry key="S60" value="56.271586066111155" />
-      <entry key="M2" value="59.95887197530374" />
-      <entry key="M5" value="62.33952944410867" />
-      <entry key="M10" value="63.460560921898036" />
-      <entry key="M15" value="65.61957731426016" />
-      <entry key="M30" value="80.81466420180173" />
-      <entry key="H1" value="119.22316876792533" />
-      <entry key="H2" value="175.31093482410665" />
-      <entry key="H4" value="273.96421953352774" />
-      <entry key="D1" value="1150.6052710907913" />
-      <entry key="W1" value="1708.2032972004997" />
+      <entry key="MS100" value="1.321001621294284" />
+      <entry key="MS500" value="4.039417004285954" />
+      <entry key="S2" value="12.997162041818429" />
+      <entry key="S5" value="28.881218045492403" />
+      <entry key="S10" value="51.28587924773259" />
+      <entry key="S30" value="97.82707795872058" />
+      <entry key="S60" value="122.730621248098" />
+      <entry key="M2" value="145.35181805895613" />
+      <entry key="M5" value="182.14476218391468" />
+      <entry key="M10" value="219.61996368998217" />
+      <entry key="M15" value="246.17152432684725" />
+      <entry key="M30" value="296.4776546792903" />
+      <entry key="H1" value="343.0790282954334" />
+      <entry key="H2" value="377.18514263845475" />
+      <entry key="H4" value="413.2346630850526" />
+      <entry key="D1" value="1452.4507577579664" />
+      <entry key="W1" value="2900.0134943489315" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -133,6 +143,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -141,7 +152,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "f/add-tati",
+    "git-widget-placeholder": "f/weasyprint",
     "js.debugger.nextJs.config.created.client": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -192,6 +203,18 @@
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -205,6 +228,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +259,7 @@
       <workItem from="1775920033017" duration="2359000" />
       <workItem from="1776341038212" duration="2545000" />
       <workItem from="1779359154252" duration="5183000" />
-      <workItem from="1780498059068" duration="17130000" />
+      <workItem from="1780498059068" duration="33992000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -333,7 +357,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780563670152</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="weasyprint ok">
+      <option name="closed" value="true" />
+      <created>1780574327282</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1780574327282</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +381,8 @@
     <MESSAGE value="cv api parfait" />
     <MESSAGE value="Add volunteer experience, update localization strings, and linkify URLs in CV template" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="weasyprint ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="weasyprint ok" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

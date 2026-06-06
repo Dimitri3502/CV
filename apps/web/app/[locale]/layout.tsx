@@ -14,11 +14,14 @@ export default async function LocaleLayout(props: {
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased font-['Noto_Sans',_sans-serif] bg-[#DFDFDF] print:bg-[#DFDFDF]">
+      <body
+        suppressHydrationWarning
+        className="antialiased font-['Noto_Sans',_sans-serif] bg-[#DFDFDF] print:bg-[#DFDFDF]"
+      >
         {props.children}
       </body>
     </html>

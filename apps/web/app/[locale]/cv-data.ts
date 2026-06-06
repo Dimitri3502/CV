@@ -3,15 +3,18 @@ import {
   isSupportedLocale,
   type Locale,
 } from '@cv/common';
-import enMessages from '../../messages/en.json';
-import frMessages from '../../messages/fr.json';
-import {tatianaFrCv} from './profiles/tatiana-fr';
-import type {LocaleLink, PolicyCvData} from './cv-types';
+import dimitriEnProfileJson from './profiles/dimitri-en.json';
+import dimitriFrProfileJson from './profiles/dimitri-fr.json';
+import tatianaFrProfileJson from './profiles/tatiana-fr.json';
+import type {LocaleLink, NormalizedCvDocument} from './cv-types';
 
 export const locales = SUPPORTED_LOCALES;
 export type {Locale, LocaleLink};
-export type ClassicCvData = typeof frMessages;
-export type CVData = ClassicCvData | PolicyCvData;
+export type CVData = NormalizedCvDocument;
+
+const dimitriEnProfile = dimitriEnProfileJson as CVData;
+const dimitriFrProfile = dimitriFrProfileJson as CVData;
+const tatianaFrProfile = tatianaFrProfileJson as CVData;
 
 type ProfileDefinition = {
   slug: string;
@@ -26,23 +29,23 @@ type ResolvedProfile = {
 
 const profiles: ProfileDefinition[] = [
   {
-    slug: 'dimitri-beubry',
+    slug: dimitriFrProfile.meta.slug,
     dataByLocale: {
-      fr: frMessages,
-      en: enMessages,
+      fr: dimitriFrProfile,
+      en: dimitriEnProfile,
     },
   },
   {
-    slug: tatianaFrCv.Meta.slug,
+    slug: tatianaFrProfile.meta.slug,
     dataByLocale: {
-      fr: tatianaFrCv,
+      fr: tatianaFrProfile,
     },
   },
 ];
 
 const defaultProfileSlugByLocale: Record<Locale, string> = {
-  fr: 'dimitri-beubry',
-  en: 'dimitri-beubry',
+  fr: dimitriFrProfile.meta.slug,
+  en: dimitriEnProfile.meta.slug,
 };
 
 const profilesBySlug = new Map(profiles.map((profile) => [profile.slug, profile]));
@@ -95,11 +98,7 @@ export function buildPrintHref(locale: Locale, slug: string): string {
 }
 
 export function getProfileTitle(data: CVData): string {
-  return data.Header.name;
-}
-
-export function isPolicyCvData(data: CVData): data is PolicyCvData {
-  return data.Meta.template === 'policy';
+  return data.header.name;
 }
 
 export function getStaticProfileParams() {

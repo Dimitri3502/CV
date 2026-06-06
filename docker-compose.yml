@@ -1,0 +1,28 @@
+services:
+  pdf-renderer:
+    container_name: cv-pdf-renderer
+    build:
+      context: ./apps/pdf-renderer
+    ports:
+      - "8001:8000"
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      WEASYPRINT_CACHE_DIR: /tmp/weasyprint-cache
+      PDF_SOURCE_HOST: host.docker.internal
+    volumes:
+      - ./apps/pdf-renderer:/app
+      - pdf_renderer_cache:/tmp/weasyprint-cache
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  pdf_renderer_cache:

@@ -1,15 +1,10 @@
-import {isPolicyCvData, type CVData} from '../cv-data';
-import {CVPrintTemplate} from './CVPrintTemplate';
-import {PolicyCvPrintTemplate} from './PolicyCvPrintTemplate';
+import type {CVData} from '../cv-data';
+import {ProfileCvPrintTemplate} from './ProfileCvPrintTemplate';
 
 type CVPrintDocumentProps = {
   data: CVData;
 };
 
 export function CVPrintDocument({data}: CVPrintDocumentProps) {
-  if (isPolicyCvData(data)) {
-    return <PolicyCvPrintTemplate data={data} />;
-  }
-
-  return <CVPrintTemplate messages={data} />;
+  return <ProfileCvPrintTemplate data={data} />;
 }
