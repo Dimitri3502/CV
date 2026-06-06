@@ -45,6 +45,12 @@ type ItemCardProps = {
   className?: string;
 };
 
+type RgbColor = {
+  r: number;
+  g: number;
+  b: number;
+};
+
 const expertiseIcons: IconDefinition[] = [faCircle, faCircle, faCircle, faCircle];
 const contactIcons: Record<NormalizedContactItem['kind'], IconDefinition> = {
   email: faEnvelope,
@@ -54,6 +60,74 @@ const contactIcons: Record<NormalizedContactItem['kind'], IconDefinition> = {
   calendly: faCalendarDays,
   link: faLink,
 };
+
+function clampChannel(value: number) {
+  return Math.max(0, Math.min(255, Math.round(value)));
+}
+
+function parseHexColor(value: string): RgbColor | null {
+  const normalizedValue = value.trim().replace(/^#/, '');
+
+  if (/^[0-9a-fA-F]{3}$/.test(normalizedValue)) {
+    return {
+      r: Number.parseInt(`${normalizedValue[0]}${normalizedValue[0]}`, 16),
+      g: Number.parseInt(`${normalizedValue[1]}${normalizedValue[1]}`, 16),
+      b: Number.parseInt(`${normalizedValue[2]}${normalizedValue[2]}`, 16),
+    };
+  }
+
+  if (/^[0-9a-fA-F]{6}$/.test(normalizedValue)) {
+    return {
+      r: Number.parseInt(normalizedValue.slice(0, 2), 16),
+      g: Number.parseInt(normalizedValue.slice(2, 4), 16),
+      b: Number.parseInt(normalizedValue.slice(4, 6), 16),
+    };
+  }
+
+  return null;
+}
+
+function parseRgbColor(value: string): (RgbColor & {a: number}) | null {
+  const match = value
+    .trim()
+    .match(/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)$/i);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    r: clampChannel(Number.parseFloat(match[1])),
+    g: clampChannel(Number.parseFloat(match[2])),
+    b: clampChannel(Number.parseFloat(match[3])),
+    a: match[4] ? Math.max(0, Math.min(1, Number.parseFloat(match[4]))) : 1,
+  };
+}
+
+function toOpaqueColor(foreground: string, background: string): string {
+  const foregroundHex = parseHexColor(foreground);
+  const foregroundRgb = parseRgbColor(foreground);
+  const backgroundHex = parseHexColor(background);
+  const backgroundRgb = parseRgbColor(background);
+
+  if (foregroundHex && backgroundHex) {
+    return `rgb(${foregroundHex.r}, ${foregroundHex.g}, ${foregroundHex.b})`;
+  }
+
+  if (foregroundRgb && backgroundHex) {
+    const alpha = foregroundRgb.a;
+    const r = clampChannel(foregroundRgb.r * alpha + backgroundHex.r * (1 - alpha));
+    const g = clampChannel(foregroundRgb.g * alpha + backgroundHex.g * (1 - alpha));
+    const b = clampChannel(foregroundRgb.b * alpha + backgroundHex.b * (1 - alpha));
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  if (foregroundHex && backgroundRgb) {
+    return `rgb(${foregroundHex.r}, ${foregroundHex.g}, ${foregroundHex.b})`;
+  }
+
+  return foreground;
+}
 
 function SidebarIcon({icon}: {icon: IconDefinition}) {
   return <FontAwesomeIcon icon={icon} className="h-[12px] w-[12px]" fixedWidth style={{color: '#FFFFFF'}} />;
@@ -168,6 +242,17 @@ export function ProfileCvPrintTemplate({data}: ProfileCvPrintTemplateProps) {
   const theme = resolveCvTheme(data.meta.themeColor);
   const themeColor = theme.themeColor;
   const photoUrl = data.contact?.photoUrl?.trim();
+  const contactItemCount = data.contact?.items.length ?? 0;
+  const expertiseItemCount = data.expertise?.groups.reduce((count, group) => count + group.items.length, 0) ?? 0;
+  const expertiseGroupCount = data.expertise?.groups.length ?? 0;
+  const languageItemCount = data.languages?.items.length ?? 0;
+  const sidebarDensityScore =
+    (photoUrl ? 12 : 0) +
+    contactItemCount * 2 +
+    expertiseItemCount +
+    expertiseGroupCount +
+    languageItemCount * 2;
+  const shouldMoveExpertiseToMain = Boolean(photoUrl) && sidebarDensityScore >= 40;
   const themeStyles = {
     '--color-bg-light': theme.pageBg,
     '--color-bg-dark': theme.sidebarBg,
@@ -175,22 +260,22 @@ export function ProfileCvPrintTemplate({data}: ProfileCvPrintTemplateProps) {
     '--color-text-accent': themeColor,
     '--color-highlight': '#FFFFFF',
     '--cv-muted': theme.mutedText,
-    '--cv-sidebar-kicker': 'rgba(255, 255, 255, 0.72)',
-    '--cv-sidebar-divider': 'rgba(255, 255, 255, 0.16)',
-    '--cv-tag-bg': 'rgba(255, 255, 255, 0.08)',
-    '--cv-tag-border': 'rgba(255, 255, 255, 0.2)',
-    '--cv-tag-text': '#F0F0F0',
-    '--cv-card-bg': theme.cardBg,
-    '--cv-card-bg-strong': theme.cardBgStrong,
-    '--cv-card-border': theme.cardBorder,
-    '--cv-accent-soft': theme.cardBgStrong,
+    '--cv-sidebar-kicker': toOpaqueColor(theme.sidebarKicker, theme.sidebarBg),
+    '--cv-sidebar-divider': toOpaqueColor(theme.sidebarDivider, theme.sidebarBg),
+    '--cv-tag-bg': toOpaqueColor(theme.tagBg, theme.sidebarBg),
+    '--cv-tag-border': toOpaqueColor(theme.tagBorder, theme.sidebarBg),
+    '--cv-tag-text': theme.tagText,
+    '--cv-card-bg': toOpaqueColor(theme.cardBg, theme.pageBg),
+    '--cv-card-bg-strong': toOpaqueColor(theme.cardBgStrong, theme.pageBg),
+    '--cv-card-border': toOpaqueColor(theme.cardBorder, theme.pageBg),
+    '--cv-accent-soft': toOpaqueColor(theme.cardBgStrong, theme.pageBg),
   } as CSSProperties;
 
   const sidebarBlocks: ReactNode[] = [];
 
   if (photoUrl) {
     sidebarBlocks.push(
-      <div key="photo" className="flex justify-center">
+      <div key="photo" className="profile-cv-sidebar-photo flex justify-center">
         <img
           src={photoUrl}
           alt={data.header.name}
@@ -213,7 +298,7 @@ export function ProfileCvPrintTemplate({data}: ProfileCvPrintTemplateProps) {
     );
   }
 
-  if (data.expertise) {
+  if (data.expertise && !shouldMoveExpertiseToMain) {
     sidebarBlocks.push(
       <section key="expertise" className="w-full">
         <SidebarSectionHeading icon={faBullseye} title={data.expertise.title} />
@@ -308,6 +393,21 @@ export function ProfileCvPrintTemplate({data}: ProfileCvPrintTemplateProps) {
   }
 
   const followUpSections: ReactNode[] = [];
+
+  if (data.expertise && shouldMoveExpertiseToMain) {
+    followUpSections.push(
+      <MainSection key="expertise" icon={faBullseye} title={data.expertise.title} color={themeColor}>
+        <div className="profile-cv-grid-two">
+          {data.expertise.groups.map((group) => (
+            <ItemCard key={group.title} tone="strong">
+              <h3 className="profile-cv-entry-title">{group.title}</h3>
+              <p className="profile-cv-detail !m-0">{group.items.join(' · ')}</p>
+            </ItemCard>
+          ))}
+        </div>
+      </MainSection>,
+    );
+  }
 
   if (data.certifications) {
     followUpSections.push(
@@ -408,7 +508,10 @@ export function ProfileCvPrintTemplate({data}: ProfileCvPrintTemplateProps) {
   }
 
   return (
-    <div style={themeStyles} className="cv-root is-print-mode min-h-screen py-0">
+    <div
+      style={themeStyles}
+      className={`cv-root is-print-mode min-h-screen py-0${shouldMoveExpertiseToMain ? ' profile-cv-dense-sidebar' : ''}`}
+    >
       <div className="cv-sheet profile-cv-print-sheet bg-white">
         <aside className="cv-sidebar profile-cv-sidebar bg-[var(--color-bg-dark)]">
           <div className="profile-cv-sidebar-stack">{sidebarBlocks}</div>

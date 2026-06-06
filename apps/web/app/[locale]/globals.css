@@ -145,13 +145,57 @@
 .cv-root .profile-cv-tag {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--cv-tag-border);
+  border: 0;
   border-radius: 999px;
   background: var(--cv-tag-bg);
   color: var(--cv-tag-text);
-  padding: 2px 8px;
+  padding: 3px 9px;
   font-size: 12px;
   line-height: 1.45;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-stack {
+  gap: 16px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-photo img {
+  max-width: 146px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-title {
+  margin-bottom: 8px !important;
+  font-size: 17px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-list {
+  gap: 4px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-row {
+  line-height: 1.35;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-groups {
+  gap: 9px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-group {
+  padding-top: 8px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-group-title {
+  margin: 0 0 6px !important;
+  font-size: 12px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-tag-list {
+  gap: 4px;
+}
+
+.cv-root.profile-cv-dense-sidebar .profile-cv-tag {
+  padding: 2px 7px;
+  font-size: 11px;
+  line-height: 1.3;
 }
 
 .cv-root .profile-cv-header {
@@ -302,15 +346,17 @@
   align-self: flex-start;
   flex: 0 0 auto;
   padding: 4px 10px;
+  border: 0;
   border-radius: 999px;
   background: var(--cv-accent-soft);
   color: var(--color-text-dark);
   font-size: 11px;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   white-space: nowrap;
+  text-align: right;
 }
 
 .cv-root .profile-cv-body-list {
@@ -411,6 +457,28 @@
   overflow: visible;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+.cv-root.is-print-mode .profile-cv-header {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.cv-root.is-print-mode .profile-cv-main-stack,
+.cv-root.is-print-mode .profile-cv-section-body,
+.cv-root.is-print-mode .profile-cv-card-stack,
+.cv-root.is-print-mode .profile-cv-experience-list {
+  display: block;
+}
+
+.cv-root.is-print-mode .profile-cv-main-stack > * + * {
+  margin-top: 22px;
+}
+
+.cv-root.is-print-mode .profile-cv-section-body > * + *,
+.cv-root.is-print-mode .profile-cv-card-stack > * + *,
+.cv-root.is-print-mode .profile-cv-experience-list > * + * {
+  margin-top: 12px;
 }
 
 .cv-root.is-print-mode .profile-cv-print-follow-up {
@@ -579,6 +647,28 @@
     overflow: visible;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+  }
+
+  .profile-cv-header {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .profile-cv-main-stack,
+  .profile-cv-section-body,
+  .profile-cv-card-stack,
+  .profile-cv-experience-list {
+    display: block;
+  }
+
+  .profile-cv-main-stack > * + * {
+    margin-top: 22px;
+  }
+
+  .profile-cv-section-body > * + *,
+  .profile-cv-card-stack > * + *,
+  .profile-cv-experience-list > * + * {
+    margin-top: 12px;
   }
 
   .profile-cv-print-follow-up {
