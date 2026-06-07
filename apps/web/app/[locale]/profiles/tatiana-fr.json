@@ -4,7 +4,8 @@
     "filenameBase": "karen-tatiana-gomez-castillo-cv",
     "locale": "fr",
     "availableLocales": ["fr"],
-    "themeColor": "#b5ac70"
+    "themeColor": "#b5ac70",
+    "templateId": "tatiana-print-template"
   },
   "header": {
     "name": "Karen Tatiana Gómez Castillo",

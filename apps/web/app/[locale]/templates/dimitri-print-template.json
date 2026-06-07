@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "dimitri-print-template",
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins": {
+      "top": "26mm",
+      "bottom": "24mm",
+      "mainHorizontal": "14mm",
+      "sidebarHorizontal": "10mm",
+      "columnGap": "6mm"
+    }
+  },
+  "zones": {
+    "firstPage.left": {
+      "overflow": "drop-tail",
+      "sections": ["photo", "contact"]
+    },
+    "firstPage.right": {
+      "overflow": "drop-tail",
+      "sections": ["header", "profile", "education"]
+    },
+    "otherPages.main": {
+      "overflow": "paginate",
+      "sections": ["expertise", "certifications", "experience"]
+    }
+  }
+}

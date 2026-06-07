@@ -6,11 +6,13 @@ import {
 import dimitriEnProfileJson from './profiles/dimitri-en.json';
 import dimitriFrProfileJson from './profiles/dimitri-fr.json';
 import tatianaFrProfileJson from './profiles/tatiana-fr.json';
-import type {LocaleLink, NormalizedCvDocument} from './cv-types';
+import type {LocaleLink, NormalizedCvDocument, NormalizedCvTemplate} from './cv-types';
+import {templatesById} from './template-registry';
 
 export const locales = SUPPORTED_LOCALES;
 export type {Locale, LocaleLink};
 export type CVData = NormalizedCvDocument;
+export type CVTemplate = NormalizedCvTemplate;
 
 const dimitriEnProfile = dimitriEnProfileJson as CVData;
 const dimitriFrProfile = dimitriFrProfileJson as CVData;
@@ -25,6 +27,7 @@ type ResolvedProfile = {
   slug: string;
   locale: Locale;
   data: CVData;
+  template: CVTemplate;
 };
 
 const profiles: ProfileDefinition[] = [
@@ -66,10 +69,16 @@ export function getProfile(locale: Locale, slug: string): ResolvedProfile | null
     return null;
   }
 
+  const template = templatesById.get(data.meta.templateId);
+  if (!template) {
+    throw new Error(`Template not available for ${data.meta.templateId}`);
+  }
+
   return {
     slug: profile.slug,
     locale,
     data,
+    template,
   };
 }
 

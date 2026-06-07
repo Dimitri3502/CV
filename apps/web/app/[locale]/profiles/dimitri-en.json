@@ -4,7 +4,8 @@
     "filenameBase": "dimitri-beubry-cv",
     "locale": "en",
     "availableLocales": ["fr", "en"],
-    "themeColor": "#424F64"
+    "themeColor": "#424F64",
+    "templateId": "dimitri-print-template"
   },
   "header": {
     "name": "Dimitri Beubry–Niejinsky",

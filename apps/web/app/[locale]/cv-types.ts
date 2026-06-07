@@ -17,6 +17,46 @@ export type NormalizedCvSectionTitle = {
   title: string;
 };
 
+export type CvTemplateZoneKey = 'firstPage.left' | 'firstPage.right' | 'otherPages.main';
+
+export type CvSectionKey =
+  | 'photo'
+  | 'contact'
+  | 'header'
+  | 'profile'
+  | 'expertise'
+  | 'languages'
+  | 'education'
+  | 'certifications'
+  | 'experience'
+  | 'publications'
+  | 'interventions'
+  | 'engagements';
+
+export type CvZoneOverflowPolicy = 'drop-tail' | 'paginate';
+
+export type CvTemplatePageMargins = {
+  top: string;
+  bottom: string;
+  mainHorizontal: string;
+  sidebarHorizontal: string;
+  columnGap: string;
+};
+
+export type NormalizedCvTemplate = {
+  version: 1;
+  id: string;
+  page: {
+    size: 'A4';
+    orientation: 'portrait';
+    margins: CvTemplatePageMargins;
+  };
+  zones: Partial<Record<CvTemplateZoneKey, {
+    overflow: CvZoneOverflowPolicy;
+    sections: readonly CvSectionKey[];
+  }>>;
+};
+
 export type NormalizedCvDocument = {
   meta: {
     slug: string;
@@ -24,6 +64,7 @@ export type NormalizedCvDocument = {
     locale: Locale;
     availableLocales: readonly Locale[];
     themeColor: CvThemeColor;
+    templateId: string;
   };
   header: {
     name: string;

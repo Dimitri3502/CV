@@ -112,11 +112,11 @@
 .cv-root .profile-cv-sidebar-groups {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .cv-root .profile-cv-sidebar-group {
-  padding-top: 12px;
+  padding-top: 8px;
   border-top: 1px solid var(--cv-sidebar-divider);
 }
 
@@ -126,8 +126,8 @@
 }
 
 .cv-root .profile-cv-sidebar-group-title {
-  margin: 0 0 8px !important;
-  font-size: 13px;
+  margin: 0 0 6px !important;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -139,7 +139,7 @@
 .cv-root .profile-cv-tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .cv-root .profile-cv-tag {
@@ -149,50 +149,6 @@
   border-radius: 999px;
   background: var(--cv-tag-bg);
   color: var(--cv-tag-text);
-  padding: 3px 9px;
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-stack {
-  gap: 16px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-photo img {
-  max-width: 146px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-title {
-  margin-bottom: 8px !important;
-  font-size: 17px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-list {
-  gap: 4px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-row {
-  line-height: 1.35;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-groups {
-  gap: 9px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-group {
-  padding-top: 8px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-sidebar-group-title {
-  margin: 0 0 6px !important;
-  font-size: 12px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-tag-list {
-  gap: 4px;
-}
-
-.cv-root.profile-cv-dense-sidebar .profile-cv-tag {
   padding: 2px 7px;
   font-size: 11px;
   line-height: 1.3;
@@ -224,6 +180,10 @@
   flex-direction: column;
   gap: 22px;
   margin-top: 18px;
+}
+
+.cv-root .profile-cv-main-stack-no-top {
+  margin-top: 0;
 }
 
 .cv-root .profile-cv-section-heading {
@@ -282,14 +242,14 @@
 
 .cv-root .profile-cv-item-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
 }
 
 .cv-root .profile-cv-item-copy {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 220px;
   min-width: 0;
   flex-direction: column;
   gap: 2px;
@@ -304,6 +264,7 @@
   font-size: 14px;
   line-height: 1.35;
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .cv-root .profile-cv-entry-subtitle {
@@ -311,6 +272,7 @@
   font-size: 13px;
   line-height: 1.4;
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .cv-root .profile-cv-meta,
@@ -345,6 +307,8 @@
   align-items: center;
   align-self: flex-start;
   flex: 0 0 auto;
+  margin-left: auto;
+  max-width: 100%;
   padding: 4px 10px;
   border: 0;
   border-radius: 999px;
@@ -355,8 +319,9 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  white-space: nowrap;
+  white-space: normal;
   text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .cv-root .profile-cv-body-list {
@@ -381,8 +346,11 @@
 }
 
 .cv-root.is-print-mode .cv-sheet {
-  display: block;
+  display: grid;
+  grid-template-columns: 280px calc(var(--a4-width) - 280px - var(--print-sidebar-gap));
+  column-gap: var(--print-sidebar-gap);
   width: var(--a4-width);
+  height: var(--a4-height);
   min-height: var(--a4-height);
   max-width: none;
   margin: 0;
@@ -396,9 +364,9 @@
 }
 
 .cv-root.is-print-mode .cv-sidebar {
-  float: left;
-  width: 280px;
-  margin-right: var(--print-sidebar-gap);
+  float: none;
+  width: 100%;
+  margin-right: 0;
   height: var(--a4-height);
   min-height: var(--a4-height);
 }
@@ -441,8 +409,10 @@
 }
 
 .cv-root.is-print-mode .profile-cv-main {
-  width: calc(var(--a4-width) - 280px - var(--print-sidebar-gap));
-  margin-left: calc(280px + var(--print-sidebar-gap));
+  width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  height: var(--a4-height);
   padding:
     var(--cv-print-page-top-padding)
     var(--cv-print-page-side-padding)
@@ -457,6 +427,10 @@
   overflow: visible;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+.cv-root.is-print-mode .cv-zone-drop-tail {
+  overflow: hidden;
 }
 
 .cv-root.is-print-mode .profile-cv-header {
@@ -563,8 +537,11 @@
   }
 
   .cv-sheet {
-    display: block !important;
+    display: grid !important;
+    grid-template-columns: 280px calc(var(--a4-width) - 280px - var(--print-sidebar-gap));
+    column-gap: var(--print-sidebar-gap);
     width: var(--a4-width) !important;
+    height: var(--a4-height);
     min-height: var(--a4-height);
     margin: 0 !important;
     box-shadow: none !important;
@@ -577,9 +554,9 @@
   }
 
   .cv-sidebar {
-    float: left;
-    width: 280px;
-    margin-right: var(--print-sidebar-gap);
+    float: none;
+    width: 100%;
+    margin-right: 0;
     height: var(--a4-height);
     min-height: var(--a4-height);
   }
@@ -626,8 +603,10 @@
   }
 
   .profile-cv-main {
-    width: calc(var(--a4-width) - 280px - var(--print-sidebar-gap));
-    margin-left: calc(280px + var(--print-sidebar-gap));
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    height: var(--a4-height);
     padding:
       var(--cv-print-page-top-padding)
       var(--cv-print-page-side-padding)
@@ -647,6 +626,10 @@
     overflow: visible;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+  }
+
+  .cv-zone-drop-tail {
+    overflow: hidden;
   }
 
   .profile-cv-header {
