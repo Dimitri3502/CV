@@ -4,7 +4,6 @@
     "filenameBase": "dimitri-beubry-cv",
     "locale": "en",
     "availableLocales": ["fr", "en"],
-    "themeColor": "#424F64",
     "templateId": "dimitri-print-template"
   },
   "header": {
@@ -49,18 +48,22 @@
     "title": "Skills",
     "groups": [
       {
+        "icon": "laptop-code",
         "title": "Frontend",
         "items": ["React", "Vue.js", "TypeScript", "Complex business interfaces", "Client-side state management"]
       },
       {
+        "icon": "database",
         "title": "Backend",
         "items": ["Node.js", "NestJS", "PostgreSQL", "Redis", "Kafka", "BullMQ", "APIs and event-driven architectures"]
       },
       {
+        "icon": "brain",
         "title": "AI & Search",
         "items": ["Conversational AI", "RAG", "Document extraction", "Classification", "Prompting", "Context enrichment", "MCP"]
       },
       {
+        "icon": "gears",
         "title": "DevOps",
         "items": ["Docker", "Kubernetes", "CI/CD", "Pulumi/Terraform", "Grafana", "Scaleway/Azure/GCP/OVH", "Unix shell"]
       }

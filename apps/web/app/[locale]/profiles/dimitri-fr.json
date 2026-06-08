@@ -4,7 +4,6 @@
     "filenameBase": "dimitri-beubry-cv",
     "locale": "fr",
     "availableLocales": ["fr", "en"],
-    "themeColor": "#424F64",
     "templateId": "dimitri-print-template"
   },
   "header": {
@@ -49,18 +48,22 @@
     "title": "Compétences",
     "groups": [
       {
+        "icon": "laptop-code",
         "title": "Frontend",
         "items": ["React", "Vue.js", "TypeScript", "Interfaces métier complexes", "Gestion d’état côté client"]
       },
       {
+        "icon": "database",
         "title": "Backend",
         "items": ["Node.js", "NestJS", "PostgreSQL", "Redis", "Kafka", "BullMQ", "APIs et architectures événementielles"]
       },
       {
+        "icon": "brain",
         "title": "IA & recherche",
         "items": ["IA conversationnelle", "RAG", "Extraction documentaire", "Classification", "Prompting", "Enrichissement contextuel", "MCP"]
       },
       {
+        "icon": "gears",
         "title": "DevOps",
         "items": ["Docker", "Kubernetes", "CI/CD", "Pulumi/Terraform", "Grafana", "Scaleway/Azure/GCP/OVH", "Shell Unix"]
       }

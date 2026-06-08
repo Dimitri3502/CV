@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="wip">
+      <change afterPath="$PROJECT_DIR$/AGENTS.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/[profile]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/[profile]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/[profile]/print/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/[profile]/print/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVDocument.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPrintDocument.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPrintDocument.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVToolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplateEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplateEditor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/ProfileCvPrintTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/ProfileCvPrintTemplate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/cv-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/cv-data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/print/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/print/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-en.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/tatiana-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/tatiana-fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/template-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/template-utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/templates/dimitri-print-template.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/templates/dimitri-print-template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/templates/tatiana-print-template.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/templates/tatiana-print-template.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,23 +68,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.4864199134582683" />
-      <entry key="MS500" value="4.424121074052312" />
-      <entry key="S2" value="14.033376690111451" />
-      <entry key="S5" value="23.94751032450715" />
-      <entry key="S10" value="32.2603066245844" />
-      <entry key="S30" value="45.95872126006162" />
-      <entry key="S60" value="59.665687300119934" />
-      <entry key="M2" value="80.67526864324942" />
-      <entry key="M5" value="108.890826205882" />
-      <entry key="M10" value="126.36055813323657" />
-      <entry key="M15" value="143.3651013922933" />
-      <entry key="M30" value="229.6760516933382" />
-      <entry key="H1" value="426.8158760794234" />
-      <entry key="H2" value="682.2674648950591" />
-      <entry key="H4" value="912.2727882646257" />
-      <entry key="D1" value="1847.6704893871897" />
-      <entry key="W1" value="3842.2917057994864" />
+      <entry key="MS100" value="1.385320108630471" />
+      <entry key="MS500" value="2.391977312397599" />
+      <entry key="S2" value="3.322927002051617" />
+      <entry key="S5" value="7.9997692342025" />
+      <entry key="S10" value="18.231085833916328" />
+      <entry key="S30" value="42.28466437404722" />
+      <entry key="S60" value="54.4911143678744" />
+      <entry key="M2" value="64.88139045859322" />
+      <entry key="M5" value="87.40731547050628" />
+      <entry key="M10" value="108.84449905621811" />
+      <entry key="M15" value="119.78285085149923" />
+      <entry key="M30" value="133.5573867067525" />
+      <entry key="H1" value="141.75900901663076" />
+      <entry key="H2" value="146.36698252772584" />
+      <entry key="H4" value="152.7535768330039" />
+      <entry key="D1" value="786.3452896515357" />
+      <entry key="W1" value="3489.8591854849383" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -112,23 +106,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.461402177186506" />
-      <entry key="MS500" value="4.405968867782312" />
-      <entry key="S2" value="14.019067211052135" />
-      <entry key="S5" value="23.937820450254495" />
-      <entry key="S10" value="32.25382470386694" />
-      <entry key="S30" value="45.95566985898823" />
-      <entry key="S60" value="59.66370393293418" />
-      <entry key="M2" value="80.67391811179716" />
-      <entry key="M5" value="108.89009085213878" />
-      <entry key="M10" value="126.36012896681972" />
-      <entry key="M15" value="143.36477353121126" />
-      <entry key="M30" value="229.6757789755846" />
-      <entry key="H1" value="426.81561396031856" />
-      <entry key="H2" value="682.2672505539769" />
-      <entry key="H4" value="912.2726427127644" />
-      <entry key="D1" value="1847.670436184232" />
-      <entry key="W1" value="3842.2916886932785" />
+      <entry key="MS100" value="1.3248453944671867" />
+      <entry key="MS500" value="2.363983390215889" />
+      <entry key="S2" value="3.313984420807641" />
+      <entry key="S5" value="7.994083148798767" />
+      <entry key="S10" value="18.22592164283626" />
+      <entry key="S30" value="42.281121381899524" />
+      <entry key="S60" value="54.4888821265897" />
+      <entry key="M2" value="64.88007671168808" />
+      <entry key="M5" value="87.40661551093106" />
+      <entry key="M10" value="108.84406574114531" />
+      <entry key="M15" value="119.78253361650069" />
+      <entry key="M30" value="133.5572102323674" />
+      <entry key="H1" value="141.75891546310393" />
+      <entry key="H2" value="146.36693425221117" />
+      <entry key="H4" value="152.75355159699268" />
+      <entry key="D1" value="786.3452671241997" />
+      <entry key="W1" value="3489.8591700343136" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -154,6 +148,7 @@
     "js.debugger.nextJs.config.created.client": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/dimitri/Development/CV",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -167,6 +162,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
@@ -257,7 +257,7 @@
       <workItem from="1775920033017" duration="2359000" />
       <workItem from="1776341038212" duration="2545000" />
       <workItem from="1779359154252" duration="5183000" />
-      <workItem from="1780498059068" duration="42109000" />
+      <workItem from="1780498059068" duration="45049000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -379,7 +379,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780762870401</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="wip">
+      <option name="closed" value="true" />
+      <created>1780845093811</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1780845093811</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

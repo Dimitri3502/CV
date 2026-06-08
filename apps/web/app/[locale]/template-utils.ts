@@ -1,4 +1,5 @@
 import type {
+  CvTemplateSettings,
   CvTemplatePageMargins,
   CvSectionKey,
   CvTemplateZoneKey,
@@ -56,6 +57,14 @@ function isZoneOverflowPolicy(value: unknown): value is CvZoneOverflowPolicy {
   return value === 'drop-tail' || value === 'paginate';
 }
 
+function isThemeColor(value: unknown): value is CvTemplateSettings['themeColor'] {
+  return typeof value === 'string' && /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value.trim());
+}
+
+function toThemeColor(value: CvTemplateSettings['themeColor']) {
+  return value.trim() as CvTemplateSettings['themeColor'];
+}
+
 function cloneZoneSections(value: readonly CvSectionKey[]) {
   return [...value] as CvSectionKey[];
 }
@@ -66,7 +75,12 @@ function clonePageMargins(value: CvTemplatePageMargins): CvTemplatePageMargins {
     bottom: value.bottom,
     mainHorizontal: value.mainHorizontal,
     sidebarHorizontal: value.sidebarHorizontal,
-    columnGap: value.columnGap,
+  };
+}
+
+function cloneTemplateSettings(value: CvTemplateSettings): CvTemplateSettings {
+  return {
+    themeColor: value.themeColor,
   };
 }
 
@@ -74,6 +88,7 @@ export function cloneTemplate(template: NormalizedCvTemplate): NormalizedCvTempl
   return {
     version: 1,
     id: template.id,
+    settings: cloneTemplateSettings(template.settings),
     page: {
       size: template.page.size,
       orientation: template.page.orientation,
@@ -106,6 +121,9 @@ export function normalizeTemplate(template: unknown, fallback: NormalizedCvTempl
 
   const input = template as {
     id?: unknown;
+    settings?: {
+      themeColor?: unknown;
+    };
     page?: {
       size?: unknown;
       orientation?: unknown;
@@ -150,6 +168,11 @@ export function normalizeTemplate(template: unknown, fallback: NormalizedCvTempl
   return {
     version: 1,
     id: typeof input.id === 'string' && input.id.trim() ? input.id : safeFallback.id,
+    settings: {
+      themeColor: isThemeColor(input.settings?.themeColor)
+        ? toThemeColor(input.settings.themeColor)
+        : safeFallback.settings.themeColor,
+    },
     page: {
       size: input.page?.size === 'A4' ? 'A4' : safeFallback.page.size,
       orientation: input.page?.orientation === 'portrait' ? 'portrait' : safeFallback.page.orientation,
@@ -164,9 +187,6 @@ export function normalizeTemplate(template: unknown, fallback: NormalizedCvTempl
         sidebarHorizontal: isTemplateLength(input.page?.margins?.sidebarHorizontal)
           ? input.page.margins.sidebarHorizontal.trim()
           : safeFallback.page.margins.sidebarHorizontal,
-        columnGap: isTemplateLength(input.page?.margins?.columnGap)
-          ? input.page.margins.columnGap.trim()
-          : safeFallback.page.margins.columnGap,
       },
     },
     zones: normalizedZones,

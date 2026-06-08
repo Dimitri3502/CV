@@ -35,17 +35,32 @@ export type CvSectionKey =
 
 export type CvZoneOverflowPolicy = 'drop-tail' | 'paginate';
 
+export type CvExpertiseIconKey =
+  | 'chart-line'
+  | 'globe'
+  | 'people-group'
+  | 'laptop-code'
+  | 'brain'
+  | 'database'
+  | 'gears'
+  | 'briefcase'
+  | 'bullseye';
+
 export type CvTemplatePageMargins = {
   top: string;
   bottom: string;
   mainHorizontal: string;
   sidebarHorizontal: string;
-  columnGap: string;
+};
+
+export type CvTemplateSettings = {
+  themeColor: CvThemeColor;
 };
 
 export type NormalizedCvTemplate = {
   version: 1;
   id: string;
+  settings: CvTemplateSettings;
   page: {
     size: 'A4';
     orientation: 'portrait';
@@ -63,7 +78,7 @@ export type NormalizedCvDocument = {
     filenameBase: string;
     locale: Locale;
     availableLocales: readonly Locale[];
-    themeColor: CvThemeColor;
+    themeColor?: CvThemeColor;
     templateId: string;
   };
   header: {
@@ -80,6 +95,7 @@ export type NormalizedCvDocument = {
   };
   expertise?: NormalizedCvSectionTitle & {
     groups: ReadonlyArray<{
+      icon?: CvExpertiseIconKey;
       title: string;
       items: readonly string[];
     }>;

@@ -4,7 +4,6 @@
     "filenameBase": "karen-tatiana-gomez-castillo-cv",
     "locale": "fr",
     "availableLocales": ["fr"],
-    "themeColor": "#b5ac70",
     "templateId": "tatiana-print-template"
   },
   "header": {
@@ -38,18 +37,22 @@
     "title": "Compétences & outils",
     "groups": [
       {
+        "icon": "chart-line",
         "title": "Analyse & méthodes",
         "items": ["Analyse MAE", "Cadres logiques", "SPSS", "ArcGIS", "Outils IA", "Analyse qualitative"]
       },
       {
+        "icon": "globe",
         "title": "Thématiques",
         "items": ["Développement durable", "Égalité de genre", "Droits humains", "Politiques publiques (ALC)"]
       },
       {
+        "icon": "people-group",
         "title": "Gestion de projets",
         "items": ["Coordination multi-acteurs", "Partenariats institutionnels", "Reporting", "Veille stratégique"]
       },
       {
+        "icon": "laptop-code",
         "title": "Outils bureautiques",
         "items": ["Pack Office", "Gestion de contenus numériques"]
       }

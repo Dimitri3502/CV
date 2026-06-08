@@ -1,15 +1,17 @@
 {
   "version": 1,
   "id": "tatiana-print-template",
+  "settings": {
+    "themeColor": "#b5ac70"
+  },
   "page": {
     "size": "A4",
     "orientation": "portrait",
     "margins": {
       "top": "08mm",
       "bottom": "8mm",
-      "mainHorizontal": "14mm",
-      "sidebarHorizontal": "10mm",
-      "columnGap": "6mm"
+      "mainHorizontal": "8mm",
+      "sidebarHorizontal": "8mm"
     }
   },
   "zones": {
@@ -18,7 +20,8 @@
       "sections": [
         "photo",
         "contact",
-        "languages"
+        "languages",
+        "expertise"
       ]
     },
     "firstPage.right": {
@@ -26,14 +29,13 @@
       "sections": [
         "header",
         "profile",
-        "education"
+        "certifications"
       ]
     },
     "otherPages.main": {
       "overflow": "paginate",
       "sections": [
-        "expertise",
-        "certifications",
+        "education",
         "experience",
         "publications",
         "interventions",

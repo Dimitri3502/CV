@@ -13,7 +13,7 @@
   --cv-print-page-bottom-padding: 24mm;
   --cv-print-page-side-padding: 14mm;
   --cv-print-sidebar-side-padding: 10mm;
-  --print-sidebar-gap: 6mm;
+  --print-sidebar-gap: 14mm;
   --preview-page-gap: 14mm;
 }
 
@@ -248,19 +248,18 @@
 }
 
 .cv-root .profile-cv-item-copy {
-  display: flex;
+  display: block;
   flex: 1 1 220px;
   min-width: 0;
-  flex-direction: column;
-  gap: 2px;
 }
 
-.cv-root .profile-cv-entry-main {
-  min-width: 0;
+.cv-root .profile-cv-item-copy > * + * {
+  margin-top: 4px !important;
 }
 
 .cv-root .profile-cv-entry-title {
   margin: 0;
+  display: block;
   font-size: 14px;
   line-height: 1.35;
   font-weight: 600;
@@ -268,7 +267,7 @@
 }
 
 .cv-root .profile-cv-entry-subtitle {
-  margin-top: 2px;
+  display: block;
   font-size: 13px;
   line-height: 1.4;
   font-weight: 600;
@@ -417,7 +416,7 @@
     var(--cv-print-page-top-padding)
     var(--cv-print-page-side-padding)
     var(--cv-print-page-bottom-padding)
-    var(--cv-print-page-side-padding) !important;
+    0 !important;
   box-sizing: border-box;
 }
 
@@ -611,7 +610,7 @@
       var(--cv-print-page-top-padding)
       var(--cv-print-page-side-padding)
       var(--cv-print-page-bottom-padding)
-      var(--cv-print-page-side-padding) !important;
+      0 !important;
     box-sizing: border-box;
   }
 
