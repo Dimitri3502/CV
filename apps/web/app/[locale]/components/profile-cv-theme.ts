@@ -1,6 +1,6 @@
 import {resolveCvTheme} from '@cv/common';
 import type {CSSProperties} from 'react';
-import {allSectionKeys, templateZoneKeys} from '../template-utils';
+import {allSectionKeys, getSectionPlacementKey, templateZoneKeys} from '../template-utils';
 import type {CvSectionKey, CvTemplateZoneKey, NormalizedCvTemplate} from '../cv-types';
 
 type RgbColor = {
@@ -109,7 +109,7 @@ export function buildProfileCvThemeStyles(template: NormalizedCvTemplate) {
 export function resolveZoneConfig(template: NormalizedCvTemplate, zone: CvTemplateZoneKey) {
   return template.zones[zone] ?? {
     overflow: zone === 'otherPages.main' ? 'paginate' : 'drop-tail',
-    sections: [] as readonly CvSectionKey[],
+    sections: [],
   };
 }
 
@@ -124,7 +124,9 @@ export function validateTemplateSections(template: NormalizedCvTemplate) {
   for (const zone of templateZoneKeys) {
     const zoneConfig = resolveZoneConfig(template, zone);
 
-    for (const section of zoneConfig.sections) {
+    for (const placement of zoneConfig.sections) {
+      const section = getSectionPlacementKey(placement);
+
       if (!validSectionKeys.has(section)) {
         throw new Error(`Unknown section key "${String(section)}" in template "${template.id}"`);
       }

@@ -6,15 +6,27 @@ export type LocaleLink = {
 };
 
 export type NormalizedContactItem =
-  | {kind: 'email'; value: string}
-  | {kind: 'phone'; value: string}
-  | {kind: 'location'; value: string}
-  | {kind: 'linkedin'; value: string; url: string}
-  | {kind: 'calendly'; value: string; url: string}
-  | {kind: 'link'; value: string; url: string};
+  | {kind: 'email'; icon: CvIconKey; value: string}
+  | {kind: 'phone'; icon: CvIconKey; value: string}
+  | {kind: 'location'; icon: CvIconKey; value: string}
+  | {kind: 'linkedin'; icon: CvIconKey; value: string; url: string}
+  | {kind: 'calendly'; icon: CvIconKey; value: string; url: string}
+  | {kind: 'link'; icon: CvIconKey; value: string; url: string};
 
 export type NormalizedCvSectionTitle = {
   title: string;
+  icon?: CvIconKey;
+};
+
+export type NormalizedCvSimpleEntry = {
+  title: string;
+  subtitle?: string;
+  period?: string;
+};
+
+export type NormalizedCvSimpleEntrySection = NormalizedCvSectionTitle & {
+  subtitle?: string;
+  items: ReadonlyArray<NormalizedCvSimpleEntry>;
 };
 
 export type CvTemplateZoneKey = 'firstPage.left' | 'firstPage.right' | 'otherPages.main';
@@ -35,11 +47,21 @@ export type CvSectionKey =
 
 export type CvZoneOverflowPolicy = 'drop-tail' | 'paginate';
 
-export type CvExpertiseIconKey =
+export type CvSectionRenderVariant = 'default' | 'compact';
+
+export type CvIconKey =
+  | 'address-book'
   | 'chart-line'
+  | 'calendar-days'
+  | 'certificate'
+  | 'envelope'
   | 'globe'
+  | 'graduation-cap'
+  | 'link'
   | 'people-group'
   | 'laptop-code'
+  | 'location-dot'
+  | 'phone'
   | 'brain'
   | 'database'
   | 'gears'
@@ -57,6 +79,13 @@ export type CvTemplateSettings = {
   themeColor: CvThemeColor;
 };
 
+export type CvTemplateSectionPlacement =
+  | CvSectionKey
+  | {
+      key: CvSectionKey;
+      variant?: CvSectionRenderVariant;
+    };
+
 export type NormalizedCvTemplate = {
   version: 1;
   id: string;
@@ -68,7 +97,7 @@ export type NormalizedCvTemplate = {
   };
   zones: Partial<Record<CvTemplateZoneKey, {
     overflow: CvZoneOverflowPolicy;
-    sections: readonly CvSectionKey[];
+    sections: readonly CvTemplateSectionPlacement[];
   }>>;
 };
 
@@ -95,7 +124,7 @@ export type NormalizedCvDocument = {
   };
   expertise?: NormalizedCvSectionTitle & {
     groups: ReadonlyArray<{
-      icon?: CvExpertiseIconKey;
+      icon?: CvIconKey;
       title: string;
       items: readonly string[];
     }>;
@@ -111,12 +140,7 @@ export type NormalizedCvDocument = {
       details?: readonly string[];
     }>;
   };
-  certifications?: NormalizedCvSectionTitle & {
-    items: ReadonlyArray<{
-      name: string;
-      issuerLine?: string;
-    }>;
-  };
+  certifications?: NormalizedCvSimpleEntrySection;
   experience?: NormalizedCvSectionTitle & {
     items: ReadonlyArray<{
       role: string;
@@ -127,23 +151,7 @@ export type NormalizedCvDocument = {
       bullets?: readonly string[];
     }>;
   };
-  publications?: NormalizedCvSectionTitle & {
-    subtitle?: string;
-    items: ReadonlyArray<{
-      text: string;
-    }>;
-  };
-  interventions?: NormalizedCvSectionTitle & {
-    items: ReadonlyArray<{
-      title: string;
-      meta?: string;
-    }>;
-  };
-  engagements?: NormalizedCvSectionTitle & {
-    items: ReadonlyArray<{
-      title: string;
-      organization: string;
-      period?: string;
-    }>;
-  };
+  publications?: NormalizedCvSimpleEntrySection;
+  interventions?: NormalizedCvSimpleEntrySection;
+  engagements?: NormalizedCvSimpleEntrySection;
 };

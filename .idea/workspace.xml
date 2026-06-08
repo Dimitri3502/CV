@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/AGENTS.md" afterDir="false" />
+    <list default="true" id="d4822b01-f3a2-4381-a034-3865b0a96fe5" name="Changes" comment="bien">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVPdfPreview.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplateEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/CVTemplateEditor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/ProfileCvPrintTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/ProfileCvPrintTemplate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/TemplateEditorParts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/TemplateEditorParts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/profile-cv-sections.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/profile-cv-sections.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/profile-cv-theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/profile-cv-theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/components/template-editor-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/components/template-editor-model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/cv-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-en.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/dimitri-fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/tatiana-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/profiles/tatiana-fr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/template-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/template-utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/templates/dimitri-print-template.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/templates/dimitri-print-template.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/web/app/[locale]/templates/tatiana-print-template.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/app/[locale]/templates/tatiana-print-template.json" afterDir="false" />
@@ -68,23 +73,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.385320108630471" />
-      <entry key="MS500" value="2.391977312397599" />
-      <entry key="S2" value="3.322927002051617" />
-      <entry key="S5" value="7.9997692342025" />
-      <entry key="S10" value="18.231085833916328" />
-      <entry key="S30" value="42.28466437404722" />
-      <entry key="S60" value="54.4911143678744" />
-      <entry key="M2" value="64.88139045859322" />
-      <entry key="M5" value="87.40731547050628" />
-      <entry key="M10" value="108.84449905621811" />
-      <entry key="M15" value="119.78285085149923" />
-      <entry key="M30" value="133.5573867067525" />
-      <entry key="H1" value="141.75900901663076" />
-      <entry key="H2" value="146.36698252772584" />
-      <entry key="H4" value="152.7535768330039" />
-      <entry key="D1" value="786.3452896515357" />
-      <entry key="W1" value="3489.8591854849383" />
+      <entry key="MS100" value="1.519459243114221" />
+      <entry key="MS500" value="4.534872261408847" />
+      <entry key="S2" value="12.431466151558277" />
+      <entry key="S5" value="19.66856832039885" />
+      <entry key="S10" value="24.425411340486928" />
+      <entry key="S30" value="38.34385811735296" />
+      <entry key="S60" value="50.277163530848014" />
+      <entry key="M2" value="59.93662280275438" />
+      <entry key="M5" value="71.35012649301667" />
+      <entry key="M10" value="83.93705138736308" />
+      <entry key="M15" value="94.8829203722768" />
+      <entry key="M30" value="144.73786114887332" />
+      <entry key="H1" value="292.403063461073" />
+      <entry key="H2" value="512.3604225275358" />
+      <entry key="H4" value="712.750846844893" />
+      <entry key="D1" value="1537.732702677081" />
+      <entry key="W1" value="4301.856308636848" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -106,23 +111,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.3248453944671867" />
-      <entry key="MS500" value="2.363983390215889" />
-      <entry key="S2" value="3.313984420807641" />
-      <entry key="S5" value="7.994083148798767" />
-      <entry key="S10" value="18.22592164283626" />
-      <entry key="S30" value="42.281121381899524" />
-      <entry key="S60" value="54.4888821265897" />
-      <entry key="M2" value="64.88007671168808" />
-      <entry key="M5" value="87.40661551093106" />
-      <entry key="M10" value="108.84406574114531" />
-      <entry key="M15" value="119.78253361650069" />
-      <entry key="M30" value="133.5572102323674" />
-      <entry key="H1" value="141.75891546310393" />
-      <entry key="H2" value="146.36693425221117" />
-      <entry key="H4" value="152.75355159699268" />
-      <entry key="D1" value="786.3452671241997" />
-      <entry key="W1" value="3489.8591700343136" />
+      <entry key="MS100" value="1.488095912431694" />
+      <entry key="MS500" value="4.515314199745453" />
+      <entry key="S2" value="12.417697951701946" />
+      <entry key="S5" value="19.65978625316726" />
+      <entry key="S10" value="24.419909172603653" />
+      <entry key="S30" value="38.34082333432316" />
+      <entry key="S60" value="50.27511694774543" />
+      <entry key="M2" value="59.935384708825005" />
+      <entry key="M5" value="71.34953528351284" />
+      <entry key="M10" value="83.93670661578696" />
+      <entry key="M15" value="94.88266211795958" />
+      <entry key="M30" value="144.7376641789645" />
+      <entry key="H1" value="292.4028621528771" />
+      <entry key="H2" value="512.3602450407703" />
+      <entry key="H4" value="712.7507230955213" />
+      <entry key="D1" value="1537.7326581492987" />
+      <entry key="W1" value="4301.856289803492" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -257,7 +262,7 @@
       <workItem from="1775920033017" duration="2359000" />
       <workItem from="1776341038212" duration="2545000" />
       <workItem from="1779359154252" duration="5183000" />
-      <workItem from="1780498059068" duration="45049000" />
+      <workItem from="1780498059068" duration="51775000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -387,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780845093811</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="bien">
+      <option name="closed" value="true" />
+      <created>1780913632700</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1780913632700</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +417,8 @@
     <MESSAGE value="Add volunteer experience, update localization strings, and linkify URLs in CV template" />
     <MESSAGE value="weasyprint ok" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="bien" />
+    <option name="LAST_COMMIT_MESSAGE" value="bien" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

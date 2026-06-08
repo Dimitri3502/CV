@@ -1,4 +1,6 @@
 import type {
+  CvSectionRenderVariant,
+  CvTemplateSectionPlacement,
   CvTemplateSettings,
   CvTemplatePageMargins,
   CvSectionKey,
@@ -30,6 +32,18 @@ export const templateZoneLabels: Record<CvTemplateZoneKey, {fr: string; en: stri
   'otherPages.main': {fr: 'Pages suivantes', en: 'Other pages'},
 };
 
+const sectionRenderVariantLabels: Record<CvSectionRenderVariant, {fr: string; en: string}> = {
+  default: {fr: 'Card', en: 'Card'},
+  compact: {fr: 'Compact', en: 'Compact'},
+};
+
+const sectionKeysWithRenderVariant = new Set<CvSectionKey>([
+  'certifications',
+  'publications',
+  'interventions',
+  'engagements',
+]);
+
 const defaultSectionLabels: Record<CvSectionKey, {fr: string; en: string}> = {
   photo: {fr: 'Photo', en: 'Photo'},
   contact: {fr: 'Contact', en: 'Contact'},
@@ -57,6 +71,10 @@ function isZoneOverflowPolicy(value: unknown): value is CvZoneOverflowPolicy {
   return value === 'drop-tail' || value === 'paginate';
 }
 
+function isSectionRenderVariant(value: unknown): value is CvSectionRenderVariant {
+  return value === 'default' || value === 'compact';
+}
+
 function isThemeColor(value: unknown): value is CvTemplateSettings['themeColor'] {
   return typeof value === 'string' && /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value.trim());
 }
@@ -65,8 +83,50 @@ function toThemeColor(value: CvTemplateSettings['themeColor']) {
   return value.trim() as CvTemplateSettings['themeColor'];
 }
 
-function cloneZoneSections(value: readonly CvSectionKey[]) {
-  return [...value] as CvSectionKey[];
+export function getSectionPlacementKey(placement: CvTemplateSectionPlacement) {
+  return typeof placement === 'string' ? placement : placement.key;
+}
+
+export function getSectionPlacementVariant(placement: CvTemplateSectionPlacement) {
+  return typeof placement === 'string' ? undefined : placement.variant;
+}
+
+export function supportsSectionRenderVariant(sectionKey: CvSectionKey) {
+  return sectionKeysWithRenderVariant.has(sectionKey);
+}
+
+export function getSectionRenderVariantLabel(locale: 'fr' | 'en', variant?: CvSectionRenderVariant) {
+  return sectionRenderVariantLabels[variant ?? 'default'][locale];
+}
+
+function normalizeSectionPlacement(value: unknown): CvTemplateSectionPlacement | null {
+  if (isSectionKey(value)) {
+    return value;
+  }
+
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+
+  const input = value as {key?: unknown; variant?: unknown};
+  if (!isSectionKey(input.key)) {
+    return null;
+  }
+
+  if (!isSectionRenderVariant(input.variant) || input.variant === 'default') {
+    return input.key;
+  }
+
+  return {
+    key: input.key,
+    variant: input.variant,
+  };
+}
+
+function cloneZoneSections(value: readonly CvTemplateSectionPlacement[]) {
+  return value.map((placement) =>
+    typeof placement === 'string' ? placement : {key: placement.key, variant: placement.variant},
+  ) as CvTemplateSectionPlacement[];
 }
 
 function clonePageMargins(value: CvTemplatePageMargins): CvTemplatePageMargins {
@@ -136,12 +196,14 @@ export function normalizeTemplate(template: unknown, fallback: NormalizedCvTempl
     templateZoneKeys.map((zoneKey) => {
       const fallbackZone = safeFallback.zones[zoneKey] ?? {
         overflow: zoneKey === 'otherPages.main' ? 'paginate' : 'drop-tail',
-        sections: [] as readonly CvSectionKey[],
+        sections: [] as readonly CvTemplateSectionPlacement[],
       };
       const inputZone = input.zones?.[zoneKey];
       const overflow = isZoneOverflowPolicy(inputZone?.overflow) ? inputZone.overflow : fallbackZone.overflow;
       const sections = Array.isArray(inputZone?.sections)
-        ? inputZone.sections.filter(isSectionKey)
+        ? inputZone.sections
+            .map((placement) => normalizeSectionPlacement(placement))
+            .filter((placement): placement is CvTemplateSectionPlacement => placement !== null)
         : cloneZoneSections(fallbackZone.sections);
 
       return [
@@ -156,7 +218,9 @@ export function normalizeTemplate(template: unknown, fallback: NormalizedCvTempl
 
   const seenSections = new Set<CvSectionKey>();
   for (const zoneKey of templateZoneKeys) {
-    normalizedZones[zoneKey]!.sections = normalizedZones[zoneKey]!.sections.filter((sectionKey) => {
+    normalizedZones[zoneKey]!.sections = normalizedZones[zoneKey]!.sections.filter((placement) => {
+      const sectionKey = getSectionPlacementKey(placement);
+
       if (seenSections.has(sectionKey)) {
         return false;
       }
@@ -249,7 +313,6 @@ export function getSectionLabel(
       return defaultSectionLabels[sectionKey][locale];
   }
 }
-
 export function getAvailableSectionKeys(data: NormalizedCvDocument): CvSectionKey[] {
   const availableSections: CvSectionKey[] = ['header'];
 

@@ -48,11 +48,12 @@ export function CVTemplateEditor(props: CVTemplateEditorProps) {
             title={templateZoneLabels[zoneKey][props.locale === 'fr' ? 'fr' : 'en']}
             metaLabel={model.getZoneOverflowLabel(zoneKey, props.draftTemplate.zones[zoneKey]?.overflow ?? (zoneKey === 'otherPages.main' ? 'paginate' : 'drop-tail'))}
             emptyLabel={props.locale === 'fr' ? 'Déposez des sections ici' : 'Drop sections here'}
-            sectionKeys={props.draftTemplate.zones[zoneKey]?.sections ?? []}
+            sections={props.draftTemplate.zones[zoneKey]?.sections ?? []}
             zoneKey={zoneKey}
             onDragStart={model.handleDragStart}
             onZoneDrop={model.handleZoneDrop}
             onItemDrop={model.handleItemDrop}
+            onSectionClick={model.toggleSectionVariant}
           />
         ))}
 
@@ -62,11 +63,12 @@ export function CVTemplateEditor(props: CVTemplateEditorProps) {
           title={props.locale === 'fr' ? 'Non assigné' : 'Unassigned'}
           metaLabel={props.locale === 'fr' ? 'Masqué du print' : 'Hidden from print'}
           emptyLabel={props.locale === 'fr' ? 'Toutes les sections sont placées' : 'All sections are placed'}
-          sectionKeys={model.unassignedSections}
+          sections={model.unassignedSections}
           zoneKey="unassigned"
           onDragStart={model.handleDragStart}
           onZoneDrop={model.handleZoneDrop}
           onItemDrop={model.handleItemDrop}
+          onSectionClick={model.toggleSectionVariant}
         />
       </div>
 

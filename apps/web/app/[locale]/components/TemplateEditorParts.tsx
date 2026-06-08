@@ -1,16 +1,23 @@
 import type {DragEvent} from 'react';
 import type {CVData, CVTemplate, Locale} from '../cv-data';
-import type {CvSectionKey, CvTemplatePageMargins} from '../cv-types';
-import {getSectionLabel} from '../template-utils';
+import type {CvSectionKey, CvTemplatePageMargins, CvTemplateSectionPlacement} from '../cv-types';
+import {
+  getSectionLabel,
+  getSectionPlacementKey,
+  getSectionPlacementVariant,
+  getSectionRenderVariantLabel,
+  supportsSectionRenderVariant,
+} from '../template-utils';
 import {marginValueToInput, type EditorZoneKey} from './template-editor-model';
 
 type TemplateSectionChipProps = {
   locale: Locale;
   data: CVData;
-  sectionKey: CvSectionKey;
+  section: CvTemplateSectionPlacement;
   zoneKey: EditorZoneKey;
   onDragStart: (event: DragEvent<HTMLElement>, sectionKey: CvSectionKey) => void;
   onItemDrop: (event: DragEvent<HTMLElement>, zoneKey: EditorZoneKey, beforeSectionKey: CvSectionKey) => void;
+  onSectionClick: (sectionKey: CvSectionKey) => void;
 };
 
 type TemplateLayoutSettingsSectionProps = {
@@ -26,11 +33,12 @@ type TemplateDropZoneProps = {
   title: string;
   metaLabel: string;
   emptyLabel: string;
-  sectionKeys: readonly CvSectionKey[];
+  sections: readonly CvTemplateSectionPlacement[];
   zoneKey: EditorZoneKey;
   onDragStart: (event: DragEvent<HTMLElement>, sectionKey: CvSectionKey) => void;
   onZoneDrop: (event: DragEvent<HTMLElement>, zoneKey: EditorZoneKey) => void;
   onItemDrop: (event: DragEvent<HTMLElement>, zoneKey: EditorZoneKey, beforeSectionKey: CvSectionKey) => void;
+  onSectionClick: (sectionKey: CvSectionKey) => void;
 };
 
 type TemplateEditorActionsProps = {
@@ -50,16 +58,32 @@ const pageMarginFields: ReadonlyArray<{key: keyof CvTemplatePageMargins; label: 
   {key: 'sidebarHorizontal', label: {fr: 'Horizontal sidebar', en: 'Sidebar horizontal'}},
 ];
 
-function TemplateSectionChip({locale, data, sectionKey, zoneKey, onDragStart, onItemDrop}: TemplateSectionChipProps) {
+function TemplateSectionChip({locale, data, section, zoneKey, onDragStart, onItemDrop, onSectionClick}: TemplateSectionChipProps) {
+  const sectionKey = getSectionPlacementKey(section);
+  const canToggleVariant = zoneKey !== 'unassigned' && supportsSectionRenderVariant(sectionKey);
+  const variantLabel = getSectionRenderVariantLabel(locale === 'fr' ? 'fr' : 'en', getSectionPlacementVariant(section));
+
   return (
     <div
       draggable
       onDragStart={(event) => onDragStart(event, sectionKey)}
       onDragOver={(event) => event.preventDefault()}
       onDrop={(event) => onItemDrop(event, zoneKey, sectionKey)}
-      className="cursor-move rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm"
+      onClick={() => {
+        if (canToggleVariant) {
+          onSectionClick(sectionKey);
+        }
+      }}
+      className={`rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm ${canToggleVariant ? 'cursor-pointer' : 'cursor-move'}`}
     >
-      {getSectionLabel(data, sectionKey, locale === 'fr' ? 'fr' : 'en')}
+      <div className="flex items-center justify-between gap-2">
+        <span>{getSectionLabel(data, sectionKey, locale === 'fr' ? 'fr' : 'en')}</span>
+        {canToggleVariant ? (
+          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+            {variantLabel}
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -146,11 +170,12 @@ export function TemplateDropZone({
   title,
   metaLabel,
   emptyLabel,
-  sectionKeys,
+  sections,
   zoneKey,
   onDragStart,
   onZoneDrop,
   onItemDrop,
+  onSectionClick,
 }: TemplateDropZoneProps) {
   return (
     <section
@@ -163,16 +188,17 @@ export function TemplateDropZone({
         <span className="text-[11px] uppercase tracking-wide text-slate-400">{metaLabel}</span>
       </div>
       <div className="min-h-14 space-y-2 rounded-lg border border-dashed border-slate-300 bg-white/70 p-2">
-        {sectionKeys.length ? (
-          sectionKeys.map((sectionKey) => (
+        {sections.length ? (
+          sections.map((section) => (
             <TemplateSectionChip
-              key={`${zoneKey}-${sectionKey}`}
+              key={`${zoneKey}-${getSectionPlacementKey(section)}`}
               locale={locale}
               data={data}
-              sectionKey={sectionKey}
+              section={section}
               zoneKey={zoneKey}
               onDragStart={onDragStart}
               onItemDrop={onItemDrop}
+              onSectionClick={onSectionClick}
             />
           ))
         ) : (

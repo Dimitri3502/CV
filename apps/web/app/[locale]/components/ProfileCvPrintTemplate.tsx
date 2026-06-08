@@ -1,4 +1,4 @@
-import {templateZoneKeys} from '../template-utils';
+import {getSectionPlacementKey, getSectionPlacementVariant, templateZoneKeys} from '../template-utils';
 import type {CvTemplateZoneKey, NormalizedCvDocument, NormalizedCvTemplate} from '../cv-types';
 import {renderProfileCvSection} from './profile-cv-sections';
 import {
@@ -17,7 +17,16 @@ function renderZoneSections(data: NormalizedCvDocument, template: NormalizedCvTe
   const photoUrl = data.contact?.photoUrl?.trim();
 
   return resolveZoneConfig(template, zone)
-    .sections.map((sectionKey) => renderProfileCvSection({data, photoUrl, sectionKey, themeColor, zone}))
+    .sections.map((placement) =>
+      renderProfileCvSection({
+        data,
+        photoUrl,
+        sectionKey: getSectionPlacementKey(placement),
+        themeColor,
+        zone,
+        variant: getSectionPlacementVariant(placement),
+      }),
+    )
     .filter(Boolean);
 }
 

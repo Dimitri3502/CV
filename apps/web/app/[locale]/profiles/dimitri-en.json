@@ -16,19 +16,23 @@
     "items": [
       {
         "kind": "email",
+        "icon": "envelope",
         "value": "dimitri.beubry@gmail.com"
       },
       {
         "kind": "location",
+        "icon": "location-dot",
         "value": "Paris"
       },
       {
         "kind": "linkedin",
+        "icon": "link",
         "value": "LinkedIn",
         "url": "https://www.linkedin.com/in/dimitri-beubry-99343210b"
       },
       {
         "kind": "calendly",
+        "icon": "calendar-days",
         "value": "Calendly",
         "url": "https://calendly.com/dimitri-beubry"
       }
@@ -46,6 +50,7 @@
   },
   "expertise": {
     "title": "Skills",
+    "icon": "bullseye",
     "groups": [
       {
         "icon": "laptop-code",
@@ -71,6 +76,7 @@
   },
   "education": {
     "title": "Education",
+    "icon": "graduation-cap",
     "items": [
       {
         "degree": "General Engineering Degree",
@@ -87,23 +93,25 @@
   },
   "certifications": {
     "title": "Licenses and certifications",
+    "icon": "certificate",
     "items": [
       {
-        "name": "PROFESSIONAL SCRUM MASTER™ I",
-        "issuerLine": "Issued: June 2020 · Certified by Scrum.org"
+        "title": "PROFESSIONAL SCRUM MASTER™ I",
+        "subtitle": "Issued: June 2020 · Certified by Scrum.org"
       },
       {
-        "name": "Oracle Certified Professional, Java SE 8 Programmer",
-        "issuerLine": "Issued: Sept. 2019 · Certified by Oracle"
+        "title": "Oracle Certified Professional, Java SE 8 Programmer",
+        "subtitle": "Issued: Sept. 2019 · Certified by Oracle"
       },
       {
-        "name": "Oracle Certified Associate, Java SE 8 Programmer",
-        "issuerLine": "Issued: May 2019 · Certified by Oracle"
+        "title": "Oracle Certified Associate, Java SE 8 Programmer",
+        "subtitle": "Issued: May 2019 · Certified by Oracle"
       }
     ]
   },
   "experience": {
     "title": "Experience",
+    "icon": "briefcase",
     "items": [
       {
         "role": "CTO & Founder",

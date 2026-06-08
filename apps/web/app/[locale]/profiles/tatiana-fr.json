@@ -16,14 +16,17 @@
     "items": [
       {
         "kind": "email",
+        "icon": "envelope",
         "value": "tatianagomezcas@gmail.com"
       },
       {
         "kind": "phone",
+        "icon": "phone",
         "value": "+33 07 65 24 79 56"
       },
       {
         "kind": "linkedin",
+        "icon": "link",
         "value": "linkedin.com/in/tatiana-gómez-castillo",
         "url": "https://linkedin.com/in/tatiana-gómez-castillo"
       }
@@ -35,6 +38,7 @@
   },
   "expertise": {
     "title": "Compétences & outils",
+    "icon": "bullseye",
     "groups": [
       {
         "icon": "chart-line",
@@ -60,15 +64,17 @@
   },
   "languages": {
     "title": "Langues",
+    "icon": "globe",
     "items": ["Espagnol (langue maternelle)", "Français (C1)", "Anglais (B2)"]
   },
   "education": {
     "title": "Parcours académique",
+    "icon": "graduation-cap",
     "items": [
       {
         "degree": "Master 2 Sciences politiques - Gouvernance de projets de développement durable au Sud",
         "institution": "Université Paris-Saclay, France",
-        "period": "2024 - 2025",
+        "period": "2025 - 2026",
         "details": [
           "Identification, conception et faisabilité de projet · Politiques, programmes et projets · Insertion des projets dans les politiques de développement · Enjeux de coopération Sud/Sud · Aspects économiques et financiers de l’évaluation de projets · Gestion informatisée de projets"
         ]
@@ -76,6 +82,7 @@
       {
         "degree": "Master 1 Sciences politiques - Politique comparée et coopération internationale : Amériques",
         "institution": "Université de Bordeaux, France",
+        "period": "2024 - 2025",
         "details": [
           "Politique comparée - Amérique latine et Caraïbe · Analyse des politiques étrangères · Acteurs et enjeux des relations internationales"
         ]
@@ -92,27 +99,33 @@
   },
   "certifications": {
     "title": "Formations certifiantes",
+    "icon": "certificate",
     "items": [
       {
-        "name": "Outils et stratégies pour l’élaboration des plans d’égalité municipaux",
-        "issuerLine": "ONU Femmes Espagne | janv. 2025 (boursière)"
+        "title": "Outils et stratégies pour l’élaboration des plans d’égalité municipaux",
+        "subtitle": "ONU Femmes Espagne",
+        "period": "janv. 2025 (boursière)"
       },
       {
-        "name": "Perspectives de genre et administration publique",
-        "issuerLine": "ESAP, Colombie | janv. 2023"
+        "title": "Perspectives de genre et administration publique",
+        "subtitle": "ESAP, Colombie",
+        "period": "janv. 2023"
       },
       {
-        "name": "Gestion de contenus numériques et marketing territorial",
-        "issuerLine": "Univ. Javeriana | août 2020"
+        "title": "Gestion de contenus numériques et marketing territorial",
+        "subtitle": "Univ. Javeriana",
+        "period": "août 2020"
       },
       {
-        "name": "Outils d’analyse spatiale appliqués à la science politique",
-        "issuerLine": "Univ. del Cauca | oct. 2019"
+        "title": "Outils d’analyse spatiale appliqués à la science politique",
+        "subtitle": "Univ. del Cauca",
+        "period": "oct. 2019"
       }
     ]
   },
   "experience": {
     "title": "Expériences professionnelles",
+    "icon": "briefcase",
     "items": [
       {
         "role": "Stagiaire - Chargée de plaidoyer et réseaux",
@@ -184,10 +197,14 @@
     "subtitle": "En cours d’évaluation par les pairs",
     "items": [
       {
-        "text": "Gómez Castillo, K. T., Caffiaux, C. et Devillers, M.-J. (soumis 2026). The Plastification of the Transnational Reproductive Market: Colombia as an Emerging Infrastructure for Global Surrogacy. Frontiers in Global Women's Health."
+        "title": "The Plastification of the Transnational Reproductive Market: Colombia as an Emerging Infrastructure for Global Surrogacy. Frontiers in Global Women's Health.",
+        "subtitle": "Gómez Castillo, K. T., Caffiaux, C. et Devillers, M.-J.",
+        "period": "2026"
       },
       {
-        "text": "Gómez Castillo, K. T. (soumis 2026). Contradictions normatives, relocation adaptative et gouvernance juridique globale de la gestation pour autrui : le cas de la Colombie. Revue Mélété - Cahiers d’histoire et d’anthropologie du droit."
+        "title": "Contradictions normatives, relocation adaptative et gouvernance juridique globale de la gestation pour autrui : le cas de la Colombie. Revue Mélété - Cahiers d’histoire et d’anthropologie du droit.",
+        "subtitle": "Gómez Castillo, K. T.",
+        "period": "2026"
       }
     ]
   },
@@ -196,15 +213,18 @@
     "items": [
       {
         "title": "Congrès international de science politique - « L’Amérique latine, acteur géopolitique mondial »",
-        "meta": "ISCTE Lisbonne | 2024"
+        "subtitle": "ISCTE Lisbonne",
+        "period": "2024"
       },
       {
         "title": "IIIe Rencontre internationale de science politique - « Construire une discipline depuis la région »",
-        "meta": "Univ. del Cauca | 2019"
+        "subtitle": "Univ. del Cauca",
+        "period": "2019"
       },
       {
         "title": "Ve Congrès national de science politique - « Politique et société en mutation »",
-        "meta": "Univ. EAFIT | 2018"
+        "subtitle": "Univ. EAFIT",
+        "period": "2018"
       }
     ]
   },
@@ -213,17 +233,17 @@
     "items": [
       {
         "title": "Volontaire",
-        "organization": "Misión de Observación Electoral (MOE), Colombie",
+        "subtitle": "Misión de Observación Electoral (MOE), Colombie",
         "period": "2018 - 2019"
       },
       {
         "title": "Membre",
-        "organization": "Semillero de investigación Cautio Feminista, Univ. del Cauca",
+        "subtitle": "Semillero de investigación Cautio Feminista, Univ. del Cauca",
         "period": "2022"
       },
       {
         "title": "Participation à la conception de projet",
-        "organization": "PROCAAL - Promotora de Café de Altura, Nariño, Colombie",
+        "subtitle": "PROCAAL - Promotora de Café de Altura, Nariño, Colombie",
         "period": "2020"
       }
     ]

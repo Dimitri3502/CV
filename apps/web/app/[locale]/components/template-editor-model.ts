@@ -1,7 +1,16 @@
 import type {DragEvent} from 'react';
 import type {CVData, CVTemplate, Locale} from '../cv-data';
-import type {CvSectionKey, CvTemplatePageMargins, CvTemplateZoneKey} from '../cv-types';
-import {allSectionKeys, cloneTemplate, getAvailableSectionKeys, templateZoneKeys, templatesEqual} from '../template-utils';
+import type {CvSectionKey, CvTemplatePageMargins, CvTemplateSectionPlacement, CvTemplateZoneKey} from '../cv-types';
+import {
+  allSectionKeys,
+  cloneTemplate,
+  getAvailableSectionKeys,
+  getSectionPlacementKey,
+  getSectionPlacementVariant,
+  supportsSectionRenderVariant,
+  templateZoneKeys,
+  templatesEqual,
+} from '../template-utils';
 
 export type EditorZoneKey = CvTemplateZoneKey | 'unassigned';
 
@@ -67,19 +76,33 @@ export function useTemplateEditorModel({
   onTemplateChange,
 }: UseTemplateEditorModelArgs) {
   const availableSections = getAvailableSectionKeys(data);
-  const assignedSections = new Set(templateZoneKeys.flatMap((zoneKey) => draftTemplate.zones[zoneKey]?.sections ?? []));
+  const assignedSections = new Set(
+    templateZoneKeys.flatMap((zoneKey) => (draftTemplate.zones[zoneKey]?.sections ?? []).map(getSectionPlacementKey)),
+  );
   const editableSections = allSectionKeys.filter((sectionKey) => availableSections.includes(sectionKey) || assignedSections.has(sectionKey));
   const unassignedSections = editableSections.filter((sectionKey) => !assignedSections.has(sectionKey));
   const hasPreviewChanges = !templatesEqual(draftTemplate, appliedTemplate);
   const hasUnsavedChanges = !templatesEqual(draftTemplate, persistedTemplate);
 
+  function findPlacement(sectionKey: CvSectionKey): CvTemplateSectionPlacement {
+    for (const zoneKey of templateZoneKeys) {
+      const placement = draftTemplate.zones[zoneKey]?.sections.find((currentPlacement) => getSectionPlacementKey(currentPlacement) === sectionKey);
+      if (placement) {
+        return placement;
+      }
+    }
+
+    return sectionKey;
+  }
+
   function moveSection(sectionKey: CvSectionKey, targetZone: EditorZoneKey, beforeSectionKey?: CvSectionKey) {
     const nextTemplate = cloneTemplate(draftTemplate);
+    const movedPlacement = findPlacement(sectionKey);
 
     for (const zoneKey of templateZoneKeys) {
       const zone = nextTemplate.zones[zoneKey];
       if (zone) {
-        zone.sections = zone.sections.filter((currentSectionKey) => currentSectionKey !== sectionKey);
+        zone.sections = zone.sections.filter((currentPlacement) => getSectionPlacementKey(currentPlacement) !== sectionKey);
       }
     }
 
@@ -87,11 +110,13 @@ export function useTemplateEditorModel({
       const zone = nextTemplate.zones[targetZone];
       if (zone) {
         const nextSections = [...zone.sections];
-        const beforeIndex = beforeSectionKey ? nextSections.indexOf(beforeSectionKey) : -1;
+        const beforeIndex = beforeSectionKey
+          ? nextSections.findIndex((currentPlacement) => getSectionPlacementKey(currentPlacement) === beforeSectionKey)
+          : -1;
         if (beforeIndex >= 0) {
-          nextSections.splice(beforeIndex, 0, sectionKey);
+          nextSections.splice(beforeIndex, 0, movedPlacement);
         } else {
-          nextSections.push(sectionKey);
+          nextSections.push(movedPlacement);
         }
         zone.sections = nextSections;
       }
@@ -134,6 +159,33 @@ export function useTemplateEditorModel({
     onTemplateChange(nextTemplate);
   }
 
+  function toggleSectionVariant(sectionKey: CvSectionKey) {
+    if (!supportsSectionRenderVariant(sectionKey)) {
+      return;
+    }
+
+    const nextTemplate = cloneTemplate(draftTemplate);
+
+    for (const zoneKey of templateZoneKeys) {
+      const zone = nextTemplate.zones[zoneKey];
+      if (!zone) {
+        continue;
+      }
+
+      zone.sections = zone.sections.map((placement) => {
+        if (getSectionPlacementKey(placement) !== sectionKey) {
+          return placement;
+        }
+
+        return getSectionPlacementVariant(placement) === 'compact'
+          ? sectionKey
+          : {key: sectionKey, variant: 'compact'};
+      });
+    }
+
+    onTemplateChange(nextTemplate);
+  }
+
   return {
     hasPreviewChanges,
     hasUnsavedChanges,
@@ -146,5 +198,6 @@ export function useTemplateEditorModel({
     handleItemDrop,
     updatePageMargin,
     updateThemeColor,
+    toggleSectionVariant,
   };
 }

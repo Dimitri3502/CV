@@ -6,7 +6,6 @@ import {
   faCalendarDays,
   faCertificate,
   faChartLine,
-  faCircle,
   faDatabase,
   faEnvelope,
   faGears,
@@ -22,11 +21,13 @@ import {type IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import type {ReactNode} from 'react';
 import type {
-  CvExpertiseIconKey,
+  CvIconKey,
   CvSectionKey,
+  CvSectionRenderVariant,
   CvTemplateZoneKey,
   NormalizedContactItem,
   NormalizedCvDocument,
+  NormalizedCvSimpleEntrySection,
 } from '../cv-types';
 
 type RenderProfileCvSectionArgs = {
@@ -34,6 +35,7 @@ type RenderProfileCvSectionArgs = {
   photoUrl?: string;
   sectionKey: CvSectionKey;
   themeColor: string;
+  variant?: CvSectionRenderVariant;
   zone: CvTemplateZoneKey;
 };
 
@@ -60,7 +62,21 @@ type ItemCardProps = {
   className?: string;
 };
 
+type CompactEntryProps = {
+  title: string;
+  subtitle?: ReactNode;
+  period?: string;
+};
+
 type CardListSectionProps<Item> = SectionHeadingProps & {
+  sectionKey: CvSectionKey;
+  zone: CvTemplateZoneKey;
+  items: readonly Item[];
+  intro?: ReactNode;
+  renderItem: (item: Item) => ReactNode;
+};
+
+type CompactListSectionProps<Item> = SectionHeadingProps & {
   sectionKey: CvSectionKey;
   zone: CvTemplateZoneKey;
   items: readonly Item[];
@@ -74,31 +90,34 @@ const itemCardToneClassNames: Record<NonNullable<ItemCardProps['tone']>, string 
   accent: 'profile-cv-panel-accent',
 };
 
-const expertiseIcons: IconDefinition[] = [faCircle, faCircle, faCircle, faCircle];
-const expertiseIconByKey: Record<CvExpertiseIconKey, IconDefinition> = {
+const cvIconByKey: Record<CvIconKey, IconDefinition> = {
+  'address-book': faAddressBook,
   'chart-line': faChartLine,
+  'calendar-days': faCalendarDays,
+  certificate: faCertificate,
+  envelope: faEnvelope,
   globe: faGlobe,
+  'graduation-cap': faGraduationCap,
+  link: faLink,
   'people-group': faPeopleGroup,
   'laptop-code': faLaptopCode,
+  'location-dot': faLocationDot,
+  phone: faPhone,
   brain: faBrain,
   database: faDatabase,
   gears: faGears,
   briefcase: faBriefcase,
   bullseye: faBullseye,
 };
-const contactIcons: Record<NormalizedContactItem['kind'], IconDefinition> = {
-  email: faEnvelope,
-  phone: faPhone,
-  location: faLocationDot,
-  linkedin: faLink,
-  calendly: faCalendarDays,
-  link: faLink,
-};
 
 function assertZone(sectionKey: CvSectionKey, zone: CvTemplateZoneKey, supportedZones: readonly CvTemplateZoneKey[]) {
   if (!supportedZones.includes(zone)) {
     throw new Error(`Section "${sectionKey}" cannot be rendered in zone "${zone}"`);
   }
+}
+
+function resolveIcon(iconKey?: CvIconKey) {
+  return iconKey ? cvIconByKey[iconKey] : undefined;
 }
 
 function SidebarIcon({icon}: {icon: IconDefinition}) {
@@ -109,14 +128,16 @@ function AccentIcon({icon, color}: {icon: IconDefinition; color: string}) {
   return <FontAwesomeIcon icon={icon} className="h-[12px] w-[12px]" fixedWidth style={{color}} />;
 }
 
-function SidebarSectionHeading({icon, title}: {icon: IconDefinition; title: string}) {
+function SidebarSectionHeading({icon, title}: {icon?: IconDefinition; title: string}) {
   return (
     <h2 className="cv-icon-row profile-cv-sidebar-title" style={{color: '#FFFFFF'}}>
-      <span className="cv-icon-cell">
-        <span className="cv-icon-box">
-          <SidebarIcon icon={icon} />
+      {icon ? (
+        <span className="cv-icon-cell">
+          <span className="cv-icon-box">
+            <SidebarIcon icon={icon} />
+          </span>
         </span>
-      </span>
+      ) : null}
       <span className="cv-icon-label">{title}</span>
     </h2>
   );
@@ -174,8 +195,20 @@ function ItemCard({children, tone = 'default', className}: ItemCardProps) {
   return <article className={cardClasses}>{children}</article>;
 }
 
+function CompactEntry({title, subtitle, period}: CompactEntryProps) {
+  return (
+    <article className="profile-cv-compact-item">
+      <EntryHeader title={title} subtitle={subtitle} period={period} />
+    </article>
+  );
+}
+
 function getMainSectionClassName(zone: CvTemplateZoneKey) {
   return zone === 'firstPage.right' ? 'cv-first-page-section' : undefined;
+}
+
+function isCompactVariant(variant?: CvSectionRenderVariant) {
+  return variant === 'compact';
 }
 
 function renderAccentSubtitle(value: ReactNode, color: string) {
@@ -186,8 +219,8 @@ function renderAccentSubtitle(value: ReactNode, color: string) {
   );
 }
 
-function resolveExpertiseGroupIcon(group: NonNullable<NormalizedCvDocument['expertise']>['groups'][number], index: number) {
-  return (group.icon ? expertiseIconByKey[group.icon] : null) ?? expertiseIcons[index] ?? faCircle;
+function resolveExpertiseGroupIcon(group: NonNullable<NormalizedCvDocument['expertise']>['groups'][number]) {
+  return resolveIcon(group.icon);
 }
 
 function renderCardListSection<Item>({
@@ -208,8 +241,74 @@ function renderCardListSection<Item>({
   );
 }
 
+function renderCompactListSection<Item>({
+  sectionKey,
+  zone,
+  icon,
+  title,
+  color,
+  items,
+  intro,
+  renderItem,
+}: CompactListSectionProps<Item>) {
+  return (
+    <MainSection key={sectionKey} className={getMainSectionClassName(zone)} icon={icon} title={title} color={color}>
+      {intro}
+      <div className="profile-cv-compact-list">{items.map(renderItem)}</div>
+    </MainSection>
+  );
+}
+
+function renderSimpleEntrySection(
+  sectionKey: 'certifications' | 'publications' | 'interventions' | 'engagements',
+  section: NormalizedCvSimpleEntrySection | undefined,
+  themeColor: string,
+  zone: CvTemplateZoneKey,
+  variant?: CvSectionRenderVariant,
+) {
+  if (!section) {
+    return null;
+  }
+
+  const intro = section.subtitle ? <p className="profile-cv-kicker !m-0">{section.subtitle}</p> : null;
+  const renderItem = (item: NormalizedCvSimpleEntrySection['items'][number]) => {
+    const subtitle = item.subtitle ? renderAccentSubtitle(item.subtitle, themeColor) : undefined;
+    return isCompactVariant(variant) ? (
+      <CompactEntry key={`${item.title}-${item.subtitle ?? ''}-${item.period ?? ''}`} title={item.title} subtitle={subtitle} period={item.period} />
+    ) : (
+      <ItemCard key={`${item.title}-${item.subtitle ?? ''}-${item.period ?? ''}`} tone="accent">
+        <EntryHeader title={item.title} subtitle={subtitle} period={item.period} />
+      </ItemCard>
+    );
+  };
+
+  if (isCompactVariant(variant)) {
+    return renderCompactListSection({
+      sectionKey,
+      zone,
+      icon: resolveIcon(section.icon),
+      title: section.title,
+      color: themeColor,
+      intro,
+      items: section.items,
+      renderItem,
+    });
+  }
+
+  return renderCardListSection({
+    sectionKey,
+    zone,
+    icon: resolveIcon(section.icon),
+    title: section.title,
+    color: themeColor,
+    intro,
+    items: section.items,
+    renderItem,
+  });
+}
+
 function SidebarValue({item}: {item: NormalizedContactItem}) {
-  const icon = contactIcons[item.kind];
+  const icon = resolveIcon(item.icon);
   const content =
     'url' in item ? (
       <a href={item.url} className="hover:underline">
@@ -221,11 +320,13 @@ function SidebarValue({item}: {item: NormalizedContactItem}) {
 
   return (
     <div className="cv-icon-row profile-cv-sidebar-row" style={{color: '#FFFFFF'}}>
-      <span className="cv-icon-cell">
-        <span className="cv-icon-box">
-          <SidebarIcon icon={icon} />
+      {icon ? (
+        <span className="cv-icon-cell">
+          <span className="cv-icon-box">
+            <SidebarIcon icon={icon} />
+          </span>
         </span>
-      </span>
+      ) : null}
       <span className="cv-icon-label overflow-wrap-anywhere">{content}</span>
     </div>
   );
@@ -254,7 +355,7 @@ function renderContactSection(data: NormalizedCvDocument) {
 
   return (
     <section key="contact" className="w-full">
-      <SidebarSectionHeading icon={faAddressBook} title={data.contact.title} />
+      <SidebarSectionHeading icon={resolveIcon(data.contact.icon)} title={data.contact.title} />
       <div className="profile-cv-sidebar-list">
         {data.contact.items.map((item, index) => (
           <SidebarValue key={`${item.kind}-${index}`} item={item} />
@@ -307,19 +408,21 @@ function renderSidebarExpertise(data: NormalizedCvDocument) {
 
   return (
     <section key="expertise" className="w-full">
-      <SidebarSectionHeading icon={faBullseye} title={data.expertise.title} />
+      <SidebarSectionHeading icon={resolveIcon(data.expertise.icon)} title={data.expertise.title} />
       <div className="profile-cv-sidebar-groups">
-        {data.expertise.groups.map((group, groupIndex) => {
-          const iconDefinition = resolveExpertiseGroupIcon(group, groupIndex);
+        {data.expertise.groups.map((group) => {
+          const iconDefinition = resolveExpertiseGroupIcon(group);
 
           return (
             <div key={group.title} className="profile-cv-sidebar-group">
               <h3 className="cv-icon-row profile-cv-sidebar-group-title" style={{color: '#FFFFFF'}}>
-                <span className="cv-icon-cell">
-                  <span className="cv-icon-box">
-                    <SidebarIcon icon={iconDefinition} />
+                {iconDefinition ? (
+                  <span className="cv-icon-cell">
+                    <span className="cv-icon-box">
+                      <SidebarIcon icon={iconDefinition} />
+                    </span>
                   </span>
-                </span>
+                ) : null}
                 <span className="cv-icon-label">{group.title}</span>
               </h3>
               <div className="profile-cv-tag-list">
@@ -346,19 +449,21 @@ function renderMainExpertise(data: NormalizedCvDocument, themeColor: string, zon
     <MainSection
       key="expertise"
       className={zone === 'firstPage.right' ? 'cv-first-page-section' : undefined}
-      icon={faBullseye}
+      icon={resolveIcon(data.expertise.icon)}
       title={data.expertise.title}
       color={themeColor}
     >
       <div className="profile-cv-grid-two">
-        {data.expertise.groups.map((group, groupIndex) => (
+        {data.expertise.groups.map((group) => (
           <ItemCard key={group.title} tone="strong">
             <h3 className="cv-icon-row profile-cv-entry-title !m-0">
-              <span className="cv-icon-cell">
-                <span className="cv-icon-box">
-                  <AccentIcon icon={resolveExpertiseGroupIcon(group, groupIndex)} color={themeColor} />
+              {resolveExpertiseGroupIcon(group) ? (
+                <span className="cv-icon-cell">
+                  <span className="cv-icon-box">
+                    <AccentIcon icon={resolveExpertiseGroupIcon(group)!} color={themeColor} />
+                  </span>
                 </span>
-              </span>
+              ) : null}
               <span className="cv-icon-label">{group.title}</span>
             </h3>
             <p className="profile-cv-detail !m-0">{group.items.join(' · ')}</p>
@@ -377,7 +482,7 @@ function renderLanguagesSection(data: NormalizedCvDocument, themeColor: string, 
   if (zone === 'firstPage.left') {
     return (
       <section key="languages" className="w-full">
-        <SidebarSectionHeading icon={faGlobe} title={data.languages.title} />
+        <SidebarSectionHeading icon={resolveIcon(data.languages.icon)} title={data.languages.title} />
         <ul className="profile-cv-sidebar-bullets">
           {data.languages.items.map((item) => (
             <li key={item}>{item}</li>
@@ -391,7 +496,7 @@ function renderLanguagesSection(data: NormalizedCvDocument, themeColor: string, 
     <MainSection
       key="languages"
       className={zone === 'firstPage.right' ? 'cv-first-page-section' : undefined}
-      icon={faGlobe}
+      icon={resolveIcon(data.languages.icon)}
       title={data.languages.title}
       color={themeColor}
     >
@@ -414,7 +519,7 @@ function renderEducationSection(data: NormalizedCvDocument, themeColor: string, 
   return renderCardListSection({
     sectionKey: 'education',
     zone,
-    icon: faGraduationCap,
+    icon: resolveIcon(data.education.icon),
     title: data.education.title,
     color: themeColor,
     items: data.education.items,
@@ -426,29 +531,6 @@ function renderEducationSection(data: NormalizedCvDocument, themeColor: string, 
             {detail}
           </p>
         ))}
-      </ItemCard>
-    ),
-  });
-}
-
-function renderCertificationsSection(data: NormalizedCvDocument, themeColor: string, zone: CvTemplateZoneKey) {
-  if (!data.certifications) {
-    return null;
-  }
-
-  return renderCardListSection({
-    sectionKey: 'certifications',
-    zone,
-    icon: faCertificate,
-    title: data.certifications.title,
-    color: themeColor,
-    items: data.certifications.items,
-    renderItem: (item) => (
-      <ItemCard key={item.name} tone="accent">
-        <EntryHeader
-          title={item.name}
-          subtitle={item.issuerLine ? renderAccentSubtitle(item.issuerLine, themeColor) : undefined}
-        />
       </ItemCard>
     ),
   });
@@ -483,7 +565,7 @@ function renderExperienceSection(data: NormalizedCvDocument, themeColor: string,
   return renderCardListSection({
     sectionKey: 'experience',
     zone,
-    icon: faBriefcase,
+    icon: resolveIcon(data.experience.icon),
     title: data.experience.title,
     color: themeColor,
     items: data.experience.items,
@@ -491,65 +573,7 @@ function renderExperienceSection(data: NormalizedCvDocument, themeColor: string,
   });
 }
 
-function renderPublicationsSection(data: NormalizedCvDocument, themeColor: string, zone: CvTemplateZoneKey) {
-  if (!data.publications) {
-    return null;
-  }
-
-  return renderCardListSection({
-    sectionKey: 'publications',
-    zone,
-    title: data.publications.title,
-    color: themeColor,
-    intro: data.publications.subtitle ? <p className="profile-cv-kicker !m-0">{data.publications.subtitle}</p> : null,
-    items: data.publications.items,
-    renderItem: (item) => (
-      <ItemCard key={item.text} tone="accent">
-        <p className="!m-0">{item.text}</p>
-      </ItemCard>
-    ),
-  });
-}
-
-function renderInterventionsSection(data: NormalizedCvDocument, themeColor: string, zone: CvTemplateZoneKey) {
-  if (!data.interventions) {
-    return null;
-  }
-
-  return renderCardListSection({
-    sectionKey: 'interventions',
-    zone,
-    title: data.interventions.title,
-    color: themeColor,
-    items: data.interventions.items,
-    renderItem: (item) => (
-      <ItemCard key={`${item.title}-${item.meta ?? ''}`} tone="accent">
-        <EntryHeader title={item.title} subtitle={item.meta ? <p className="profile-cv-period-line !m-0">{item.meta}</p> : undefined} />
-      </ItemCard>
-    ),
-  });
-}
-
-function renderEngagementsSection(data: NormalizedCvDocument, themeColor: string, zone: CvTemplateZoneKey) {
-  if (!data.engagements) {
-    return null;
-  }
-
-  return renderCardListSection({
-    sectionKey: 'engagements',
-    zone,
-    title: data.engagements.title,
-    color: themeColor,
-    items: data.engagements.items,
-    renderItem: (item) => (
-      <ItemCard key={`${item.title}-${item.organization}-${item.period ?? ''}`} tone="accent">
-        <EntryHeader title={item.title} period={item.period} subtitle={renderAccentSubtitle(item.organization, themeColor)} />
-      </ItemCard>
-    ),
-  });
-}
-
-export function renderProfileCvSection({data, photoUrl, sectionKey, themeColor, zone}: RenderProfileCvSectionArgs) {
+export function renderProfileCvSection({data, photoUrl, sectionKey, themeColor, variant, zone}: RenderProfileCvSectionArgs) {
   switch (sectionKey) {
     case 'photo':
       assertZone(sectionKey, zone, ['firstPage.left']);
@@ -574,18 +598,18 @@ export function renderProfileCvSection({data, photoUrl, sectionKey, themeColor, 
       return renderEducationSection(data, themeColor, zone);
     case 'certifications':
       assertZone(sectionKey, zone, ['firstPage.right', 'otherPages.main']);
-      return renderCertificationsSection(data, themeColor, zone);
+      return renderSimpleEntrySection(sectionKey, data.certifications, themeColor, zone, variant);
     case 'experience':
       assertZone(sectionKey, zone, ['firstPage.right', 'otherPages.main']);
       return renderExperienceSection(data, themeColor, zone);
     case 'publications':
       assertZone(sectionKey, zone, ['firstPage.right', 'otherPages.main']);
-      return renderPublicationsSection(data, themeColor, zone);
+      return renderSimpleEntrySection(sectionKey, data.publications, themeColor, zone, variant);
     case 'interventions':
       assertZone(sectionKey, zone, ['firstPage.right', 'otherPages.main']);
-      return renderInterventionsSection(data, themeColor, zone);
+      return renderSimpleEntrySection(sectionKey, data.interventions, themeColor, zone, variant);
     case 'engagements':
       assertZone(sectionKey, zone, ['firstPage.right', 'otherPages.main']);
-      return renderEngagementsSection(data, themeColor, zone);
+      return renderSimpleEntrySection(sectionKey, data.engagements, themeColor, zone, variant);
   }
 }

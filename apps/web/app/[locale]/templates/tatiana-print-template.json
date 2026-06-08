@@ -2,7 +2,7 @@
   "version": 1,
   "id": "tatiana-print-template",
   "settings": {
-    "themeColor": "#b5ac70"
+    "themeColor": "#7b754c"
   },
   "page": {
     "size": "A4",
@@ -29,7 +29,10 @@
       "sections": [
         "header",
         "profile",
-        "certifications"
+        {
+          "key": "certifications",
+          "variant": "compact"
+        }
       ]
     },
     "otherPages.main": {
@@ -37,9 +40,18 @@
       "sections": [
         "education",
         "experience",
-        "publications",
-        "interventions",
-        "engagements"
+        {
+          "key": "publications",
+          "variant": "compact"
+        },
+        {
+          "key": "interventions",
+          "variant": "compact"
+        },
+        {
+          "key": "engagements",
+          "variant": "compact"
+        }
       ]
     }
   }

@@ -16,19 +16,23 @@
     "items": [
       {
         "kind": "email",
+        "icon": "envelope",
         "value": "dimitri.beubry@gmail.com"
       },
       {
         "kind": "location",
+        "icon": "location-dot",
         "value": "Paris"
       },
       {
         "kind": "linkedin",
+        "icon": "link",
         "value": "LinkedIn",
         "url": "https://www.linkedin.com/in/dimitri-beubry-99343210b"
       },
       {
         "kind": "calendly",
+        "icon": "calendar-days",
         "value": "Calendly",
         "url": "https://calendly.com/dimitri-beubry"
       }
@@ -46,6 +50,7 @@
   },
   "expertise": {
     "title": "Compétences",
+    "icon": "bullseye",
     "groups": [
       {
         "icon": "laptop-code",
@@ -71,6 +76,7 @@
   },
   "education": {
     "title": "Formation",
+    "icon": "graduation-cap",
     "items": [
       {
         "degree": "Ingénieur Généraliste",
@@ -87,23 +93,25 @@
   },
   "certifications": {
     "title": "Licences et certifications",
+    "icon": "certificate",
     "items": [
       {
-        "name": "PROFESSIONAL SCRUM MASTER™ I",
-        "issuerLine": "Délivré le : juin 2020 · Certifié par Scrum.org"
+        "title": "PROFESSIONAL SCRUM MASTER™ I",
+        "subtitle": "Délivré le : juin 2020 · Certifié par Scrum.org"
       },
       {
-        "name": "Oracle Certified Professional, Java SE 8 Programmer",
-        "issuerLine": "Délivré le : sept. 2019 · Certifié par Oracle"
+        "title": "Oracle Certified Professional, Java SE 8 Programmer",
+        "subtitle": "Délivré le : sept. 2019 · Certifié par Oracle"
       },
       {
-        "name": "Oracle Certified Associate, Java SE 8 Programmer",
-        "issuerLine": "Délivré le : mai 2019 · Certifié par Oracle"
+        "title": "Oracle Certified Associate, Java SE 8 Programmer",
+        "subtitle": "Délivré le : mai 2019 · Certifié par Oracle"
       }
     ]
   },
   "experience": {
     "title": "Expériences",
+    "icon": "briefcase",
     "items": [
       {
         "role": "CTO & Founder",

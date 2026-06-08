@@ -328,6 +328,50 @@
   padding-left: 18px !important;
 }
 
+.cv-root .profile-cv-compact-list {
+  display: block;
+}
+
+.cv-root .profile-cv-compact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 0 10px 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.cv-root .profile-cv-compact-list > * + * {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--cv-card-border);
+}
+
+.cv-root .profile-cv-compact-item .profile-cv-item-header {
+  gap: 6px 10px;
+}
+
+.cv-root .profile-cv-compact-item .profile-cv-item-copy {
+  flex-basis: 0;
+}
+
+.cv-root .profile-cv-compact-item .profile-cv-entry-title {
+  font-size: 13px;
+  line-height: 1.28;
+  font-weight: 700;
+}
+
+.cv-root .profile-cv-compact-item .profile-cv-entry-subtitle {
+  font-size: 12px;
+  line-height: 1.32;
+}
+
+.cv-root .profile-cv-compact-item .profile-cv-period {
+  padding: 2px 8px;
+  font-size: 10px;
+  line-height: 1.15;
+}
+
 .cv-root .profile-cv-grid-two {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

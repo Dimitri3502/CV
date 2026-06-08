@@ -10,8 +10,8 @@
     "margins": {
       "top": "8mm",
       "bottom": "8mm",
-      "mainHorizontal": "14mm",
-      "sidebarHorizontal": "10mm"
+      "mainHorizontal": "8mm",
+      "sidebarHorizontal": "8mm"
     }
   },
   "zones": {
@@ -34,8 +34,11 @@
     "otherPages.main": {
       "overflow": "paginate",
       "sections": [
-        "certifications",
-        "experience"
+        "experience",
+        {
+          "key": "certifications",
+          "variant": "compact"
+        }
       ]
     }
   }
